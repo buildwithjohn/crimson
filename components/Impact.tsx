@@ -129,7 +129,7 @@ export default function Impact() {
               &ldquo;CrimsonWings is not building a logistics company. We are building Nigeria&rsquo;s national blood infrastructure.&rdquo;
             </div>
             <div className="font-mono mt-6" style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-              CrimsonWings — Founding Mission
+              CrimsonWings Plasma Biologics Ltd — Founding Mission
             </div>
             {/* Corner accents */}
             <div className="absolute top-3 left-3 w-6 h-6" style={{ borderTop: "1px solid rgba(138,3,3,0.4)", borderLeft: "1px solid rgba(138,3,3,0.4)" }} />
