@@ -28,10 +28,10 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        background:    scrolled ? "rgba(10,10,10,0.97)" : "transparent",
-        backdropFilter:scrolled ? "blur(18px)"          : "none",
-        borderBottom:  scrolled ? "1px solid rgba(138,3,3,0.18)" : "none",
-        padding:       scrolled ? "12px 0" : "20px 0",
+        background:    "rgba(10,10,10,0.97)",
+        backdropFilter:"blur(18px)",
+        borderBottom:  scrolled ? "1px solid rgba(138,3,3,0.22)" : "1px solid rgba(255,255,255,0.04)",
+        padding:       scrolled ? "12px 0" : "18px 0",
       }}
     >
       <div className="container" style={{ display:"flex", alignItems:"center", gap:0 }}>

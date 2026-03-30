@@ -81,7 +81,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div style={{ borderTop:"1px solid rgba(255,255,255,.06)", marginTop:"clamp(40px,5vw,60px)", paddingTop:24, display:"flex", flexWrap:"wrap", gap:12, justifyContent:"space-between", alignItems:"center" }}>
-          <div className="caption" style={{ color:"rgba(255,255,255,.18)", fontSize:9 }}>© 2024 CRIMSONWINGS PLASMA BIOLOGICS LTD. ALL RIGHTS RESERVED.</div>
+          <div className="caption" style={{ color:"rgba(255,255,255,.18)", fontSize:9 }}>© 2026 CRIMSONWINGS PLASMA BIOLOGICS LTD. ALL RIGHTS RESERVED.</div>
           <div style={{ display:"flex", gap:24 }}>
             {["Privacy Policy","Terms of Use","Compliance"].map(l=>(
               <a key={l} href="#" className="caption" style={{ color:"rgba(255,255,255,.18)", fontSize:9, textDecoration:"none" }}>{l}</a>
