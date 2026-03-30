@@ -71,7 +71,7 @@ export default function About() {
             {/* Floating badge — outside the overflow-hidden card */}
             <div style={{ position:"absolute", bottom:0, right:0, background:"var(--crimson)", padding:"10px 18px" }}>
               <div className="caption" style={{ color:"rgba(255,255,255,.65)", marginBottom:2 }}>Established</div>
-              <div className="font-display" style={{ fontSize:22, fontWeight:700, color:"#fff", lineHeight:1 }}>2024</div>
+              <div className="font-display" style={{ fontSize:22, fontWeight:700, color:"#fff", lineHeight:1 }}>2026</div>
             </div>
           </div>
         </div>
