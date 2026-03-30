@@ -198,3 +198,12 @@ a { color: inherit; text-decoration: none; }
 /* ── Divider ─────────────────────────────────────────────────────────────── */
 .divider { width:100%; height:1px; background:var(--smoke); }
 .divider-dark { width:100%; height:1px; background:rgba(255,255,255,.06); }
+
+/* ── Reveal fallback — if JS hasn't run yet show content ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
