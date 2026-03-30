@@ -3,191 +3,182 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 const STATS = [
-  { value: "240K+", label: "Blood Units / Year 1" },
-  { value: "20K+", label: "Units / Month Capacity" },
-  { value: "<60min", label: "Emergency Delivery" },
-  { value: "100%", label: "NAT-Screened Supply" },
+  { value:"240K+",  label:"Blood Units · Year 1",     accent:true  },
+  { value:"20K+",   label:"Units · Month Capacity",    accent:false },
+  { value:"<60min", label:"Emergency Delivery",        accent:false },
+  { value:"100%",   label:"NAT-Screened Supply",       accent:false },
 ];
 
-const TICKER_ITEMS = [
-  "NAT Viral Screening Systems",
-  "Walk-In Cold Rooms",
-  "Ultra-Low Temperature Freezers",
-  "Drone-Enabled Last Mile",
-  "Proprietary OS Platform",
-  "Triphasic Logistics Model",
-  "National Blood Infrastructure",
-  "Lagos State Partnership Ready",
+const TICKER = [
+  "NAT Viral Screening","Walk-In Cold Rooms","Ultra-Low Temp Freezers",
+  "Drone-Enabled Last Mile","Proprietary OS Platform","Triphasic Logistics",
+  "National Blood Infrastructure","Lagos State Partnership",
 ];
 
 export default function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
+  const ref = useRef<HTMLElement>(null);
+  const [on, setOn] = useState(false);
+
+  useEffect(() => { const t = setTimeout(()=>setOn(true),80); return ()=>clearTimeout(t); },[]);
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 100);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    const onMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 18;
-      const y = (e.clientY / window.innerHeight - 0.5) * 10;
-      const orb = el.querySelector(".hero-orb") as HTMLElement;
-      if (orb) orb.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+    const el = ref.current; if(!el) return;
+    const fn = (e:MouseEvent) => {
+      const orb = el.querySelector(".hero-orb") as HTMLElement; if(!orb) return;
+      const x = (e.clientX/window.innerWidth  - .5)*16;
+      const y = (e.clientY/window.innerHeight - .5)*8;
+      orb.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+    window.addEventListener("mousemove", fn);
+    return () => window.removeEventListener("mousemove", fn);
+  },[]);
+
+  const t = (delay:string, extra?:React.CSSProperties):React.CSSProperties => ({
+    opacity: on?1:0,
+    transform: on?"none":"translateY(22px)",
+    transition:`opacity .85s var(--ease-expo) ${delay}, transform .85s var(--ease-expo) ${delay}`,
+    ...extra,
+  });
 
   return (
-    <section
-      ref={heroRef}
-      className="relative min-h-screen flex flex-col overflow-hidden"
-      style={{ background: "var(--ink)" }}
-    >
-      <div className="absolute inset-0 grid-lines-dark opacity-70" />
-      <div className="noise-overlay" />
+    <section ref={ref} className="bg-ink section noise-overlay"
+      style={{ minHeight:"100vh", display:"flex", flexDirection:"column", justifyContent:"center", padding:0, overflow:"hidden" }}>
+
+      {/* Background */}
+      <div className="grid-lines-dark" style={{ position:"absolute", inset:0, opacity:.65 }} />
 
       {/* Glow orb */}
-      <div
-        className="hero-orb absolute pointer-events-none transition-transform duration-700"
-        style={{
-          width: 700, height: 700, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(138,3,3,0.2) 0%, rgba(138,3,3,0.05) 55%, transparent 70%)",
-          top: "50%", left: "60%", transform: "translate(-50%, -50%)",
-        }}
-      />
+      <div className="hero-orb" style={{
+        position:"absolute", width:600, height:600, borderRadius:"50%", pointerEvents:"none",
+        background:"radial-gradient(circle, rgba(138,3,3,.18) 0%, rgba(138,3,3,.05) 55%, transparent 70%)",
+        top:"50%", left:"62%", transform:"translate(-50%,-50%)", transition:"transform .8s ease-out",
+      }}/>
 
       {/* Animated rings */}
-      <div className="absolute pointer-events-none" style={{ top: "44%", left: "62%", transform: "translate(-50%,-50%)" }}>
-        {[200, 340, 480].map((size, i) => (
-          <div key={size} className="absolute rounded-full border"
-            style={{
-              width: size, height: size, top: "50%", left: "50%",
-              transform: "translate(-50%,-50%)",
-              borderColor: `rgba(138,3,3,${0.1 - i * 0.025})`,
-              animation: `breathe ${3 + i}s ease-in-out infinite`,
-              animationDelay: `${i * 0.6}s`,
-            }}
-          />
-        ))}
-      </div>
+      {[220,360,500].map((s,i)=>(
+        <div key={s} style={{
+          position:"absolute", width:s, height:s, borderRadius:"50%",
+          border:`1px solid rgba(138,3,3,${.1-i*.025})`,
+          top:"50%", left:"62%", transform:"translate(-50%,-50%)",
+          animation:`breathe ${3+i}s ease-in-out infinite`, animationDelay:`${i*.5}s`,
+          pointerEvents:"none",
+        }}/>
+      ))}
 
       {/* Scan line */}
-      <div className="absolute left-0 right-0 pointer-events-none"
-        style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(138,3,3,0.35), transparent)", animation: "scanLine 9s linear infinite", zIndex: 2 }}
-      />
+      <div style={{
+        position:"absolute", left:0, right:0, height:1, pointerEvents:"none", zIndex:2,
+        background:"linear-gradient(90deg,transparent,rgba(138,3,3,.3),transparent)",
+        animation:"scanLine 10s linear infinite",
+      }}/>
 
-      {/* Main content — flex-1 so it fills the space between top and ticker */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 pt-28 pb-8">
-        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* ── MAIN CONTENT ──────────────────────────────────────── */}
+      <div className="container" style={{ position:"relative", zIndex:10, paddingTop:120, paddingBottom:80 }}>
 
-          {/* Left */}
+        {/* Status row */}
+        <div style={{ ...t("0s"), display:"flex", alignItems:"center", gap:16, marginBottom:40 }}>
+          <span style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", flexShrink:0, animation:"blink 2s ease-in-out infinite" }}/>
+          <span className="caption" style={{ color:"rgba(255,255,255,.36)", letterSpacing:".18em" }}>System Active · Lagos State Operations</span>
+        </div>
+
+        <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:48, alignItems:"center" }}
+          className="hero-grid">
+
+          {/* Left column */}
           <div>
-            {/* System status — top of content */}
-            <div className="flex items-center gap-4 mb-8"
-              style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.6s 0.1s" }}>
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full" style={{ background: "#22c55e", boxShadow: "0 0 8px #22c55e", animation: "blink 2s ease-in-out infinite" }} />
-                <span className="font-mono text-white/40" style={{ fontSize: 10, letterSpacing: "0.18em" }}>SYSTEM ACTIVE · LAGOS STATE</span>
-              </div>
-            </div>
-
-            <div className="section-label mb-6"
-              style={{ color: "rgba(255,255,255,0.35)", opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateX(-20px)", transition: "all 0.7s 0.2s var(--ease-expo)" }}>
+            <div className="section-label" style={{ ...t(".1s"), marginBottom:24 }}>
               CrimsonWings Plasma Biologics Ltd
             </div>
 
-            <h1 className="font-display text-white"
-              style={{
-                fontSize: "clamp(38px, 5.5vw, 76px)", lineHeight: 1.06, fontWeight: 700,
-                opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateY(30px)",
-                transition: "all 0.9s 0.3s var(--ease-expo)",
-              }}>
+            <h1 className="h1 font-display" style={{ ...t(".2s"), color:"#fff", marginBottom:24 }}>
               Delivering{" "}
-              <em style={{ color: "var(--crimson)", fontStyle: "italic" }}>Blood.</em>
-              <br />Saving{" "}
-              <span style={{ color: "var(--white)" }}>Lives.</span>
-              <br />
-              <span className="font-mono font-light" style={{ fontSize: "clamp(14px, 1.8vw, 22px)", color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", fontStyle: "normal" }}>
+              <em style={{ color:"var(--crimson)", fontStyle:"italic" }}>Blood.</em>
+              <br/>Saving{" "}
+              <span style={{ color:"#fff" }}>Lives.</span>
+              <br/>
+              <span className="font-mono" style={{ fontSize:"clamp(13px,1.6vw,20px)", color:"rgba(255,255,255,.28)", fontStyle:"normal", fontWeight:300, letterSpacing:".08em" }}>
                 On Time. Every Time.
               </span>
             </h1>
 
-            <p className="mt-6 text-white/50 leading-relaxed"
-              style={{
-                fontSize: 15, maxWidth: 460,
-                opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateY(20px)",
-                transition: "all 0.8s 0.5s var(--ease-expo)",
-              }}>
+            <p className="body-lg" style={{ ...t(".35s"), color:"rgba(255,255,255,.48)", maxWidth:500, marginBottom:36 }}>
               Nigeria&apos;s most advanced digitized blood bank — integrating NAT viral screening, ultra-scale cold storage, and a proprietary OS platform with drone-enabled last-mile delivery across Lagos.
             </p>
 
-            <div className="flex flex-wrap gap-4 mt-8"
-              style={{ opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateY(20px)", transition: "all 0.8s 0.65s var(--ease-expo)" }}>
-              <a href="#solution" className="btn-crimson"><span>Explore the Platform</span><ArrowRight size={14} /></a>
-              <a href="#contact" className="btn-outline"><span>Partner With Us</span></a>
+            <div style={{ ...t(".48s"), display:"flex", flexWrap:"wrap", gap:12, marginBottom:48 }}>
+              <a href="#solution"  className="btn-primary"><span>Explore the Platform</span><ArrowRight size={14}/></a>
+              <a href="#contact"   className="btn-ghost"  ><span>Partner With Us</span></a>
             </div>
 
             {/* Three pillars */}
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mt-10"
-              style={{ opacity: mounted ? 1 : 0, transition: "opacity 0.8s 0.8s" }}>
-              {["Clinical Authority", "Operational Scale", "Tech Superiority"].map((p, i) => (
-                <div key={p} className="flex items-center gap-2">
-                  <span className="font-mono" style={{ fontSize: 9, color: "var(--crimson)", letterSpacing: "0.1em" }}>0{i + 1}</span>
-                  <div className="w-px h-5" style={{ background: "rgba(255,255,255,0.1)" }} />
-                  <span className="font-mono text-white/35" style={{ fontSize: 9, letterSpacing: "0.12em", textTransform: "uppercase" }}>{p}</span>
+            <div style={{ ...t(".6s"), display:"flex", flexWrap:"wrap", gap:24 }}>
+              {["Clinical Authority","Operational Scale","Tech Superiority"].map((p,i)=>(
+                <div key={p} style={{ display:"flex", alignItems:"center", gap:10 }}>
+                  <span className="caption" style={{ color:"var(--crimson)" }}>0{i+1}</span>
+                  <div style={{ width:1, height:20, background:"rgba(255,255,255,.1)" }}/>
+                  <span className="caption" style={{ color:"rgba(255,255,255,.32)" }}>{p}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right — stat grid */}
-          <div className="grid grid-cols-2 gap-3"
-            style={{ opacity: mounted ? 1 : 0, transform: mounted ? "none" : "translateX(40px)", transition: "all 0.9s 0.4s var(--ease-expo)" }}>
-            {STATS.map((s, i) => (
-              <div key={s.label} className="relative overflow-hidden"
-                style={{
-                  background: i === 0 ? "var(--crimson)" : "rgba(255,255,255,0.04)",
-                  border: `1px solid ${i === 0 ? "var(--crimson)" : "rgba(255,255,255,0.08)"}`,
-                  padding: "24px 20px",
-                }}>
-                <div className="font-display text-white font-bold" style={{ fontSize: "clamp(26px, 3vw, 40px)", lineHeight: 1 }}>
+          {/* Right column — stat grid */}
+          <div style={{ ...t(".3s"), display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+            {STATS.map((s)=>(
+              <div key={s.label} style={{
+                background: s.accent ? "var(--crimson)" : "rgba(255,255,255,.04)",
+                border:`1px solid ${s.accent?"var(--crimson)":"rgba(255,255,255,.08)"}`,
+                padding:"28px 24px", position:"relative", overflow:"hidden",
+              }}>
+                <div className="font-display" style={{ fontSize:"clamp(28px,3.5vw,46px)", fontWeight:700, color:"#fff", lineHeight:1, marginBottom:10 }}>
                   {s.value}
                 </div>
-                <div className="font-mono mt-2" style={{ fontSize: 9, letterSpacing: "0.13em", textTransform: "uppercase", color: i === 0 ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.38)" }}>
+                <div className="caption" style={{ color: s.accent?"rgba(255,255,255,.65)":"rgba(255,255,255,.35)", lineHeight:1.5 }}>
                   {s.label}
                 </div>
-                <div className="absolute top-0 right-0 w-6 h-6"
-                  style={{ borderTop: `1px solid ${i === 0 ? "rgba(255,255,255,0.2)" : "rgba(138,3,3,0.3)"}`, borderRight: `1px solid ${i === 0 ? "rgba(255,255,255,0.2)" : "rgba(138,3,3,0.3)"}` }} />
+                {/* Corner accent */}
+                <div style={{ position:"absolute", top:0, right:0, width:28, height:28,
+                  borderTop:`1px solid ${s.accent?"rgba(255,255,255,.2)":"rgba(138,3,3,.3)"}`,
+                  borderRight:`1px solid ${s.accent?"rgba(255,255,255,.2)":"rgba(138,3,3,.3)"}` }}/>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Ticker — pinned to bottom */}
-      <div className="relative z-10 border-t border-b overflow-hidden flex-shrink-0"
-        style={{ borderColor: "rgba(138,3,3,0.2)", background: "rgba(138,3,3,0.05)", padding: "11px 0", opacity: mounted ? 1 : 0, transition: "opacity 0.6s 1s" }}>
-        <div className="flex animate-ticker whitespace-nowrap">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <span key={i} className="flex items-center" style={{ padding: "0 28px" }}>
-              <span className="font-mono text-white/30" style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase" }}>{item}</span>
-              <span className="ml-28" style={{ color: "var(--crimson)", opacity: 0.5, fontSize: 10 }}>◆</span>
+      {/* ── TICKER ──────────────────────────────────────────────── */}
+      <div style={{
+        borderTop:"1px solid rgba(138,3,3,.2)", borderBottom:"1px solid rgba(138,3,3,.2)",
+        background:"rgba(138,3,3,.05)", padding:"13px 0", overflow:"hidden",
+        position:"relative", zIndex:10, marginTop:"auto", flexShrink:0,
+        opacity: on?1:0, transition:"opacity .6s 1s",
+      }}>
+        <div className="animate-ticker" style={{ display:"flex", whiteSpace:"nowrap" }}>
+          {[...TICKER,...TICKER].map((item,i)=>(
+            <span key={i} style={{ display:"inline-flex", alignItems:"center", padding:"0 32px" }}>
+              <span className="caption" style={{ color:"rgba(255,255,255,.28)", letterSpacing:".2em" }}>{item}</span>
+              <span style={{ color:"var(--crimson)", opacity:.5, marginLeft:32, fontSize:9 }}>◆</span>
             </span>
           ))}
         </div>
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 pointer-events-none"
-        style={{ opacity: mounted ? 0.4 : 0, transition: "opacity 0.6s 1.2s" }}>
-        <span className="font-mono text-white/40" style={{ fontSize: 9, letterSpacing: "0.2em" }}>SCROLL</span>
-        <ChevronDown size={13} className="text-white/40 animate-bounce" />
+      <div style={{
+        position:"absolute", bottom:90, left:"50%", transform:"translateX(-50%)",
+        display:"flex", flexDirection:"column", alignItems:"center", gap:6,
+        zIndex:10, pointerEvents:"none",
+        opacity: on?.35:0, transition:"opacity .6s 1.2s",
+      }}>
+        <span className="caption" style={{ color:"rgba(255,255,255,.4)", fontSize:9 }}>SCROLL</span>
+        <ChevronDown size={13} style={{ color:"rgba(255,255,255,.4)", animation:"bounce 1s infinite" }}/>
       </div>
+
+      <style>{`
+        @media(min-width:900px){ .hero-grid{ grid-template-columns:1fr 1fr !important; } }
+        @keyframes bounce{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+      `}</style>
     </section>
   );
 }

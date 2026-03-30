@@ -3,50 +3,45 @@ import { useReveal } from "./useReveal";
 import { Shield, Award, Globe } from "lucide-react";
 
 const STAKEHOLDERS = [
-  { icon: "🏛️", label: "Lagos State Ministry of Health", type: "Government" },
-  { icon: "🏥", label: "Public & Private Hospitals", type: "Healthcare" },
-  { icon: "🔬", label: "Blood Banks & Transfusion Centers", type: "Clinical" },
-  { icon: "🌍", label: "WHO & International Health Orgs", type: "Global" },
-  { icon: "💼", label: "Institutional Investors & VC Firms", type: "Finance" },
-  { icon: "🏦", label: "Development Finance Institutions", type: "Finance" },
-  { icon: "🚨", label: "Emergency Response Agencies", type: "Emergency" },
-  { icon: "🔴", label: "Red Cross & Health NGOs", type: "NGO" },
+  {icon:"🏛️",label:"Lagos State Ministry of Health",type:"Government"},
+  {icon:"🏥",label:"Public & Private Hospitals",    type:"Healthcare"},
+  {icon:"🔬",label:"Blood Banks & Transfusion Centers",type:"Clinical"},
+  {icon:"🌍",label:"WHO & International Health Orgs",type:"Global"},
+  {icon:"💼",label:"Institutional Investors & VC",  type:"Finance"},
+  {icon:"🏦",label:"Development Finance Institutions",type:"Finance"},
+  {icon:"🚨",label:"Emergency Response Agencies",   type:"Emergency"},
+  {icon:"🔴",label:"Red Cross & Health NGOs",       type:"NGO"},
 ];
 
 export default function Partnerships() {
   const ref = useReveal();
-
   return (
-    <section id="partnerships" className="relative py-16 lg:py-32 overflow-hidden" style={{ background: "var(--white)" }} ref={ref}>
-      <div className="absolute inset-0 grid-dots opacity-30" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section id="partnerships" ref={ref} className="section bg-white grid-dots">
+      <div className="container" style={{ position:"relative", zIndex:2 }}>
+        <div style={{ display:"grid", gap:"clamp(40px,6vw,80px)", alignItems:"start" }} className="two-col">
 
           {/* Left */}
           <div>
-            <div className="section-label reveal mb-8">Government & Institutional</div>
-            <h2 className="font-display reveal delay-100"
-              style={{ fontSize: "clamp(28px, 4vw, 50px)", lineHeight: 1.1, fontWeight: 700, color: "var(--ink)" }}>
-              Built for{" "}<span style={{ color: "var(--crimson)", fontStyle: "italic" }}>Institutional</span>{" "}Trust
+            <div className="section-label reveal" style={{ marginBottom:20 }}>Government & Institutional</div>
+            <h2 className="h2 font-display reveal delay-1" style={{ color:"var(--ink)", marginBottom:16 }}>
+              Built for <em style={{ color:"var(--crimson)" }}>Institutional</em> Trust
             </h2>
-            <p className="reveal delay-200 mt-6 text-steel leading-relaxed" style={{ fontSize: 15, maxWidth: 460 }}>
+            <p className="body-lg reveal delay-2" style={{ marginBottom:32 }}>
               CrimsonWings is designed from the ground up to meet the expectations of government agencies, medical institutions, and international health organizations — with the compliance, transparency, and scale they require.
             </p>
-            <div className="reveal delay-300 mt-10 space-y-5">
+            <div className="reveal delay-3" style={{ display:"flex", flexDirection:"column", gap:20 }}>
               {[
-                { icon: Shield, title: "Regulatory Compliance", desc: "NAFDAC, WHO, and ISO-aligned protocols across all operations" },
-                { icon: Award, title: "Clinical Leadership", desc: "Expert leadership in transfusion medicine and medical logistics" },
-                { icon: Globe, title: "PPP Framework Ready", desc: "Structured for public-private partnership at state and federal level" },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center"
-                    style={{ background: "rgba(138,3,3,0.07)", border: "1px solid rgba(138,3,3,0.13)" }}>
-                    <item.icon size={16} style={{ color: "var(--crimson)" }} />
+                {icon:Shield, title:"Regulatory Compliance", desc:"NAFDAC, WHO, and ISO-aligned protocols across all operations"},
+                {icon:Award,  title:"Clinical Leadership",   desc:"Expert leadership in transfusion medicine and medical logistics"},
+                {icon:Globe,  title:"PPP Framework Ready",   desc:"Structured for public-private partnership at state and federal level"},
+              ].map(item=>(
+                <div key={item.title} style={{ display:"flex", gap:16, alignItems:"flex-start" }}>
+                  <div style={{ flexShrink:0, width:40, height:40, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(138,3,3,.07)", border:"1px solid rgba(138,3,3,.13)" }}>
+                    <item.icon size={16} style={{ color:"var(--crimson)" }}/>
                   </div>
                   <div>
-                    <div className="font-display font-bold" style={{ fontSize: 15, color: "var(--ink)" }}>{item.title}</div>
-                    <div className="text-steel mt-1" style={{ fontSize: 13 }}>{item.desc}</div>
+                    <div className="font-display" style={{ fontSize:16, fontWeight:700, color:"var(--ink)", marginBottom:4 }}>{item.title}</div>
+                    <p className="body-md">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -55,17 +50,15 @@ export default function Partnerships() {
 
           {/* Right — stakeholders */}
           <div className="reveal-right">
-            <div className="font-mono mb-5" style={{ fontSize: 9, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--steel-light)" }}>
-              Key Stakeholders & Partners
-            </div>
-            {/* 2 cols on mobile sm+, always 2 col */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {STAKEHOLDERS.map((s, i) => (
-                <div key={s.label} className="reveal group"
-                  style={{ transitionDelay: `${i * 0.07}s`, border: "1px solid var(--smoke)", padding: "14px 16px", background: "var(--off-white)", transition: "all 0.3s var(--ease-expo)" }}>
-                  <div className="text-lg mb-2">{s.icon}</div>
-                  <div style={{ fontSize: 12, color: "var(--ink)", fontWeight: 500, lineHeight: 1.35 }}>{s.label}</div>
-                  <div className="font-mono mt-1" style={{ fontSize: 8, letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--crimson)", opacity: 0.7 }}>{s.type}</div>
+            <div className="caption" style={{ color:"var(--steel-light)", marginBottom:16 }}>Key Stakeholders & Partners</div>
+            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+              {STAKEHOLDERS.map((s,i)=>(
+                <div key={s.label} className="reveal" style={{ transitionDelay:`${i*.06}s`, border:"1px solid var(--smoke)", padding:"14px 16px", background:"var(--off-white)", transition:"border-color .3s, transform .3s var(--ease-expo)" }}
+                  onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(138,3,3,.3)"; e.currentTarget.style.transform="translateY(-2px)";}}
+                  onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--smoke)";     e.currentTarget.style.transform="none";}}>
+                  <div style={{ fontSize:20, marginBottom:8 }}>{s.icon}</div>
+                  <div style={{ fontSize:12, color:"var(--ink)", fontWeight:500, lineHeight:1.4 }}>{s.label}</div>
+                  <div className="caption" style={{ color:"var(--crimson)", opacity:.7, marginTop:4, fontSize:8 }}>{s.type}</div>
                 </div>
               ))}
             </div>
@@ -73,27 +66,26 @@ export default function Partnerships() {
         </div>
 
         {/* Investor CTA */}
-        <div className="reveal mt-16 lg:mt-24 relative overflow-hidden" style={{ background: "var(--ink)", padding: "48px 40px", transitionDelay: "0.3s" }}>
-          <div className="absolute top-0 left-0 right-0 h-1" style={{ background: "var(--crimson)" }} />
-          <div className="absolute inset-0 grid-lines-dark opacity-60" />
-          <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div className="reveal" style={{ marginTop:"clamp(48px,6vw,80px)", background:"var(--ink)", padding:"clamp(40px,5vw,64px)", position:"relative", overflow:"hidden", transitionDelay:".3s" }}>
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"var(--crimson)" }}/>
+          <div className="grid-lines-dark" style={{ position:"absolute", inset:0, opacity:.6 }}/>
+          <div style={{ position:"relative", zIndex:2, display:"flex", flexDirection:"column", gap:24, alignItems:"flex-start" }} className="investor-row">
             <div>
-              <div className="font-mono mb-3" style={{ fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
-                Investor & Partnership Opportunity
-              </div>
-              <h3 className="font-display text-white font-bold" style={{ fontSize: "clamp(20px, 2.8vw, 34px)", lineHeight: 1.2 }}>
-                Be Part of Nigeria&rsquo;s{" "}<span style={{ color: "var(--crimson)", fontStyle: "italic" }}>Healthcare Revolution</span>
+              <div className="caption" style={{ color:"rgba(255,255,255,.35)", marginBottom:12 }}>Investor & Partnership Opportunity</div>
+              <h3 className="font-display" style={{ fontSize:"clamp(22px,3vw,36px)", fontWeight:700, color:"#fff", lineHeight:1.2, marginBottom:12 }}>
+                Be Part of Nigeria&rsquo;s <em style={{ color:"var(--crimson)" }}>Healthcare Revolution</em>
               </h3>
-              <p className="text-white/42 mt-3" style={{ fontSize: 14, maxWidth: 500 }}>
+              <p className="body-md" style={{ color:"rgba(255,255,255,.42)", maxWidth:500 }}>
                 CrimsonWings is open to strategic partnerships, institutional investment, and government collaboration. We have the infrastructure plan, clinical expertise, and technology.
               </p>
             </div>
-            <a href="#contact" className="btn-crimson flex-shrink-0">
-              <span>Contact Investor Relations</span>
-            </a>
+            <a href="#contact" className="btn-primary"><span>Contact Investor Relations</span></a>
           </div>
         </div>
       </div>
+      <style>{`
+        @media(min-width:900px){.two-col{grid-template-columns:1fr 1fr !important;} .investor-row{flex-direction:row !important; align-items:center !important;justify-content:space-between !important;}}
+      `}</style>
     </section>
   );
 }
