@@ -26,7 +26,7 @@ export default function Footer() {
           </div>
           <a
             href="#contact"
-            className="flex-shrink-0 inline-flex items-center gap-2 bg-white font-body font-semibold"
+            className="flex-shrink-0 inline-flex items-center gap-2 bg-white font-semibold"
             style={{
               color: "var(--crimson)",
               fontSize: 12,

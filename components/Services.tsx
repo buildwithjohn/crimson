@@ -44,11 +44,11 @@ export default function Services() {
   const ref = useReveal();
 
   return (
-    <section id="services" className="relative py-32 overflow-hidden" style={{ background: "var(--white)" }} ref={ref}>
+    <section id="services" className="relative py-16 lg:py-32 overflow-hidden" style={{ background: "var(--white)" }} ref={ref}>
       <div className="absolute inset-0 grid-lines opacity-60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 lg:mb-20">
           <div className="section-label reveal mb-8 justify-center">What We Offer</div>
           <h2
             className="font-display reveal delay-100"

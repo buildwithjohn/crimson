@@ -35,11 +35,11 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-32 overflow-hidden" style={{ background: "var(--off-white)" }} ref={ref}>
+    <section id="faq" className="relative py-16 lg:py-32 overflow-hidden" style={{ background: "var(--off-white)" }} ref={ref}>
       <div className="absolute inset-0 grid-dots opacity-40" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 lg:mb-16">
           <div className="section-label reveal mb-8 justify-center">Frequently Asked</div>
           <h2
             className="font-display reveal delay-100"
