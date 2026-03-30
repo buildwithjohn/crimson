@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import Technology from "@/components/Technology";
+import LogisticsModel from "@/components/LogisticsModel";
 import HowItWorks from "@/components/HowItWorks";
 import Services from "@/components/Services";
 import Impact from "@/components/Impact";
@@ -22,6 +23,7 @@ export default function Home() {
         <Problem />
         <Solution />
         <Technology />
+        <LogisticsModel />
         <HowItWorks />
         <Services />
         <Impact />
