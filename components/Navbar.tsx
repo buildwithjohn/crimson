@@ -91,7 +91,7 @@ export default function Navbar() {
           <a href="#contact" className="btn-crimson" style={{ padding: "10px 22px", fontSize: 11 }}>
             <span>Partner With Us</span>
           </a>
-          <a href="#" className="btn-outline" style={{ padding: "9px 21px", fontSize: 11 }}>
+          <a href="/dashboard" className="btn-outline" style={{ padding: "9px 21px", fontSize: 11 }}>
             <span>Dashboard</span>
           </a>
         </div>
