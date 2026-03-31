@@ -15,7 +15,7 @@ const STATS = [
   { label:"Units Available",   value:"18,420", sub:"In cold storage",       trend:+4.2,  color:"#22c55e", icon:Droplets,  delta:"+740 today"  },
   { label:"Active Deliveries", value:"12",     sub:"In transit now",        trend:+2,    color:"#2F80ED", icon:Truck,     delta:"+3 last hour" },
   { label:"Pending Requests",  value:"7",      sub:"Awaiting dispatch",     trend:-2,    color:"#C9A84C", icon:Clock,     delta:"2 critical"   },
-  { label:"Drones in Flight",  value:"3",      sub:"Active missions",       trend:0,     color:"#8A0303", icon:Wind,      delta:"Lagos metro"  },
+  { label:"Drones in Flight",  value:"3",      sub:"Active missions",       trend:0,     color:"#CC0000", icon:Wind,      delta:"Lagos metro"  },
   { label:"Donors Today",      value:"284",    sub:"Registered collections",trend:+12.4, color:"#9333EA", icon:Users,     delta:"+31 vs avg"   },
   { label:"NAT Batches",       value:"6",      sub:"Processing now",        trend:0,     color:"#0EA5E9", icon:FlaskConical,delta:"~4hr remaining"},
   { label:"Hospitals Online",  value:"147",    sub:"Connected to OS",       trend:+5,    color:"#C9A84C", icon:Building2, delta:"34 pending"   },
@@ -77,12 +77,14 @@ const DONORS = [
 ];
 
 const HOSPITALS = [
-  { name:"Lagos Island General Hospital", area:"Lagos Island", requests:14, lastOrder:"32m ago", status:"Active",   tier:"Level 1" },
-  { name:"LASUTH",                        area:"Ikeja",        requests:9,  lastOrder:"1h ago",  status:"Active",   tier:"Level 1" },
-  { name:"Reddington Hospital",           area:"Victoria Island",requests:6, lastOrder:"2h ago", status:"Active",   tier:"Level 2" },
-  { name:"St. Nicholas Hospital",         area:"Lagos Island", requests:5,  lastOrder:"3h ago",  status:"Active",   tier:"Level 2" },
-  { name:"Eko Hospital",                  area:"Ikeja",        requests:4,  lastOrder:"4h ago",  status:"Active",   tier:"Level 2" },
-  { name:"Zenith Medical Centre",         area:"Lekki",        requests:3,  lastOrder:"5h ago",  status:"Active",   tier:"Level 3" },
+  { name:"Cedarville Specialist Hospital", area:"Victoria Island", requests:18, lastOrder:"15m ago", status:"Active", tier:"Level 1" },
+  { name:"Evercare Hospital",              area:"Lekki",           requests:15, lastOrder:"28m ago", status:"Active", tier:"Level 1" },
+  { name:"St. Nicholas Hospital",         area:"Lagos Island",    requests:12, lastOrder:"45m ago", status:"Active", tier:"Level 1" },
+  { name:"LUTH",                          area:"Idi-Araba",       requests:11, lastOrder:"1h ago",  status:"Active", tier:"Level 1" },
+  { name:"Lagos Island General Hospital", area:"Lagos Island",    requests:9,  lastOrder:"1h ago",  status:"Active", tier:"Level 1" },
+  { name:"LASUTH",                        area:"Ikeja",           requests:8,  lastOrder:"2h ago",  status:"Active", tier:"Level 1" },
+  { name:"Reddington Hospital",           area:"Victoria Island", requests:6,  lastOrder:"3h ago",  status:"Active", tier:"Level 2" },
+  { name:"Eko Hospital",                  area:"Ikeja",           requests:4,  lastOrder:"4h ago",  status:"Active", tier:"Level 2" },
 ];
 
 const WEEKLY_DATA = [
@@ -230,11 +232,11 @@ export default function DashboardShell() {
         {/* Logo */}
         <div style={{padding:"18px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", gap:10}}>
           <div style={{width:34, height:34, borderRadius:"50%", overflow:"hidden", background:"#000", position:"relative", flexShrink:0}}>
-            <Image src="/logo-crimson.png" alt="CrimsonWings" fill style={{objectFit:"contain"}}/>
+            <Image src="/logo-new.jpg" alt="CrimsonWings" fill style={{objectFit:"contain"}}/>
           </div>
           <div style={{flex:1, minWidth:0}}>
             <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff", lineHeight:1.2}}>
-              Crimson<span style={{color:"#8A0303"}}>Wings</span>
+              Crimson<span style={{color:"#CC0000"}}>Wings</span>
             </div>
             <div style={{fontFamily:"var(--font-mono)", fontSize:7, letterSpacing:".14em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>
               Operations OS · v2.0
@@ -266,7 +268,7 @@ export default function DashboardShell() {
                       width:"100%", display:"flex", alignItems:"center", gap:9,
                       padding:"9px 10px", marginBottom:1, border:"none", cursor:"pointer",
                       background: active ? "rgba(138,3,3,.18)" : "transparent",
-                      borderLeft: active ? "2px solid #8A0303" : "2px solid transparent",
+                      borderLeft: active ? "2px solid #CC0000" : "2px solid transparent",
                       color: active ? "#fff" : "rgba(255,255,255,.45)",
                       borderRadius:"0 4px 4px 0",
                       transition:"all .15s",
@@ -296,7 +298,7 @@ export default function DashboardShell() {
               onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
             >
               <item.icon size={14}/><span style={{fontSize:12, flex:1, textAlign:"left"}}>{item.label}</span>
-              {item.badge > 0 && <span style={{fontSize:8, background:"#8A0303", color:"#fff", padding:"1px 5px", borderRadius:2, fontFamily:"var(--font-mono)"}}>{item.badge}</span>}
+              {item.badge > 0 && <span style={{fontSize:8, background:"#CC0000", color:"#fff", padding:"1px 5px", borderRadius:2, fontFamily:"var(--font-mono)"}}>{item.badge}</span>}
             </button>
           ))}
           <Link href="/" style={{width:"100%", display:"flex", alignItems:"center", gap:9, padding:"8px 10px", textDecoration:"none", color:"rgba(255,255,255,.3)", borderRadius:4, transition:"background .15s", fontSize:12}}
@@ -361,7 +363,7 @@ export default function DashboardShell() {
             </button>
 
             {/* Avatar */}
-            <div style={{width:30, height:30, borderRadius:"50%", background:"#8A0303", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, flexShrink:0}}>OP</div>
+            <div style={{width:30, height:30, borderRadius:"50%", background:"#CC0000", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, flexShrink:0}}>OP</div>
           </div>
         </header>
 
@@ -437,7 +439,7 @@ export default function DashboardShell() {
                           >
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.3)", whiteSpace:"nowrap"}}>{d.id}</td>
                             <td style={{padding:"10px 12px", fontSize:12, color:"rgba(255,255,255,.75)", whiteSpace:"nowrap"}}>{d.hospital}</td>
-                            <td style={{padding:"10px 12px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:11, color:"#8A0303"}}>{d.blood}</span></td>
+                            <td style={{padding:"10px 12px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:11, color:"#CC0000"}}>{d.blood}</span></td>
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:10, color:d.eta==="Arrived"?"#22c55e":"#C9A84C", whiteSpace:"nowrap"}}>{d.eta}</td>
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:10, color:d.mode==="Drone"?"#2F80ED":"rgba(255,255,255,.4)", whiteSpace:"nowrap"}}>{d.mode}</td>
@@ -503,7 +505,7 @@ export default function DashboardShell() {
                           </div>
                         </div>
                         <div style={{height:4, background:"rgba(255,255,255,.06)", borderRadius:9999, overflow:"hidden"}}>
-                          <div style={{height:"100%", width:`${b.cap}%`, background:b.cap>60?"#22c55e":b.cap>35?"#C9A84C":"#8A0303", borderRadius:9999, transition:"width .7s"}}/>
+                          <div style={{height:"100%", width:`${b.cap}%`, background:b.cap>60?"#22c55e":b.cap>35?"#C9A84C":"#CC0000", borderRadius:9999, transition:"width .7s"}}/>
                         </div>
                         <div style={{fontFamily:"var(--font-mono)", fontSize:7, color:"rgba(255,255,255,.2)", marginTop:3}}>{b.cap}% capacity</div>
                       </div>
@@ -540,7 +542,7 @@ export default function DashboardShell() {
                       </div>
                       <div>
                         <div style={{height:3, width:56, background:"rgba(255,255,255,.06)", borderRadius:9999, overflow:"hidden"}}>
-                          <div style={{height:"100%", width:`${hub.capacity}%`, background:hub.capacity>60?"#22c55e":hub.capacity>40?"#C9A84C":"#8A0303", borderRadius:9999}}/>
+                          <div style={{height:"100%", width:`${hub.capacity}%`, background:hub.capacity>60?"#22c55e":hub.capacity>40?"#C9A84C":"#CC0000", borderRadius:9999}}/>
                         </div>
                         <div style={{fontFamily:"var(--font-mono)", fontSize:7, color:"rgba(255,255,255,.18)", marginTop:2, textAlign:"right"}}>{hub.capacity}%</div>
                       </div>
@@ -578,11 +580,11 @@ export default function DashboardShell() {
                   <BarChart
                     data={WEEKLY_DATA}
                     field={chartMetric}
-                    color={chartMetric==="deliveries"?"#8A0303":chartMetric==="donations"?"#2F80ED":"#22c55e"}
+                    color={chartMetric==="deliveries"?"#CC0000":chartMetric==="donations"?"#2F80ED":"#22c55e"}
                   />
                   <div style={{display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:8, marginTop:16, paddingTop:12, borderTop:"1px solid rgba(255,255,255,.05)"}}>
                     {[
-                      {l:"Deliveries",  v:WEEKLY_DATA.reduce((a,d)=>a+d.deliveries,0),  c:"#8A0303"},
+                      {l:"Deliveries",  v:WEEKLY_DATA.reduce((a,d)=>a+d.deliveries,0),  c:"#CC0000"},
                       {l:"Donations",   v:WEEKLY_DATA.reduce((a,d)=>a+d.donations,0),   c:"#2F80ED"},
                       {l:"Units Out",   v:WEEKLY_DATA.reduce((a,d)=>a+d.units,0).toLocaleString(), c:"#22c55e"},
                     ].map(s=>(
@@ -752,7 +754,7 @@ export default function DashboardShell() {
                       >
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)"}}>{d.id}</td>
                         <td style={{padding:"12px 14px", fontSize:13, color:"rgba(255,255,255,.78)"}}>{d.hospital}</td>
-                        <td style={{padding:"12px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#8A0303"}}>{d.blood}</span></td>
+                        <td style={{padding:"12px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#CC0000"}}>{d.blood}</span></td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:11, color:d.eta==="Arrived"?"#22c55e":"#C9A84C", whiteSpace:"nowrap"}}>{d.eta}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:d.mode==="Drone"?"#2F80ED":"rgba(255,255,255,.45)"}}>{d.mode}</td>
@@ -809,7 +811,7 @@ export default function DashboardShell() {
                       >
                         <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.3)"}}>{d.id}</td>
                         <td style={{padding:"11px 14px", fontSize:13, color:"rgba(255,255,255,.75)"}}>{d.name}</td>
-                        <td style={{padding:"11px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#8A0303"}}>{d.blood}</span></td>
+                        <td style={{padding:"11px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#CC0000"}}>{d.blood}</span></td>
                         <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.38)"}}>{d.date}</td>
                         <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.45)"}}>{d.vol}</td>
                         <td style={{padding:"11px 14px", whiteSpace:"nowrap"}}><Badge status={d.status}/></td>
@@ -865,7 +867,7 @@ export default function DashboardShell() {
                 {[
                   {l:"Total Connected",v:"147", c:"#22c55e", sub:"34 pending activation"},
                   {l:"Requests Today", v:"89",  c:"#2F80ED", sub:"All fulfilled"},
-                  {l:"Level 1 Hospitals",v:"14",c:"#8A0303",  sub:"Teaching + Specialist"},
+                  {l:"Level 1 Hospitals",v:"14",c:"#CC0000",  sub:"Teaching + Specialist"},
                   {l:"Avg Response Time",v:"47m",c:"#C9A84C", sub:"Request to delivery"},
                 ].map(s=>(
                   <div key={s.l} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
@@ -997,11 +999,11 @@ export default function DashboardShell() {
                         <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff", textTransform:"capitalize"}}>{metric}</div>
                         <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.28)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>7-day trend</div>
                       </div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:22, color:metric==="deliveries"?"#8A0303":metric==="donations"?"#2F80ED":"#22c55e"}}>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:22, color:metric==="deliveries"?"#CC0000":metric==="donations"?"#2F80ED":"#22c55e"}}>
                         {WEEKLY_DATA.reduce((a,d)=>a+d[metric],0).toLocaleString()}
                       </div>
                     </div>
-                    <BarChart data={WEEKLY_DATA} field={metric} color={metric==="deliveries"?"#8A0303":metric==="donations"?"#2F80ED":"#22c55e"}/>
+                    <BarChart data={WEEKLY_DATA} field={metric} color={metric==="deliveries"?"#CC0000":metric==="donations"?"#2F80ED":"#22c55e"}/>
                   </div>
                 ))}
               </div>
@@ -1080,10 +1082,10 @@ export default function DashboardShell() {
         @media(min-width:700px){ .kpi-grid { grid-template-columns:1fr 1fr !important; } }
         @keyframes spin { to { transform:rotate(360deg); } }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        * { scrollbar-width:thin; scrollbar-color:#8A0303 #0B1120; }
+        * { scrollbar-width:thin; scrollbar-color:#CC0000 #0B1120; }
         *::-webkit-scrollbar { width:4px; height:4px; }
         *::-webkit-scrollbar-track { background:#0B1120; }
-        *::-webkit-scrollbar-thumb { background:#8A0303; border-radius:2px; }
+        *::-webkit-scrollbar-thumb { background:#CC0000; border-radius:2px; }
       `}</style>
     </div>
   );

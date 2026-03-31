@@ -59,14 +59,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
-              <div style={{ width: 56, height: 56, borderRadius: "50%", overflow: "hidden", background: "#000", position: "relative", flexShrink: 0 }}>
-                <Image src="/logo-crimson.png" alt="CrimsonWings" fill style={{ objectFit: "contain" }} />
+              <div style={{ width: 72, height: 72, borderRadius: "50%", overflow: "hidden", background: "#000", position: "relative", flexShrink: 0 }}>
+                <Image src="/logo-new.jpg" alt="CrimsonWings" fill style={{ objectFit: "contain" }} />
               </div>
               <div>
                 <div className="font-display" style={{ fontSize: 18, fontWeight: 700, color: "#fff", lineHeight: 1.2 }}>
                   Crimson<span style={{ color: "var(--crimson)" }}>Wings</span>
                 </div>
-                <div className="caption" style={{ color: "rgba(255,255,255,.28)", marginTop: 3, fontSize: 8 }}>Plasma Biologics Ltd</div>
+                <div className="caption" style={{ color: "rgba(255,255,255,.28)", marginTop: 3, fontSize: 8 }}>Blood Logistics Ltd</div>
               </div>
             </div>
             <p className="body-md" style={{ color: "rgba(255,255,255,.32)", marginBottom: 20, maxWidth: 280 }}>

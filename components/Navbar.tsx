@@ -80,7 +80,7 @@ export default function Navbar() {
               transition:     "width .4s, height .4s",
             }}>
               <Image
-                src="/logo-crimson.png"
+                src="/logo-new.jpg"
                 alt="CrimsonWings"
                 fill
                 style={{ objectFit: "contain" }}
@@ -107,7 +107,7 @@ export default function Navbar() {
                 whiteSpace:   "nowrap",
                 marginTop:    2,
               }}>
-                Plasma Biologics Ltd
+                Blood Logistics Ltd
               </div>
             </div>
           </Link>

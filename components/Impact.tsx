@@ -71,7 +71,7 @@ export default function Impact() {
             <div className="font-display" style={{ fontSize:"clamp(16px,2vw,24px)", fontStyle:"italic", color:"#fff", lineHeight:1.6, marginBottom:16 }}>
               &ldquo;CrimsonWings is not building a logistics company. We are building Nigeria&rsquo;s national blood infrastructure.&rdquo;
             </div>
-            <div className="caption" style={{ color:"rgba(255,255,255,.28)" }}>CrimsonWings Plasma Biologics Ltd — Founding Mission</div>
+            <div className="caption" style={{ color:"rgba(255,255,255,.28)" }}>CrimsonWings Blood Logistics Ltd — Founding Mission</div>
             <div style={{ position:"absolute", top:12, left:12, width:20, height:20, borderTop:"1px solid rgba(138,3,3,.35)", borderLeft:"1px solid rgba(138,3,3,.35)" }}/>
             <div style={{ position:"absolute", bottom:12, right:12, width:20, height:20, borderBottom:"1px solid rgba(138,3,3,.35)", borderRight:"1px solid rgba(138,3,3,.35)" }}/>
           </div>

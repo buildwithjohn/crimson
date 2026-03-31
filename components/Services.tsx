@@ -12,7 +12,7 @@ const SERVICES = [
     title:"Blood Collection & Donor Management",
     desc:"Structured donor recruitment, eligibility screening, and collection — digitally logged into our OS platform from the first interaction.",
     tags:["Donor Portal","Eligibility Screening","Digital Records"],
-    accent:"#8A0303",
+    accent:"#CC0000",
     metric:{ val:"20K+", label:"Donors/Month" },
   },
   {
@@ -44,7 +44,7 @@ const SERVICES = [
     title:"Emergency Drone Delivery",
     desc:"Temperature-controlled drones execute last-mile delivery for critical emergencies — reaching any hospital in Lagos in under 60 minutes from dispatch.",
     tags:["Drone Dispatch","Temp Controlled","< 60 min"],
-    accent:"#8A0303",
+    accent:"#CC0000",
     metric:{ val:"<60", label:"Min Delivery" },
   },
   {

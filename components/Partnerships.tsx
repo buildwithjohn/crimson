@@ -8,7 +8,7 @@ import { Shield, Award, Globe } from "lucide-react";
 const STAKEHOLDERS = [
   { abbr:"LSMOH",  name:"Lagos State Ministry of Health",      color:"#1B5E20", type:"Government" },
   { abbr:"FMOH",   name:"Federal Ministry of Health Nigeria",  color:"#1A237E", type:"Government" },
-  { abbr:"NBTS",   name:"National Blood Transfusion Service",  color:"#8A0303", type:"Clinical"   },
+  { abbr:"NBTS",   name:"National Blood Transfusion Service",  color:"#CC0000", type:"Clinical"   },
   { abbr:"NAFDAC", name:"NAFDAC Nigeria",                      color:"#4A148C", type:"Regulatory" },
   { abbr:"WHO",    name:"World Health Organisation",           color:"#006DB7", type:"Global"     },
   { abbr:"ICRC",   name:"International Committee Red Cross",   color:"#C62828", type:"NGO"        },

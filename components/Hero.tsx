@@ -87,7 +87,7 @@ export default function Hero() {
           {/* Left column */}
           <div>
             <div className="section-label" style={{ ...t(".1s"), marginBottom:24 }}>
-              CrimsonWings Plasma Biologics Ltd
+              CrimsonWings Blood Logistics Ltd
             </div>
 
             <h1 className="h1 font-display" style={{ ...t(".2s"), color:"#fff", marginBottom:24 }}>

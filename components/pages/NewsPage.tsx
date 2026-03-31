@@ -6,8 +6,8 @@ const NEWS = [
   {
     category: "Press Release",
     date: "January 2026",
-    title: "CrimsonWings Plasma Biologics Ltd Formally Incorporated in Lagos State",
-    excerpt: "CrimsonWings Plasma Biologics Ltd has been formally incorporated as a healthcare logistics company with a mandate to build Nigeria's first integrated, digitized national blood supply platform.",
+    title: "CrimsonWings Blood Logistics Ltd Formally Incorporated in Lagos State",
+    excerpt: "CrimsonWings Blood Logistics Ltd has been formally incorporated as a healthcare logistics company with a mandate to build Nigeria's first integrated, digitized national blood supply platform.",
     featured: true,
     color: "#8A0303",
   },
@@ -74,7 +74,7 @@ export default function NewsPage() {
             <em style={{ color: "var(--crimson)" }}>Updates</em>
           </h1>
           <p className="body-lg" style={{ color: "rgba(255,255,255,.45)", maxWidth: 560 }}>
-            Press releases, milestone announcements, and operational updates from CrimsonWings Plasma Biologics Ltd.
+            Press releases, milestone announcements, and operational updates from CrimsonWings Blood Logistics Ltd.
           </p>
         </div>
       </section>

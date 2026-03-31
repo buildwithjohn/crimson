@@ -4,7 +4,7 @@ import NewsPage from "@/components/pages/NewsPage";
 
 export const metadata = {
   title: "News & Updates | CrimsonWings",
-  description: "Latest news, press releases, and updates from CrimsonWings Plasma Biologics Ltd.",
+  description: "Latest news, press releases, and updates from CrimsonWings Blood Logistics Ltd.",
 };
 
 export default function News() {
