@@ -197,3 +197,54 @@ a { color: inherit; text-decoration: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right { opacity:1 !important; transform:none !important; transition:none !important; }
 }
+
+/* ════════════════════════════════════════════════════
+   GLOBAL MOBILE RESPONSIVENESS
+════════════════════════════════════════════════════ */
+
+/* All images responsive */
+img { max-width: 100%; height: auto; }
+
+/* Prevent horizontal overflow everywhere */
+section, .container, footer { max-width: 100%; overflow-x: hidden; }
+
+/* Tables scroll on small screens */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Cards — single column on small */
+@media (max-width: 639px) {
+  .two-col,
+  .three-col,
+  .four-col { grid-template-columns: 1fr !important; }
+
+  .h1 { font-size: clamp(32px, 9vw, 48px) !important; }
+  .h2 { font-size: clamp(26px, 7vw, 38px) !important; }
+  .h3 { font-size: clamp(18px, 5vw, 24px) !important; }
+
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section label on small */
+  .section-label { font-size: 9px !important; }
+}
+
+/* Sub-page back-link readable */
+@media (max-width: 639px) {
+  [style*="paddingTop: 120"] {
+    padding-top: 100px !important;
+  }
+}
+
+/* Footer grid stacks on mobile */
+@media (max-width: 639px) {
+  .footer-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Prevent button text overflow on very small */
+@media (max-width: 360px) {
+  .btn-primary span,
+  .btn-ghost span { font-size: 10px !important; }
+}
