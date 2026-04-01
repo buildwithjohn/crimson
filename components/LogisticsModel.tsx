@@ -33,7 +33,7 @@ export default function LogisticsModel() {
       id="logistics"
       style={{
         paddingBlock: "clamp(64px,8vw,120px)",
-        background: "#0A0E17",
+        background: "#1E1E30",
         position: "relative",
         overflow: "hidden",
       }}

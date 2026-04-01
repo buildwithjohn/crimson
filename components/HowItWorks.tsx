@@ -105,7 +105,7 @@ export default function HowItWorks() {
                         flexShrink: 0,
                         width: 52, height: 52,
                         display: "flex", alignItems: "center", justifyContent: "center",
-                        background: "var(--ink)",
+                        background: "var(--dark-bg)",
                         border: "1px solid rgba(138,3,3,.25)",
                         position: "relative",
                       }}>

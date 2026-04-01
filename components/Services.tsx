@@ -145,7 +145,7 @@ function ServiceCard({ s, i }: { s: typeof SERVICES[0]; i: number }) {
           {s.title}
         </h3>
 
-        <p style={{ fontSize:13, color:"rgba(255,255,255,.48)", lineHeight:1.75, marginBottom:20 }}>
+        <p style={{ fontSize:16, color:"rgba(255,255,255,.72)", lineHeight:1.75, marginBottom:20 }}>
           {s.desc}
         </p>
 
@@ -178,7 +178,7 @@ export default function Services() {
   const ref = useReveal();
 
   return (
-    <section id="services" ref={ref} className="section" style={{ background:"#080C14" }}>
+    <section id="services" ref={ref} className="section" style={{ background:"#1C1C2E" }}>
       {/* Animated grid background */}
       <div style={{
         position:"absolute", inset:0, pointerEvents:"none",

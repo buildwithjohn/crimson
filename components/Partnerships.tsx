@@ -175,7 +175,7 @@ export default function Partnerships() {
         {/* ── Investor CTA ────────────────────────────────── */}
         <div className="reveal" style={{
           marginTop:"clamp(48px,6vw,80px)",
-          background:"var(--ink)",
+          background:"var(--dark-bg)",
           position:"relative", overflow:"hidden",
           transitionDelay:".4s",
         }}>
@@ -202,7 +202,7 @@ export default function Partnerships() {
                 Be Part of Nigeria&rsquo;s{" "}
                 <em style={{ color:"var(--crimson)" }}>Healthcare Revolution</em>
               </h3>
-              <p className="body-md" style={{ color:"rgba(255,255,255,.42)", maxWidth:520 }}>
+              <p className="body-md" style={{ color:"rgba(255,255,255,.75)", maxWidth:520 }}>
                 CrimsonWings is open to strategic partnerships, institutional investment, and government collaboration. We have the infrastructure plan, clinical expertise, and technology.
               </p>
             </div>

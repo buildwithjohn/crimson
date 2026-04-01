@@ -29,7 +29,7 @@ export default function Technology() {
                 <div className="font-display" style={{ fontSize:"clamp(20px,2.5vw,26px)", fontWeight:700, color:"#fff" }}>NAT Viral Screening</div>
               </div>
             </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.45)", marginBottom:28, maxWidth:440 }}>
+            <p className="body-md" style={{ color:"rgba(255,255,255,.78)", marginBottom:28, maxWidth:440 }}>
               Nucleic Acid Testing (NAT) is the global gold standard for blood safety, detecting viral RNA/DNA at concentrations 100× below what conventional serological tests can identify. Our systems close the &quot;window period&quot; — the critical gap where infected donors test negative on standard screens.
             </p>
             <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16 }}>
@@ -75,7 +75,7 @@ export default function Technology() {
                 <div className="font-display" style={{ fontSize:"clamp(17px,2vw,22px)", fontWeight:700, color:"#fff" }}>Proprietary OS</div>
               </div>
             </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.42)", marginBottom:20 }}>
+            <p className="body-md" style={{ color:"rgba(255,255,255,.75)", marginBottom:20 }}>
               A fully integrated OS connecting every stage — donor registration, lab screening, cold storage inventory, real-time hospital requests, and delivery dispatch — in one unified platform.
             </p>
             {/* Mock terminal */}
@@ -111,7 +111,7 @@ export default function Technology() {
                 <div className="font-display" style={{ fontSize:"clamp(17px,2vw,22px)", fontWeight:700, color:"#fff" }}>Triphasic Drone Delivery</div>
               </div>
             </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.42)", marginBottom:20 }}>
+            <p className="body-md" style={{ color:"rgba(255,255,255,.75)", marginBottom:20 }}>
               Ground transport handles primary logistics. Coordination hubs manage staging. Drone delivery executes last-mile emergency response — any hospital in Lagos in under 60 minutes.
             </p>
             <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr auto 1fr", gap:4, alignItems:"center" }}>

@@ -190,7 +190,7 @@ function LiveClock() {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
-  return <span className="font-mono" style={{fontSize:11, color:"rgba(255,255,255,.5)", letterSpacing:".1em"}}>{time}</span>;
+  return <span className="font-mono" style={{fontSize:15, color:"rgba(255,255,255,.5)", letterSpacing:".1em"}}>{time}</span>;
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
@@ -211,7 +211,7 @@ export default function DashboardShell() {
   const unreadAlerts = alertsRead ? 0 : ALERTS.filter(a => a.level === "critical").length;
 
   return (
-    <div style={{display:"flex", height:"100vh", background:"#070B12", fontFamily:"var(--font-body)", color:"white", overflow:"hidden"}}>
+    <div style={{display:"flex", height:"100vh", background:"#13132A", fontFamily:"var(--font-body)", color:"white", overflow:"hidden"}}>
 
       {/* ── Mobile overlay ─────────────────────────────────────── */}
       {sidebarOpen && (
@@ -221,7 +221,7 @@ export default function DashboardShell() {
       {/* ── SIDEBAR ────────────────────────────────────────────── */}
       <aside style={{
         width:220, flexShrink:0,
-        background:"#0B1120",
+        background:"#1A1A35",
         borderRight:"1px solid rgba(255,255,255,.05)",
         display:"flex", flexDirection:"column",
         position:"fixed", top:0, left:0, height:"100%", zIndex:50,
@@ -277,7 +277,7 @@ export default function DashboardShell() {
                     onMouseLeave={e=>{if(!active)(e.currentTarget as HTMLElement).style.background="transparent";}}
                   >
                     <item.icon size={14} style={{flexShrink:0}}/>
-                    <span style={{fontSize:12, fontWeight:active?500:400, flex:1, textAlign:"left"}}>{item.label}</span>
+                    <span style={{fontSize:14, fontWeight:active?500:400, flex:1, textAlign:"left"}}>{item.label}</span>
                     {active && <ChevronRight size={11} style={{opacity:.4, flexShrink:0}}/>}
                   </button>
                 );
@@ -293,11 +293,11 @@ export default function DashboardShell() {
             {icon:Settings, label:"Settings",    badge:0, onClick:()=>{}},
           ].map(item => (
             <button key={item.label} onClick={item.onClick}
-              style={{width:"100%", display:"flex", alignItems:"center", gap:9, padding:"8px 10px", border:"none", cursor:"pointer", background:"transparent", color:"rgba(255,255,255,.35)", borderRadius:4, transition:"all .15s", marginBottom:1}}
+              style={{width:"100%", display:"flex", alignItems:"center", gap:9, padding:"8px 10px", border:"none", cursor:"pointer", background:"transparent", color:"rgba(255,255,255,.65)", borderRadius:4, transition:"all .15s", marginBottom:1}}
               onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.04)"}
               onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
             >
-              <item.icon size={14}/><span style={{fontSize:12, flex:1, textAlign:"left"}}>{item.label}</span>
+              <item.icon size={14}/><span style={{fontSize:14, flex:1, textAlign:"left"}}>{item.label}</span>
               {item.badge > 0 && <span style={{fontSize:8, background:"#CC0000", color:"#fff", padding:"1px 5px", borderRadius:2, fontFamily:"var(--font-mono)"}}>{item.badge}</span>}
             </button>
           ))}
@@ -316,7 +316,7 @@ export default function DashboardShell() {
         {/* Top bar */}
         <header style={{
           flexShrink:0, height:56,
-          background:"#0B1120",
+          background:"#1A1A35",
           borderBottom:"1px solid rgba(255,255,255,.05)",
           display:"flex", alignItems:"center",
           padding:"0 20px", gap:16,
@@ -342,7 +342,7 @@ export default function DashboardShell() {
               placeholder="Search hospitals, deliveries, donors..."
               style={{
                 width:"100%", background:"rgba(255,255,255,.05)", border:"1px solid rgba(255,255,255,.08)",
-                color:"#fff", fontFamily:"var(--font-body)", fontSize:12,
+                color:"#fff", fontFamily:"var(--font-body)", fontSize:14,
                 padding:"7px 10px 7px 30px", outline:"none", borderRadius:4,
               }}
             />
@@ -363,12 +363,12 @@ export default function DashboardShell() {
             </button>
 
             {/* Avatar */}
-            <div style={{width:30, height:30, borderRadius:"50%", background:"#CC0000", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:700, flexShrink:0}}>OP</div>
+            <div style={{width:30, height:30, borderRadius:"50%", background:"#CC0000", display:"flex", alignItems:"center", justifyContent:"center", fontSize:15, fontWeight:700, flexShrink:0}}>OP</div>
           </div>
         </header>
 
         {/* Content area */}
-        <main style={{flex:1, overflowY:"auto", padding:"20px", background:"#070B12"}}>
+        <main style={{flex:1, overflowY:"auto", padding:"20px", background:"#13132A"}}>
 
           {/* ════════════════════════════════════════════════════
               OVERVIEW TAB
@@ -379,7 +379,7 @@ export default function DashboardShell() {
               <div style={{display:"grid", gap:12, marginBottom:16, gridTemplateColumns:"repeat(2,1fr)"}} className="stat-grid">
                 {STATS.map((s,i) => (
                   <div key={s.label} style={{
-                    background:"#0F1623", border:"1px solid rgba(255,255,255,.06)",
+                    background:"#22224A", border:"1px solid rgba(255,255,255,.06)",
                     padding:"16px", position:"relative", overflow:"hidden",
                     transition:"border-color .2s",
                   }}
@@ -401,7 +401,7 @@ export default function DashboardShell() {
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:"clamp(18px,2.5vw,26px)", color:"#fff", lineHeight:1, marginBottom:4}}>
                       {s.value}
                     </div>
-                    <div style={{fontSize:11, color:"rgba(255,255,255,.55)", marginBottom:3}}>{s.label}</div>
+                    <div style={{fontSize:15, color:"rgba(255,255,255,.55)", marginBottom:3}}>{s.label}</div>
                     <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:`${s.color}aa`, letterSpacing:".08em"}}>{s.delta}</div>
                   </div>
                 ))}
@@ -410,10 +410,10 @@ export default function DashboardShell() {
               {/* Row 2: Deliveries table + Alerts */}
               <div style={{display:"grid", gap:12, marginBottom:12}} className="row-2">
                 {/* Deliveries */}
-                <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", overflow:"hidden"}}>
+                <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", overflow:"hidden"}}>
                   <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)"}}>
                     <div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:13, color:"#fff"}}>Active Deliveries</div>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>Active Deliveries</div>
                       <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>Real-time tracking</div>
                     </div>
                     <button onClick={()=>setActiveTab("deliveries")} style={{fontFamily:"var(--font-mono)", fontSize:9, color:"#2F80ED", background:"none", border:"none", cursor:"pointer", letterSpacing:".1em"}}>
@@ -438,9 +438,9 @@ export default function DashboardShell() {
                             onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
                           >
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.3)", whiteSpace:"nowrap"}}>{d.id}</td>
-                            <td style={{padding:"10px 12px", fontSize:12, color:"rgba(255,255,255,.75)", whiteSpace:"nowrap"}}>{d.hospital}</td>
-                            <td style={{padding:"10px 12px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:11, color:"#CC0000"}}>{d.blood}</span></td>
-                            <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
+                            <td style={{padding:"10px 12px", fontSize:16, color:"rgba(255,255,255,.75)", whiteSpace:"nowrap"}}>{d.hospital}</td>
+                            <td style={{padding:"10px 12px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:15, color:"#CC0000"}}>{d.blood}</span></td>
+                            <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:15, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:10, color:d.eta==="Arrived"?"#22c55e":"#C9A84C", whiteSpace:"nowrap"}}>{d.eta}</td>
                             <td style={{padding:"10px 12px", fontFamily:"var(--font-mono)", fontSize:10, color:d.mode==="Drone"?"#2F80ED":"rgba(255,255,255,.4)", whiteSpace:"nowrap"}}>{d.mode}</td>
                             <td style={{padding:"10px 12px", whiteSpace:"nowrap"}}><Badge status={d.priority === "Critical" ? "Critical" : d.priority}/></td>
@@ -453,10 +453,10 @@ export default function DashboardShell() {
                 </div>
 
                 {/* Alerts */}
-                <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)"}}>
+                <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)"}}>
                   <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)"}}>
                     <div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:13, color:"#fff"}}>System Alerts</div>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>System Alerts</div>
                       <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>Live feed</div>
                     </div>
                     <span style={{fontFamily:"var(--font-mono)", fontSize:8, background:"rgba(138,3,3,.2)", color:"#ff6b6b", padding:"3px 8px", border:"1px solid rgba(138,3,3,.3)"}}>
@@ -470,7 +470,7 @@ export default function DashboardShell() {
                     >
                       <AlertDot level={a.level}/>
                       <div style={{flex:1, minWidth:0}}>
-                        <div style={{fontSize:12, color:"rgba(255,255,255,.62)", lineHeight:1.4}}>{a.msg}</div>
+                        <div style={{fontSize:16, color:"rgba(255,255,255,.62)", lineHeight:1.4}}>{a.msg}</div>
                         <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.22)", marginTop:3, letterSpacing:".08em"}}>{a.id} · {a.time}</div>
                       </div>
                     </div>
@@ -481,10 +481,10 @@ export default function DashboardShell() {
               {/* Row 3: Blood Inventory + Hub Status + Analytics */}
               <div style={{display:"grid", gap:12}} className="row-3">
                 {/* Blood inventory */}
-                <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)"}}>
+                <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)"}}>
                   <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)"}}>
                     <div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:13, color:"#fff"}}>Blood Inventory</div>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>Blood Inventory</div>
                       <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>All hubs combined</div>
                     </div>
                     <button onClick={()=>setActiveTab("inventory")} style={{fontFamily:"var(--font-mono)", fontSize:9, color:"#2F80ED", background:"none", border:"none", cursor:"pointer"}}>
@@ -500,7 +500,7 @@ export default function DashboardShell() {
                             <Badge status={b.status}/>
                           </div>
                           <div style={{display:"flex", alignItems:"center", gap:4}}>
-                            <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)"}}>{b.units.toLocaleString()}</span>
+                            <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.65)"}}>{b.units.toLocaleString()}</span>
                             <span style={{fontFamily:"var(--font-mono)", fontSize:8, color:b.trend > 0?"#22c55e":"#ff6b6b"}}>{b.trend > 0 ? "↑" : "↓"}</span>
                           </div>
                         </div>
@@ -514,10 +514,10 @@ export default function DashboardShell() {
                 </div>
 
                 {/* Hub network */}
-                <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)"}}>
+                <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)"}}>
                   <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                     <div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:13, color:"#fff"}}>Hub Network</div>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>Hub Network</div>
                       <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>5 hubs · Lagos State</div>
                     </div>
                     <button onClick={()=>setActiveTab("hubs")} style={{fontFamily:"var(--font-mono)", fontSize:9, color:"#2F80ED", background:"none", border:"none", cursor:"pointer"}}>
@@ -533,7 +533,7 @@ export default function DashboardShell() {
                         <span style={{fontFamily:"var(--font-mono)", fontSize:8, fontWeight:700, color:hub.status==="Operational"?"#22c55e":"#C9A84C"}}>{hub.short}</span>
                       </div>
                       <div style={{flex:1, minWidth:0}}>
-                        <div style={{fontSize:12, color:"rgba(255,255,255,.72)", marginBottom:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{hub.name}</div>
+                        <div style={{fontSize:16, color:"rgba(255,255,255,.72)", marginBottom:2, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{hub.name}</div>
                         <div style={{display:"flex", gap:8}}>
                           <span style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.25)"}}>{hub.units.toLocaleString()} units</span>
                           <span style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(47,128,237,.6)"}}>{hub.drones} drones</span>
@@ -559,10 +559,10 @@ export default function DashboardShell() {
                 </div>
 
                 {/* Weekly chart */}
-                <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"14px 16px"}}>
+                <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"14px 16px"}}>
                   <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:16}}>
                     <div>
-                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:13, color:"#fff"}}>Weekly Performance</div>
+                      <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>Weekly Performance</div>
                       <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>Last 7 days</div>
                     </div>
                     <div style={{display:"flex", gap:4}}>
@@ -590,7 +590,7 @@ export default function DashboardShell() {
                     ].map(s=>(
                       <div key={s.l} style={{textAlign:"center"}}>
                         <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:18, color:s.c}}>{s.v}</div>
-                        <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.28)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>{s.l}</div>
+                        <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.55)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>{s.l}</div>
                       </div>
                     ))}
                   </div>
@@ -608,17 +608,17 @@ export default function DashboardShell() {
                 {BLOOD_INVENTORY.map(b => {
                   const statusColor = b.cap > 60 ? "#22c55e" : b.cap > 35 ? "#C9A84C" : "#ff4d4d";
                   return (
-                    <div key={b.type} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"20px", position:"relative", overflow:"hidden"}}>
+                    <div key={b.type} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"20px", position:"relative", overflow:"hidden"}}>
                       <div style={{position:"absolute", top:0, left:0, bottom:0, width:3, background:statusColor}}/>
                       <div style={{display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:14}}>
                         <div>
                           <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:28, color:"#fff", lineHeight:1}}>{b.type}</div>
-                          <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.28)", marginTop:4, letterSpacing:".1em"}}>BLOOD TYPE</div>
+                          <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.55)", marginTop:4, letterSpacing:".1em"}}>BLOOD TYPE</div>
                         </div>
                         <Badge status={b.status}/>
                       </div>
                       <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:22, color:statusColor, marginBottom:8}}>
-                        {b.units.toLocaleString()} <span style={{fontSize:12, fontWeight:400, color:"rgba(255,255,255,.35)"}}>units</span>
+                        {b.units.toLocaleString()} <span style={{fontSize:14, fontWeight:400, color:"rgba(255,255,255,.65)"}}>units</span>
                       </div>
                       <div style={{height:6, background:"rgba(255,255,255,.06)", borderRadius:9999, overflow:"hidden", marginBottom:8}}>
                         <div style={{height:"100%", width:`${b.cap}%`, background:`linear-gradient(90deg, ${statusColor}cc, ${statusColor})`, borderRadius:9999}}/>
@@ -634,7 +634,7 @@ export default function DashboardShell() {
                 })}
               </div>
               {/* Summary stats */}
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"16px", display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:12}} className="inv-summary">
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"16px", display:"grid", gridTemplateColumns:"repeat(2,1fr)", gap:12}} className="inv-summary">
                 {[
                   {l:"Total Units Stored",  v:"18,420", c:"#22c55e"},
                   {l:"Critical Stock Types",v:"2",      c:"#ff4d4d"},
@@ -655,7 +655,7 @@ export default function DashboardShell() {
           ════════════════════════════════════════════════════ */}
           {activeTab === "screening" && (
             <div>
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", marginBottom:12}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", marginBottom:12}}>
                 <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                   <div>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff"}}>NAT Screening Batches</div>
@@ -679,9 +679,9 @@ export default function DashboardShell() {
                         onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.02)"}
                         onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
                       >
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.45)", whiteSpace:"nowrap"}}>{s.batch}</td>
-                        <td style={{padding:"12px 14px", fontSize:12, color:"rgba(255,255,255,.7)"}}>{s.type}</td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,.55)"}}>{s.units}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.85)", whiteSpace:"nowrap"}}>{s.batch}</td>
+                        <td style={{padding:"12px 14px", fontSize:16, color:"rgba(255,255,255,.7)"}}>{s.type}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:15, color:"rgba(255,255,255,.55)"}}>{s.units}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.38)"}}>{s.started}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:s.status==="Complete"?"#22c55e":"#C9A84C"}}>{s.eta}</td>
                         <td style={{padding:"12px 14px"}}>
@@ -689,10 +689,10 @@ export default function DashboardShell() {
                             <div style={{flex:1, height:4, background:"rgba(255,255,255,.06)", borderRadius:9999, overflow:"hidden", minWidth:60}}>
                               <div style={{height:"100%", width:`${s.pct}%`, background:s.pct===100?"#22c55e":"#2F80ED", borderRadius:9999}}/>
                             </div>
-                            <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)", flexShrink:0}}>{s.pct}%</span>
+                            <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.65)", flexShrink:0}}>{s.pct}%</span>
                           </div>
                         </td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.35)"}}>{s.lab}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.65)"}}>{s.lab}</td>
                         <td style={{padding:"12px 14px", whiteSpace:"nowrap"}}><Badge status={s.status}/></td>
                       </tr>
                     ))}
@@ -706,10 +706,10 @@ export default function DashboardShell() {
                   {l:"Pass Rate",        v:"99.6%",sub:"HIV/Hep B/C/HTLV",    c:"#22c55e"},
                   {l:"Avg Batch Time",   v:"4.2h", sub:"Per 120-unit batch",   c:"#C9A84C"},
                 ].map(s=>(
-                  <div key={s.l} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"16px 20px"}}>
+                  <div key={s.l} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"16px 20px"}}>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:28, color:s.c, lineHeight:1, marginBottom:4}}>{s.v}</div>
-                    <div style={{fontSize:12, color:"rgba(255,255,255,.6)", marginBottom:2}}>{s.l}</div>
-                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.28)"}}>{s.sub}</div>
+                    <div style={{fontSize:16, color:"rgba(255,255,255,.6)", marginBottom:2}}>{s.l}</div>
+                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.55)"}}>{s.sub}</div>
                   </div>
                 ))}
               </div>
@@ -725,10 +725,10 @@ export default function DashboardShell() {
                 <button style={{display:"flex", alignItems:"center", gap:6, background:"rgba(138,3,3,.15)", border:"1px solid rgba(138,3,3,.3)", color:"#ff6b6b", padding:"8px 14px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".1em"}}>
                   <Plus size={11}/> NEW REQUEST
                 </button>
-                <button style={{display:"flex", alignItems:"center", gap:6, background:"transparent", border:"1px solid rgba(255,255,255,.1)", color:"rgba(255,255,255,.45)", padding:"8px 14px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".1em"}}>
+                <button style={{display:"flex", alignItems:"center", gap:6, background:"transparent", border:"1px solid rgba(255,255,255,.1)", color:"rgba(255,255,255,.85)", padding:"8px 14px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".1em"}}>
                   <Filter size={11}/> FILTER
                 </button>
-                <button style={{display:"flex", alignItems:"center", gap:6, background:"transparent", border:"1px solid rgba(255,255,255,.1)", color:"rgba(255,255,255,.45)", padding:"8px 14px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".1em"}}>
+                <button style={{display:"flex", alignItems:"center", gap:6, background:"transparent", border:"1px solid rgba(255,255,255,.1)", color:"rgba(255,255,255,.85)", padding:"8px 14px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".1em"}}>
                   <Download size={11}/> EXPORT
                 </button>
                 <div style={{marginLeft:"auto", display:"flex", gap:6}}>
@@ -737,7 +737,7 @@ export default function DashboardShell() {
                   ))}
                 </div>
               </div>
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", overflow:"hidden"}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", overflow:"hidden"}}>
                 <table style={{width:"100%", borderCollapse:"collapse"}}>
                   <thead>
                     <tr style={{borderBottom:"1px solid rgba(255,255,255,.05)"}}>
@@ -752,11 +752,11 @@ export default function DashboardShell() {
                         onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.025)"}
                         onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
                       >
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)"}}>{d.id}</td>
-                        <td style={{padding:"12px 14px", fontSize:13, color:"rgba(255,255,255,.78)"}}>{d.hospital}</td>
-                        <td style={{padding:"12px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#CC0000"}}>{d.blood}</span></td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:11, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:11, color:d.eta==="Arrived"?"#22c55e":"#C9A84C", whiteSpace:"nowrap"}}>{d.eta}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.65)"}}>{d.id}</td>
+                        <td style={{padding:"12px 14px", fontSize:15, color:"rgba(255,255,255,.78)"}}>{d.hospital}</td>
+                        <td style={{padding:"12px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:14, color:"#CC0000"}}>{d.blood}</span></td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:15, color:"rgba(255,255,255,.55)"}}>{d.units}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:15, color:d.eta==="Arrived"?"#22c55e":"#C9A84C", whiteSpace:"nowrap"}}>{d.eta}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:d.mode==="Drone"?"#2F80ED":"rgba(255,255,255,.45)"}}>{d.mode}</td>
                         <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.3)"}}>{d.hub}</td>
                         <td style={{padding:"12px 14px", whiteSpace:"nowrap"}}><Badge status={d.priority === "Critical" ? "Critical" : d.priority === "Urgent" ? "Low" : "Good"}/></td>
@@ -781,14 +781,14 @@ export default function DashboardShell() {
                   {l:"New Registrations",v:"47",c:"#9333EA",  sub:"First-time donors"},
                   {l:"Repeat Donors",   v:"237", c:"#C9A84C", sub:"84% of today's"},
                 ].map(s=>(
-                  <div key={s.l} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
+                  <div key={s.l} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:24, color:s.c, lineHeight:1, marginBottom:4}}>{s.v}</div>
-                    <div style={{fontSize:12, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
-                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.28)"}}>{s.sub}</div>
+                    <div style={{fontSize:16, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
+                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.55)"}}>{s.sub}</div>
                   </div>
                 ))}
               </div>
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)"}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)"}}>
                 <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                   <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff"}}>Today&apos;s Donors</div>
                   <button style={{display:"flex", alignItems:"center", gap:5, background:"rgba(47,128,237,.12)", border:"1px solid rgba(47,128,237,.25)", color:"#2F80ED", padding:"6px 12px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".08em"}}>
@@ -810,10 +810,10 @@ export default function DashboardShell() {
                         onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
                       >
                         <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.3)"}}>{d.id}</td>
-                        <td style={{padding:"11px 14px", fontSize:13, color:"rgba(255,255,255,.75)"}}>{d.name}</td>
-                        <td style={{padding:"11px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:12, color:"#CC0000"}}>{d.blood}</span></td>
+                        <td style={{padding:"11px 14px", fontSize:15, color:"rgba(255,255,255,.75)"}}>{d.name}</td>
+                        <td style={{padding:"11px 14px"}}><span style={{fontFamily:"var(--font-mono)", fontWeight:700, fontSize:14, color:"#CC0000"}}>{d.blood}</span></td>
                         <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.38)"}}>{d.date}</td>
-                        <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.45)"}}>{d.vol}</td>
+                        <td style={{padding:"11px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.85)"}}>{d.vol}</td>
                         <td style={{padding:"11px 14px", whiteSpace:"nowrap"}}><Badge status={d.status}/></td>
                       </tr>
                     ))}
@@ -828,7 +828,7 @@ export default function DashboardShell() {
           ════════════════════════════════════════════════════ */}
           {activeTab === "hospitals" && (
             <div>
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", marginBottom:12}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", marginBottom:12}}>
                 <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                   <div>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff"}}>Hospital Network</div>
@@ -852,11 +852,11 @@ export default function DashboardShell() {
                         onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.02)"}
                         onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="transparent"}
                       >
-                        <td style={{padding:"12px 14px", fontSize:13, color:"rgba(255,255,255,.75)"}}>{h.name}</td>
-                        <td style={{padding:"12px 14px", fontSize:12, color:"rgba(255,255,255,.4)"}}>{h.area}</td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)"}}>{h.tier}</td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:12, color:"#2F80ED"}}>{h.requests}</td>
-                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.35)"}}>{h.lastOrder}</td>
+                        <td style={{padding:"12px 14px", fontSize:15, color:"rgba(255,255,255,.75)"}}>{h.name}</td>
+                        <td style={{padding:"12px 14px", fontSize:16, color:"rgba(255,255,255,.4)"}}>{h.area}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.65)"}}>{h.tier}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:14, color:"#2F80ED"}}>{h.requests}</td>
+                        <td style={{padding:"12px 14px", fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(255,255,255,.65)"}}>{h.lastOrder}</td>
                         <td style={{padding:"12px 14px", whiteSpace:"nowrap"}}><Badge status={h.status}/></td>
                       </tr>
                     ))}
@@ -870,10 +870,10 @@ export default function DashboardShell() {
                   {l:"Level 1 Hospitals",v:"14",c:"#CC0000",  sub:"Teaching + Specialist"},
                   {l:"Avg Response Time",v:"47m",c:"#C9A84C", sub:"Request to delivery"},
                 ].map(s=>(
-                  <div key={s.l} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
+                  <div key={s.l} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:24, color:s.c, lineHeight:1, marginBottom:4}}>{s.v}</div>
-                    <div style={{fontSize:12, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
-                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.28)"}}>{s.sub}</div>
+                    <div style={{fontSize:16, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
+                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.55)"}}>{s.sub}</div>
                   </div>
                 ))}
               </div>
@@ -889,7 +889,7 @@ export default function DashboardShell() {
                 {HUBS.map(hub => {
                   const sc = hub.status === "Operational" ? "#22c55e" : "#C9A84C";
                   return (
-                    <div key={hub.id} style={{background:"#0F1623", border:`1px solid ${hub.status==="Warning"?"rgba(201,168,76,.3)":"rgba(255,255,255,.06)"}`, padding:"20px 24px", position:"relative", overflow:"hidden"}}>
+                    <div key={hub.id} style={{background:"#22224A", border:`1px solid ${hub.status==="Warning"?"rgba(201,168,76,.3)":"rgba(255,255,255,.06)"}`, padding:"20px 24px", position:"relative", overflow:"hidden"}}>
                       <div style={{position:"absolute", top:0, left:0, bottom:0, width:3, background:sc}}/>
                       <div style={{display:"flex", alignItems:"flex-start", justifyContent:"space-between", marginBottom:16}}>
                         <div>
@@ -907,13 +907,13 @@ export default function DashboardShell() {
                         ].map(s=>(
                           <div key={s.l} style={{textAlign:"center", padding:"10px", background:"rgba(255,255,255,.03)", border:"1px solid rgba(255,255,255,.06)"}}>
                             <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:18, color:s.c, lineHeight:1}}>{s.v}</div>
-                            <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.28)", letterSpacing:".08em", textTransform:"uppercase", marginTop:4}}>{s.l}</div>
+                            <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.55)", letterSpacing:".08em", textTransform:"uppercase", marginTop:4}}>{s.l}</div>
                           </div>
                         ))}
                       </div>
                       <div>
                         <div style={{display:"flex", justifyContent:"space-between", marginBottom:5}}>
-                          <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.35)"}}>Storage capacity</span>
+                          <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.65)"}}>Storage capacity</span>
                           <span style={{fontFamily:"var(--font-mono)", fontSize:9, color:sc}}>{hub.capacity}%</span>
                         </div>
                         <div style={{height:6, background:"rgba(255,255,255,.06)", borderRadius:9999, overflow:"hidden"}}>
@@ -945,14 +945,14 @@ export default function DashboardShell() {
                   {l:"Charging",        v:"7",   c:"#C9A84C", sub:"Ready in 20–40 min"},
                   {l:"Under Maintenance",v:"2",  c:"rgba(255,255,255,.4)", sub:"Hub 3 + Hub 5"},
                 ].map(s=>(
-                  <div key={s.l} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
+                  <div key={s.l} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:28, color:s.c, lineHeight:1, marginBottom:4}}>{s.v}</div>
-                    <div style={{fontSize:12, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
-                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.28)"}}>{s.sub}</div>
+                    <div style={{fontSize:16, color:"rgba(255,255,255,.6)", marginBottom:3}}>{s.l}</div>
+                    <div style={{fontFamily:"var(--font-mono)", fontSize:9, color:"rgba(255,255,255,.55)"}}>{s.sub}</div>
                   </div>
                 ))}
               </div>
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)"}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)"}}>
                 <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)"}}>
                   <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff"}}>Fleet Status</div>
                   <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.25)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>All units · Real-time</div>
@@ -993,11 +993,11 @@ export default function DashboardShell() {
             <div>
               <div style={{display:"grid", gap:12}} className="analytics-grid">
                 {(["deliveries","donations","units"] as const).map(metric => (
-                  <div key={metric} style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
+                  <div key={metric} style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", padding:"18px 20px"}}>
                     <div style={{display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:16}}>
                       <div>
                         <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff", textTransform:"capitalize"}}>{metric}</div>
-                        <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.28)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>7-day trend</div>
+                        <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.55)", letterSpacing:".1em", textTransform:"uppercase", marginTop:2}}>7-day trend</div>
                       </div>
                       <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:22, color:metric==="deliveries"?"#CC0000":metric==="donations"?"#2F80ED":"#22c55e"}}>
                         {WEEKLY_DATA.reduce((a,d)=>a+d[metric],0).toLocaleString()}
@@ -1008,7 +1008,7 @@ export default function DashboardShell() {
                 ))}
               </div>
               {/* Summary KPIs */}
-              <div style={{background:"#0F1623", border:"1px solid rgba(255,255,255,.06)", marginTop:12, padding:"18px 20px"}}>
+              <div style={{background:"#22224A", border:"1px solid rgba(255,255,255,.06)", marginTop:12, padding:"18px 20px"}}>
                 <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff", marginBottom:14}}>Key Performance Indicators</div>
                 <div style={{display:"grid", gap:12}} className="kpi-grid">
                   {[
@@ -1020,7 +1020,7 @@ export default function DashboardShell() {
                     {l:"NAT Screening Pass Rate",      v:"99.6%", c:"#22c55e", delta:"YTD average"},
                   ].map(kpi=>(
                     <div key={kpi.l} style={{display:"flex", alignItems:"center", justifyContent:"space-between", padding:"12px 16px", background:"rgba(255,255,255,.02)", border:"1px solid rgba(255,255,255,.05)"}}>
-                      <div style={{fontSize:13, color:"rgba(255,255,255,.65)"}}>{kpi.l}</div>
+                      <div style={{fontSize:15, color:"rgba(255,255,255,.65)"}}>{kpi.l}</div>
                       <div style={{textAlign:"right", flexShrink:0, marginLeft:16}}>
                         <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:18, color:kpi.c, lineHeight:1}}>{kpi.v}</div>
                         <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.25)", marginTop:2}}>{kpi.delta}</div>

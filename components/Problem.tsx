@@ -44,7 +44,7 @@ export default function Problem() {
   return (
     <section id="problem" style={{
       paddingBlock:"var(--section-py)",
-      background:"var(--ink)",
+      background:"var(--dark-bg)",
       position:"relative", overflow:"hidden",
     }}>
       {/* Grid */}
@@ -65,7 +65,7 @@ export default function Problem() {
         {/* Header */}
         <div style={{ maxWidth:640, margin:"0 auto clamp(56px,7vw,88px)", textAlign:"center" }}>
           <div className="section-label" style={{ justifyContent:"center", marginBottom:20 }}>
-            <span style={{ color:"rgba(255,255,255,.45)" }}>The Blood Crisis in Nigeria</span>
+            <span style={{ color:"rgba(255,255,255,.78)" }}>The Blood Crisis in Nigeria</span>
           </div>
           <h2 className="h2 font-display" style={{ color:"#fff", marginBottom:20 }}>
             Lives Are Being Lost.{" "}

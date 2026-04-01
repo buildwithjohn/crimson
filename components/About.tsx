@@ -71,7 +71,7 @@ export default function About() {
           <div className="reveal-right">
             {/* Large feature card */}
             <div style={{
-              background:"var(--ink)", padding:"clamp(28px,4vw,44px)",
+              background:"var(--dark-bg)", padding:"clamp(28px,4vw,44px)",
               position:"relative", overflow:"hidden",
               marginBottom:16,
             }}>
