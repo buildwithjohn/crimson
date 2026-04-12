@@ -1,6 +1,5 @@
 "use client";
 import { useReveal } from "./useReveal";
-import Image from "next/image";
 import { Wifi, Thermometer, Cpu, Network, Shield, Zap } from "lucide-react";
 
 const SECTIONS = [
@@ -27,7 +26,7 @@ const SECTIONS = [
     title:"Intelligent Dispatch & Decision Engine",
     body:"At the core of CrimsonWings is a real-time decision system that instantly matches supply with demand, selects optimal delivery routes, balances inventory across locations, and tracks every unit from donor to patient.",
     image:"/tech-dispatch.jpg",
-    imageAlt:"CrimsonWings intelligent dispatch and decision center",
+    imageAlt:"CrimsonWings intelligent dispatch center",
     points:["Matches supply with demand instantly","Selects optimal delivery routes","Balances inventory across locations","Tracks every unit — donor to patient"],
     color:"#CC0000",
   },
@@ -96,9 +95,7 @@ export default function Technology() {
                       <s.icon size={26} style={{ color:s.color }}/>
                     </div>
                     <div>
-                      <div className="caption" style={{ color:`${s.color}cc`, marginBottom:5, fontSize:11 }}>
-                        Module {s.num}
-                      </div>
+                      <div className="caption" style={{ color:`${s.color}cc`, marginBottom:5, fontSize:11 }}>Module {s.num}</div>
                       <h3 className="h3 font-display" style={{ color:"#fff", lineHeight:1.2 }}>{s.title}</h3>
                     </div>
                   </div>
@@ -117,25 +114,40 @@ export default function Technology() {
                   </div>
                 </div>
 
-                {/* Image */}
+                {/* Image — plain <img> tag, reliable on static export */}
                 <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
                   <div style={{
-                    position:"relative", paddingBottom:"65%",
+                    position:"relative",
                     overflow:"hidden",
-                    border:`1px solid ${s.color}35`,
+                    border:`1px solid ${s.color}40`,
                   }}>
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={s.image}
                       alt={s.imageAlt}
-                      fill
-                      style={{ objectFit:"cover", objectPosition:"center" }}
-                      sizes="(max-width:900px) 100vw, 50vw"
+                      style={{
+                        width:"100%",
+                        height:"340px",
+                        objectFit:"cover",
+                        objectPosition:"center",
+                        display:"block",
+                      }}
                     />
-                    {/* Top bar */}
-                    <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg, ${s.color}, transparent)`, zIndex:2 }}/>
-                    {/* Corner brackets */}
-                    <div style={{ position:"absolute", top:12, right:12, width:28, height:28, borderTop:`2px solid ${s.color}90`, borderRight:`2px solid ${s.color}90`, zIndex:2 }}/>
-                    <div style={{ position:"absolute", bottom:12, left:12, width:28, height:28, borderBottom:`2px solid ${s.color}90`, borderLeft:`2px solid ${s.color}90`, zIndex:2 }}/>
+                    {/* Overlays */}
+                    <div style={{ position:"absolute", top:0, left:0, right:0, height:4, background:`linear-gradient(90deg, ${s.color}, transparent)`, zIndex:2 }}/>
+                    <div style={{ position:"absolute", top:12, right:12, width:28, height:28, borderTop:`2px solid ${s.color}`, borderRight:`2px solid ${s.color}`, zIndex:2 }}/>
+                    <div style={{ position:"absolute", bottom:12, left:12, width:28, height:28, borderBottom:`2px solid ${s.color}`, borderLeft:`2px solid ${s.color}`, zIndex:2 }}/>
+                    {/* Label */}
+                    <div style={{
+                      position:"absolute", bottom:0, left:0, right:0,
+                      padding:"12px 16px",
+                      background:`linear-gradient(to top, rgba(0,0,0,.7), transparent)`,
+                      zIndex:2,
+                    }}>
+                      <span className="caption" style={{ color:"rgba(255,255,255,.7)", fontSize:9 }}>
+                        Module {s.num} — {s.title}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -155,20 +167,14 @@ export default function Technology() {
         }}>
           <div style={{ display:"flex", justifyContent:"center", gap:16, flexWrap:"wrap", marginBottom:24 }}>
             {[Shield, Zap, Network].map((Icon, i) => (
-              <div key={i} style={{
-                width:48, height:48, display:"flex", alignItems:"center", justifyContent:"center",
-                background:"rgba(204,0,0,.2)", border:"1px solid rgba(204,0,0,.4)",
-              }}>
+              <div key={i} style={{ width:48, height:48, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(204,0,0,.2)", border:"1px solid rgba(204,0,0,.4)" }}>
                 <Icon size={22} style={{ color:"var(--crimson)" }}/>
               </div>
             ))}
           </div>
-          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:14 }}>
-            Built for Scale. Designed for Impact.
-          </h3>
+          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:14 }}>Built for Scale. Designed for Impact.</h3>
           <p style={{ fontSize:18, color:"rgba(255,255,255,.72)", maxWidth:560, margin:"0 auto" }}>
-            This is not a single facility — it is a scalable national infrastructure
-            for blood access across Nigeria.
+            This is not a single facility — it is a scalable national infrastructure for blood access across Nigeria.
           </p>
         </div>
       </div>

@@ -3,23 +3,95 @@ import { useReveal } from "./useReveal";
 import { Users, Truck, FlaskConical, Building2, Package, Hospital, Cpu, Zap, Wind, CheckCircle2, BarChart3 } from "lucide-react";
 
 const STEPS = [
-  { num:"01", icon:Users,        title:"Blood Collection",              body:"Blood is collected through large-scale CrimsonWings donor drives and partner collection centers across Lagos.", color:"#CC0000" },
-  { num:"02", icon:Truck,        title:"Controlled Transport",          body:"Collected units are immediately secured in temperature-controlled CrimsonWings cold-chain vans for safe movement.", color:"#2F80ED" },
-  { num:"03", icon:FlaskConical, title:"Screening & Processing",        body:"Blood is transported to Lagos State-approved screening centers and CrimsonWings facilities for initial screening and component processing.", color:"#CC0000" },
-  { num:"04", icon:Building2,    title:"Central Blood Bank Integration",body:"All units transfer to the CrimsonWings HQ Blood Bank where inventory is logged digitally, advanced NAT screening is conducted, and units are cleared for safe medical use.", color:"#2F80ED" },
-  { num:"05", icon:Package,      title:"Smart Inventory Management",    body:"Every unit is stored within a controlled cold-chain system and tracked in real time across the entire CrimsonWings network.", color:"#CC0000" },
-  { num:"06", icon:Hospital,     title:"Hospital Request",              body:"Hospitals and healthcare providers place requests through the CrimsonWings system — directly connected to our real-time inventory.", color:"#2F80ED" },
-  { num:"07", icon:Cpu,          title:"Intelligent Routing",           body:"The system automatically selects the best delivery method: drone for urgent small-volume, cold-chain bikes for medium range, cold-chain vans for bulk delivery.", color:"#CC0000" },
-  { num:"08", icon:Zap,          title:"Automated Dispatch",            body:"Orders are processed through a decision engine that triggers immediate dispatch from the nearest hub or storage location — no manual delay.", color:"#2F80ED" },
-  { num:"09", icon:Wind,         title:"Delivery Execution",            body:"Blood is transported via the selected logistics channel and delivered directly to hospitals or designated endpoints.", color:"#CC0000" },
-  { num:"10", icon:CheckCircle2, title:"Verification & Use",            body:"Upon arrival, units are verified, logged as received in the CrimsonWings system, and released immediately for medical use.", color:"#2F80ED" },
-  { num:"11", icon:BarChart3,    title:"Traceability & Reporting",      body:"Every unit remains traceable from donor to patient — enabling full audit trails, regulatory compliance, and data-driven system optimization.", color:"#CC0000" },
+  {
+    num:"01", icon:Users,
+    title:"Blood Collection",
+    body:"Blood is collected through large-scale CrimsonWings donor drives and partner collection centers across Lagos.",
+    image:"/phase-01.png", hasImage:true,
+    color:"#CC0000",
+  },
+  {
+    num:"02", icon:Truck,
+    title:"Controlled Transport",
+    body:"Collected units are immediately secured in temperature-controlled CrimsonWings cold-chain vans for safe movement.",
+    image:"/phase-02.png", hasImage:true,
+    color:"#2F80ED",
+  },
+  {
+    num:"03", icon:FlaskConical,
+    title:"Screening & Processing",
+    body:"Blood is transported to Lagos State-approved screening centers and CrimsonWings facilities for initial screening and component processing.",
+    image:"/phase-03.png", hasImage:true,
+    color:"#CC0000",
+  },
+  {
+    num:"04", icon:Building2,
+    title:"Central Blood Bank Integration",
+    body:"All units transfer to the CrimsonWings HQ Blood Bank where inventory is logged digitally, advanced NAT screening is conducted, and units are cleared for safe medical use.",
+    image:"/phase-04.png", hasImage:true,
+    color:"#2F80ED",
+  },
+  {
+    num:"05", icon:Package,
+    title:"Smart Inventory Management",
+    body:"Every unit is stored within a controlled cold-chain system and tracked in real time across the entire CrimsonWings network.",
+    image:"/phase-05.png", hasImage:true,
+    color:"#CC0000",
+  },
+  {
+    num:"06", icon:Hospital,
+    title:"Hospital Request",
+    body:"Hospitals and healthcare providers place requests through the CrimsonWings system — directly connected to our real-time inventory.",
+    image:"/phase-06.png", hasImage:true,
+    color:"#2F80ED",
+  },
+  {
+    num:"07", icon:Cpu,
+    title:"Intelligent Routing",
+    body:"The system automatically selects the best delivery method — drone for urgent small-volume, cold-chain bikes for medium range, cold-chain vans for bulk delivery.",
+    image:"", hasImage:false,
+    color:"#CC0000",
+  },
+  {
+    num:"08", icon:Zap,
+    title:"Automated Dispatch",
+    body:"Orders are processed through a decision engine that triggers immediate dispatch from the nearest hub or storage location — no manual delay.",
+    image:"", hasImage:false,
+    color:"#2F80ED",
+  },
+  {
+    num:"09", icon:Wind,
+    title:"Delivery Execution",
+    body:"Blood is transported via the selected logistics channel — drone, cold-chain bike, or van — and delivered directly to hospitals or designated endpoints.",
+    image:"", hasImage:false,
+    color:"#CC0000",
+  },
+  {
+    num:"10", icon:CheckCircle2,
+    title:"Verification & Use",
+    body:"Upon arrival, units are verified, logged as received in the CrimsonWings system, and released immediately for medical use.",
+    image:"", hasImage:false,
+    color:"#2F80ED",
+  },
+  {
+    num:"11", icon:BarChart3,
+    title:"Traceability & Reporting",
+    body:"Every unit remains traceable from donor to patient — enabling full audit trails, regulatory compliance, and data-driven system optimization.",
+    image:"", hasImage:false,
+    color:"#CC0000",
+  },
 ];
 
 const FLOW = [
-  {icon:Users, label:"Donor Drive"}, {icon:Truck, label:"Van"}, {icon:FlaskConical, label:"Screening"},
-  {icon:Building2, label:"HQ Lab"}, {icon:Package, label:"Storage"}, {icon:Hospital, label:"Request"},
-  {icon:Cpu, label:"Dispatch"}, {icon:Wind, label:"Delivery"}, {icon:CheckCircle2, label:"Hospital"},
+  {icon:Users,        label:"Donor Drive"},
+  {icon:Truck,        label:"Van"},
+  {icon:FlaskConical, label:"Screening"},
+  {icon:Building2,    label:"HQ Lab"},
+  {icon:Package,      label:"Storage"},
+  {icon:Hospital,     label:"Request"},
+  {icon:Cpu,          label:"Dispatch"},
+  {icon:Wind,         label:"Delivery"},
+  {icon:CheckCircle2, label:"Hospital"},
 ];
 
 export default function HowItWorks() {
@@ -33,30 +105,40 @@ export default function HowItWorks() {
         <div style={{ textAlign:"center", maxWidth:680, margin:"0 auto clamp(40px,5vw,64px)" }}>
           <div className="section-label reveal" style={{ justifyContent:"center", marginBottom:20 }}>End-to-End Process</div>
           <h2 className="h2 font-display reveal delay-1" style={{ color:"var(--ink)", marginBottom:20 }}>
-            From <em style={{ color:"var(--crimson)" }}>Donor</em> to Patient — <em style={{ color:"var(--crimson)" }}>A Seamless Flow</em>
+            From <em style={{ color:"var(--crimson)" }}>Donor</em> to Patient —{" "}
+            <em style={{ color:"var(--crimson)" }}>A Seamless Flow</em>
           </h2>
           <p className="body-lg reveal delay-2">
-            CrimsonWings transforms blood supply into a structured, traceable, and responsive system. Every unit is tracked from collection to the patient bedside.
+            CrimsonWings transforms blood supply into a structured, traceable, and responsive system.
+            Every unit is tracked from collection to the patient bedside.
           </p>
         </div>
 
         {/* Flow diagram */}
-        <div className="reveal delay-2" style={{ marginBottom:"clamp(56px,7vw,88px)", background:"var(--off-white)", border:"1px solid var(--smoke)", padding:"clamp(20px,3vw,36px)", overflowX:"auto" }}>
-          <div style={{ display:"flex", alignItems:"center", minWidth:680 }}>
+        <div className="reveal delay-2" style={{
+          marginBottom:"clamp(56px,7vw,88px)",
+          background:"var(--off-white)", border:"1px solid var(--smoke)",
+          padding:"clamp(20px,3vw,36px)", overflowX:"auto",
+        }}>
+          <div style={{ display:"flex", alignItems:"center", minWidth:640 }}>
             {FLOW.map((step, i) => (
               <div key={step.label} style={{ display:"flex", alignItems:"center", flex:1 }}>
-                <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto", minWidth:70 }}>
+                <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto", minWidth:68 }}>
                   <div style={{
-                    width:50, height:50, display:"flex", alignItems:"center", justifyContent:"center",
-                    background: i === 0 || i === FLOW.length-1 ? "var(--crimson)" : "var(--dark-bg)",
-                    border:`2px solid ${i % 2 === 0 ? "#CC0000" : "#2F80ED"}`, borderRadius:"50%",
+                    width:50, height:50,
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    background: i === 0 || i === FLOW.length-1 ? "var(--crimson)" : "#1C1C2E",
+                    border:`2px solid ${i % 2 === 0 ? "#CC0000" : "#2F80ED"}`,
+                    borderRadius:"50%",
                   }}>
                     <step.icon size={20} color="#fff"/>
                   </div>
-                  <span className="caption" style={{ fontSize:9, color:"var(--ink)", textAlign:"center", maxWidth:70, lineHeight:1.4 }}>{step.label}</span>
+                  <span className="caption" style={{ fontSize:9, color:"var(--ink)", textAlign:"center", maxWidth:68, lineHeight:1.4 }}>
+                    {step.label}
+                  </span>
                 </div>
                 {i < FLOW.length - 1 && (
-                  <div style={{ flex:1, height:2, minWidth:10, background:`linear-gradient(90deg, ${i%2===0?"#CC0000":"#2F80ED"}, ${i%2===0?"#2F80ED":"#CC0000"})`, position:"relative" }}>
+                  <div style={{ flex:1, height:2, minWidth:8, background:`linear-gradient(90deg, ${i%2===0?"#CC0000":"#2F80ED"}, ${i%2===0?"#2F80ED":"#CC0000"})`, position:"relative" }}>
                     <div style={{ position:"absolute", right:-1, top:-4, width:0, height:0, borderTop:"5px solid transparent", borderBottom:"5px solid transparent", borderLeft:`8px solid ${i%2===0?"#2F80ED":"#CC0000"}` }}/>
                   </div>
                 )}
@@ -65,31 +147,88 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* 11 steps */}
+        {/* 11 steps — alternating layout */}
         <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
           {STEPS.map((step, i) => {
             const rev = i % 2 === 1;
             return (
-              <div key={step.num} style={{ display:"grid", background:i%2===0?"#fff":"var(--off-white)", border:"1px solid var(--smoke)", marginBottom:2 }} className="how-row">
-                {/* Image placeholder */}
-                <div style={{ order:rev?2:1, position:"relative", minHeight:260, background:"#F0EDE8", overflow:"hidden" }}>
-                  <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12, background:`linear-gradient(135deg, ${step.color}08, transparent)` }}>
-                    <step.icon size={44} style={{ color:`${step.color}35` }}/>
-                    <div className="caption" style={{ fontSize:9, color:"rgba(0,0,0,.22)", textAlign:"center", padding:"0 24px", lineHeight:1.6 }}>
-                      Upload image for Step {step.num}: {step.title}
+              <div key={step.num}
+                style={{
+                  display:"grid",
+                  background: i%2===0 ? "#fff" : "var(--off-white)",
+                  border:"1px solid var(--smoke)",
+                  marginBottom:2,
+                }}
+                className="how-row"
+              >
+                {/* Image side */}
+                <div style={{
+                  order: rev ? 2 : 1,
+                  minHeight:280,
+                  position:"relative",
+                  overflow:"hidden",
+                  background: step.hasImage ? "#111" : "#F0EDE8",
+                }}>
+                  {step.hasImage ? (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        style={{
+                          width:"100%", height:"100%",
+                          objectFit:"cover", objectPosition:"center top",
+                          display:"block", minHeight:280,
+                        }}
+                      />
+                      {/* gradient overlay */}
+                      <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 55%)" }}/>
+                    </>
+                  ) : (
+                    <div style={{
+                      position:"absolute", inset:0,
+                      display:"flex", flexDirection:"column",
+                      alignItems:"center", justifyContent:"center",
+                      gap:12,
+                      background:`linear-gradient(135deg, ${step.color}10, transparent)`,
+                    }}>
+                      <step.icon size={48} style={{ color:`${step.color}30` }}/>
+                      <div className="caption" style={{ fontSize:9, color:"rgba(0,0,0,.2)", textAlign:"center", padding:"0 24px" }}>
+                        Upload how-{step.num}.jpg to show this step
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ position:"absolute", top:14, left:14, background:step.color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:13, padding:"5px 13px" }}>
+                  )}
+                  {/* Step badge */}
+                  <div style={{
+                    position:"absolute", top:14, left:14,
+                    background:step.color, color:"#fff",
+                    fontFamily:"var(--font-display)", fontWeight:800, fontSize:14,
+                    padding:"5px 14px", zIndex:3,
+                  }}>
                     {step.num}
                   </div>
                 </div>
-                {/* Content */}
-                <div style={{ order:rev?1:2, padding:"clamp(28px,4vw,48px)", display:"flex", flexDirection:"column", justifyContent:"center" }}>
+
+                {/* Content side */}
+                <div style={{
+                  order: rev ? 1 : 2,
+                  padding:"clamp(28px,4vw,52px)",
+                  display:"flex", flexDirection:"column", justifyContent:"center",
+                }}>
                   <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:18 }}>
-                    <div style={{ width:46, height:46, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:`${step.color}12`, border:`1.5px solid ${step.color}30` }}>
+                    <div style={{
+                      width:48, height:48, flexShrink:0,
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                      background:`${step.color}12`, border:`1.5px solid ${step.color}35`,
+                    }}>
                       <step.icon size={22} style={{ color:step.color }}/>
                     </div>
-                    <h3 className="font-display" style={{ fontSize:"clamp(20px,2.5vw,27px)", fontWeight:700, color:"var(--ink)", lineHeight:1.2 }}>{step.title}</h3>
+                    <h3 className="font-display" style={{
+                      fontSize:"clamp(20px,2.5vw,28px)", fontWeight:700,
+                      color:"var(--ink)", lineHeight:1.2,
+                    }}>
+                      {step.title}
+                    </h3>
                   </div>
                   <p className="body-lg" style={{ color:"var(--steel)" }}>{step.body}</p>
                   <div style={{ marginTop:20, height:3, width:48, background:`linear-gradient(90deg, ${step.color}, transparent)` }}/>
@@ -100,16 +239,26 @@ export default function HowItWorks() {
         </div>
 
         {/* Closing */}
-        <div className="reveal" style={{ marginTop:"clamp(48px,6vw,72px)", textAlign:"center", padding:"clamp(32px,4vw,52px)", background:"var(--dark-bg)", position:"relative", overflow:"hidden" }}>
+        <div className="reveal" style={{
+          marginTop:"clamp(48px,6vw,72px)", textAlign:"center",
+          padding:"clamp(32px,4vw,52px)", background:"#1C1C2E",
+          position:"relative", overflow:"hidden",
+        }}>
           <div style={{ position:"absolute", top:0, left:0, right:0, height:4, background:"linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))" }}/>
-          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:12 }}>A Complete Loop of Trust, Speed, and Accountability</h3>
+          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:12 }}>
+            A Complete Loop of Trust, Speed, and Accountability
+          </h3>
           <p style={{ fontSize:18, color:"rgba(255,255,255,.72)", maxWidth:540, margin:"0 auto" }}>
             From the first drop collected to the moment blood reaches a patient — every step is tracked, verified, and optimized.
           </p>
         </div>
       </div>
+
       <style>{`
-        @media(min-width:800px){ .how-row{ grid-template-columns:1fr 1fr !important; } .how-row>div:first-child{ min-height:320px !important; } }
+        @media(min-width:800px){
+          .how-row{ grid-template-columns:1fr 1fr !important; }
+          .how-row > div { min-height:320px; }
+        }
       `}</style>
     </section>
   );
