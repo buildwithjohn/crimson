@@ -1,139 +1,128 @@
 "use client";
 import { useReveal } from "./useReveal";
-import { Cpu, Wind, Database } from "lucide-react";
+import Image from "next/image";
+import { Wifi, Thermometer, Cpu, Network, Shield, Zap } from "lucide-react";
+
+const SECTIONS = [
+  {
+    icon: Wifi, num:"01",
+    title:"Autonomous Delivery Infrastructure",
+    body:"CrimsonWings deploys a hybrid logistics fleet — drones, cold-chain bikes, and refrigerated vans — moving blood efficiently across Lagos urban and coastal environments. Each delivery route is dynamically selected based on urgency, volume, and distance.",
+    image:"/tech-delivery.png", hasImage:true,
+    imageAlt:"CrimsonWings cold-chain delivery van",
+    points:["Medical drones for urgent last-mile delivery","Cold-chain bikes for medium-range transport","Refrigerated vans for bulk delivery"],
+    color:"#CC0000",
+  },
+  {
+    icon: Thermometer, num:"02",
+    title:"Advanced Cold-Chain System",
+    body:"From donor collection to final delivery, every unit of blood is preserved under strict temperature-controlled conditions. Our mobile and fixed storage systems maintain cold-chain integrity across every stage.",
+    image:"/tech-coldchain.png", hasImage:true,
+    imageAlt:"CrimsonWings cold-chain storage facility",
+    points:["Collection drives","Screening centers","Transport vehicles","Central blood bank facilities"],
+    color:"#2F80ED",
+  },
+  {
+    icon: Cpu, num:"03",
+    title:"Intelligent Dispatch & Decision Engine",
+    body:"At the core of CrimsonWings is a real-time decision system that instantly matches supply with demand, selects optimal delivery routes, balances inventory across locations, and tracks every unit from donor to patient.",
+    image:"", hasImage:false,
+    imageAlt:"CrimsonWings dispatch center",
+    points:["Matches supply with demand instantly","Selects optimal delivery routes","Balances inventory across locations","Tracks every unit — donor to patient"],
+    color:"#CC0000",
+  },
+  {
+    icon: Network, num:"04",
+    title:"Connected Infrastructure",
+    body:"CrimsonWings operates as a distributed network spanning every stage of blood logistics across Lagos State — built for scale and designed for national impact.",
+    image:"", hasImage:false,
+    imageAlt:"CrimsonWings hub network across Lagos",
+    points:["Donor collection drives","Screening and processing centers","Mobile cold-chain units","Central blood bank operations","Delivery hubs across Lagos"],
+    color:"#2F80ED",
+  },
+];
 
 export default function Technology() {
   const ref = useReveal();
   return (
-    <section id="technology" ref={ref} className="section bg-ink-soft grid-lines-dark noise-overlay">
+    <section id="technology" ref={ref} style={{ background:"#0B1F33", paddingBlock:"var(--section-py)", position:"relative", overflow:"hidden" }}>
+      <div className="grid-lines-dark" style={{ position:"absolute", inset:0, opacity:.5 }}/>
+      <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:900, height:600, borderRadius:"50%", background:"radial-gradient(ellipse, rgba(204,0,0,.1) 0%, transparent 65%)", pointerEvents:"none" }}/>
+
       <div className="container" style={{ position:"relative", zIndex:2 }}>
-
-        <div style={{ textAlign:"center", maxWidth:560, margin:"0 auto clamp(48px,6vw,80px)" }}>
+        <div style={{ textAlign:"center", maxWidth:720, margin:"0 auto clamp(56px,7vw,96px)" }}>
           <div className="section-label reveal" style={{ justifyContent:"center", marginBottom:20 }}>
-            <span style={{ color:"rgba(255,255,255,.35)" }}>Core Technology</span>
+            <span style={{ color:"rgba(255,255,255,.5)" }}>Core Technology</span>
           </div>
-          <h2 className="h2 font-display reveal delay-1" style={{ color:"#fff" }}>
-            Infrastructure-Grade <em style={{ color:"var(--crimson)" }}>Technology</em>
+          <h2 className="h2 font-display reveal delay-1" style={{ color:"#fff", marginBottom:20 }}>
+            Powering a <em style={{ color:"var(--crimson)" }}>Real-Time Blood Logistics</em> Network
           </h2>
+          <p className="body-lg reveal delay-2" style={{ color:"rgba(255,255,255,.78)" }}>
+            CrimsonWings operates a fully integrated system connecting blood collection, processing, and delivery into one intelligent, responsive network — designed for speed, safety, and reliability.
+          </p>
         </div>
 
-        {/* NAT row */}
-        <div style={{ display:"grid", gap:"clamp(32px,5vw,64px)", alignItems:"center", marginBottom:"clamp(48px,6vw,80px)" }} className="two-col-rev">
-          <div className="reveal delay-1">
-            <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:20 }}>
-              <div style={{ width:44, height:44, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, background:"rgba(138,3,3,.15)", border:"1px solid rgba(138,3,3,.28)" }}>
-                <Database size={18} style={{ color:"var(--crimson)" }}/>
-              </div>
-              <div>
-                <div className="caption" style={{ color:"rgba(255,255,255,.3)", marginBottom:4 }}>Screening System 01</div>
-                <div className="font-display" style={{ fontSize:"clamp(20px,2.5vw,26px)", fontWeight:700, color:"#fff" }}>NAT Viral Screening</div>
-              </div>
-            </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.78)", marginBottom:28, maxWidth:440 }}>
-              Nucleic Acid Testing (NAT) is the global gold standard for blood safety, detecting viral RNA/DNA at concentrations 100× below what conventional serological tests can identify. Our systems close the &quot;window period&quot; — the critical gap where infected donors test negative on standard screens.
-            </p>
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:16 }}>
-              {[{l:"HIV Detection",v:"~11 days"},{l:"Hep C Window",v:"~4 days"},{l:"Accuracy",v:"99.99%"}].map(s=>(
-                <div key={s.l} style={{ borderLeft:"2px solid var(--crimson)", paddingLeft:14 }}>
-                  <div className="font-display" style={{ fontSize:"clamp(16px,2vw,22px)", fontWeight:700, color:"#fff", marginBottom:6 }}>{s.v}</div>
-                  <div className="caption" style={{ color:"rgba(255,255,255,.3)" }}>{s.l}</div>
+        <div style={{ display:"flex", flexDirection:"column", gap:"clamp(56px,7vw,88px)" }}>
+          {SECTIONS.map((s, i) => {
+            const rev = i % 2 === 1;
+            return (
+              <div key={s.num} style={{ display:"grid", gap:"clamp(28px,4vw,56px)", alignItems:"center" }} className="tech-row">
+                <div style={{ order: rev ? 2 : 1 }} className={rev ? "reveal-right" : "reveal"}>
+                  <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:24 }}>
+                    <div style={{ width:56, height:56, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:`${s.color}20`, border:`1.5px solid ${s.color}50` }}>
+                      <s.icon size={26} style={{ color:s.color }}/>
+                    </div>
+                    <div>
+                      <div className="caption" style={{ color:`${s.color}cc`, marginBottom:5, fontSize:11 }}>Module {s.num}</div>
+                      <h3 className="h3 font-display" style={{ color:"#fff", lineHeight:1.2 }}>{s.title}</h3>
+                    </div>
+                  </div>
+                  <p className="body-lg" style={{ color:"rgba(255,255,255,.78)", marginBottom:28 }}>{s.body}</p>
+                  <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+                    {s.points.map(pt => (
+                      <div key={pt} style={{ display:"flex", alignItems:"center", gap:14 }}>
+                        <div style={{ width:8, height:8, borderRadius:"50%", background:s.color, flexShrink:0, boxShadow:`0 0 10px ${s.color}` }}/>
+                        <span style={{ fontSize:17, color:"rgba(255,255,255,.72)", lineHeight:1.5 }}>{pt}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Visual */}
-          <div className="reveal-right" style={{ display:"flex", justifyContent:"center" }}>
-            <div style={{ width:260, height:260, border:"1px solid rgba(138,3,3,.12)", position:"relative", display:"flex", alignItems:"center", justifyContent:"center" }}>
-              {[200,148,96,48].map((sz,i)=>(
-                <div key={sz} style={{ position:"absolute", width:sz, height:sz, borderRadius:"50%", border:`1px solid rgba(138,3,3,${.08+i*.06})`, animation:`breathe ${2.5+i*.5}s ease-in-out infinite`, animationDelay:`${i*.3}s` }}/>
-              ))}
-              <div style={{ width:44, height:44, borderRadius:"50%", background:"var(--crimson)", display:"flex", alignItems:"center", justifyContent:"center", position:"relative", zIndex:2 }}>
-                <Database size={18} color="#fff"/>
+                <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
+                  <div style={{ position:"relative", paddingBottom:"65%", overflow:"hidden", border:`1px solid ${s.color}35` }}>
+                    {s.hasImage ? (
+                      <Image src={s.image} alt={s.imageAlt} fill style={{ objectFit:"cover", objectPosition:"center" }} sizes="(max-width:900px) 100vw, 50vw"/>
+                    ) : (
+                      <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", background:`linear-gradient(135deg, ${s.color}12, rgba(255,255,255,.02))`, gap:14 }}>
+                        <s.icon size={52} style={{ color:`${s.color}40` }}/>
+                        <div className="caption" style={{ color:"rgba(255,255,255,.25)", fontSize:10, textAlign:"center", padding:"0 20px" }}>Image uploading soon</div>
+                      </div>
+                    )}
+                    <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:`linear-gradient(90deg, ${s.color}, transparent)` }}/>
+                    <div style={{ position:"absolute", top:12, right:12, width:28, height:28, borderTop:`2px solid ${s.color}70`, borderRight:`2px solid ${s.color}70` }}/>
+                    <div style={{ position:"absolute", bottom:12, left:12, width:28, height:28, borderBottom:`2px solid ${s.color}70`, borderLeft:`2px solid ${s.color}70` }}/>
+                  </div>
+                </div>
               </div>
-              {["HIV","HEP-B","HEP-C","HTLV"].map((lbl,i)=>{
-                const angles=[-45,45,135,-135];
-                const r=92, ang=(angles[i]*Math.PI)/180;
-                return (
-                  <div key={lbl} className="caption" style={{ position:"absolute", fontSize:9, color:"rgba(255,255,255,.32)", left:`calc(50% + ${r*Math.cos(ang)}px)`, top:`calc(50% + ${r*Math.sin(ang)}px)`, transform:"translate(-50%,-50%)" }}>{lbl}</div>
-                );
-              })}
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        {/* OS + Drone */}
-        <div style={{ display:"grid", gap:16 }} className="two-col">
-          {/* OS */}
-          <div className="reveal card-dark" style={{ borderTop:"2px solid var(--blue-tech)" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:16 }}>
-              <div style={{ width:40, height:40, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(47,128,237,.12)", border:"1px solid rgba(47,128,237,.22)" }}>
-                <Cpu size={17} style={{ color:"var(--blue-tech)" }}/>
+        <div className="reveal" style={{ marginTop:"clamp(64px,8vw,100px)", border:"1px solid rgba(204,0,0,.4)", background:"rgba(204,0,0,.1)", padding:"clamp(36px,5vw,60px)", textAlign:"center", transitionDelay:".3s" }}>
+          <div style={{ display:"flex", justifyContent:"center", gap:16, flexWrap:"wrap", marginBottom:24 }}>
+            {[Shield, Zap, Network].map((Icon, i) => (
+              <div key={i} style={{ width:48, height:48, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(204,0,0,.2)", border:"1px solid rgba(204,0,0,.4)" }}>
+                <Icon size={22} style={{ color:"var(--crimson)" }}/>
               </div>
-              <div>
-                <div className="caption" style={{ color:"rgba(47,128,237,.65)", marginBottom:3 }}>Platform 02</div>
-                <div className="font-display" style={{ fontSize:"clamp(17px,2vw,22px)", fontWeight:700, color:"#fff" }}>Proprietary OS</div>
-              </div>
-            </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.75)", marginBottom:20 }}>
-              A fully integrated OS connecting every stage — donor registration, lab screening, cold storage inventory, real-time hospital requests, and delivery dispatch — in one unified platform.
-            </p>
-            {/* Mock terminal */}
-            <div style={{ background:"rgba(0,0,0,.4)", border:"1px solid rgba(255,255,255,.06)", overflow:"hidden" }}>
-              <div style={{ display:"flex", alignItems:"center", gap:6, padding:"8px 14px", borderBottom:"1px solid rgba(255,255,255,.05)", background:"rgba(0,0,0,.3)" }}>
-                {["#ff5f57","#febc2e","#28c840"].map((c,i)=><div key={i} style={{ width:10, height:10, borderRadius:"50%", background:c, opacity:.7 }}/>)}
-                <span className="caption" style={{ marginLeft:8, color:"rgba(255,255,255,.18)", fontSize:9 }}>crimsonwings-os · live</span>
-              </div>
-              <div style={{ padding:14, display:"flex", flexDirection:"column", gap:8 }}>
-                {[
-                  {k:"BLOOD_UNITS_AVAILABLE",v:"18,420",c:"#22c55e"},
-                  {k:"PENDING_REQUESTS",v:"7",c:"var(--crimson)"},
-                  {k:"DRONES_IN_FLIGHT",v:"3",c:"var(--blue-tech)"},
-                  {k:"AVG_DELIVERY_TIME",v:"47 MIN",c:"#C9A84C"},
-                ].map(row=>(
-                  <div key={row.k} style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                    <span className="caption" style={{ color:"rgba(255,255,255,.22)", fontSize:9 }}>{row.k}</span>
-                    <span className="font-mono" style={{ fontSize:11, fontWeight:500, color:row.c }}>{row.v}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* Drone */}
-          <div className="reveal card-dark" style={{ borderTop:"2px solid #C9A84C", transitionDelay:".1s" }}>
-            <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:16 }}>
-              <div style={{ width:40, height:40, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(201,168,76,.12)", border:"1px solid rgba(201,168,76,.22)" }}>
-                <Wind size={17} style={{ color:"#C9A84C" }}/>
-              </div>
-              <div>
-                <div className="caption" style={{ color:"rgba(201,168,76,.65)", marginBottom:3 }}>Logistics 03</div>
-                <div className="font-display" style={{ fontSize:"clamp(17px,2vw,22px)", fontWeight:700, color:"#fff" }}>Triphasic Drone Delivery</div>
-              </div>
-            </div>
-            <p className="body-md" style={{ color:"rgba(255,255,255,.75)", marginBottom:20 }}>
-              Ground transport handles primary logistics. Coordination hubs manage staging. Drone delivery executes last-mile emergency response — any hospital in Lagos in under 60 minutes.
-            </p>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr auto 1fr auto 1fr", gap:4, alignItems:"center" }}>
-              {[
-                {n:"01",l:"Ground",s:"Primary",c:"rgba(255,255,255,.1)"},
-                {n:"02",l:"Hub",s:"Staging",c:"rgba(138,3,3,.3)"},
-                {n:"03",l:"Drone",s:"<60 min",c:"#C9A84C"},
-              ].map((ph,i,arr)=>(
-                <>
-                  <div key={ph.n} style={{ padding:"14px 10px", textAlign:"center", background:"rgba(255,255,255,.02)", border:`1px solid ${ph.c}` }}>
-                    <div className="caption" style={{ fontSize:8, color:i===2?"#C9A84C":"rgba(255,255,255,.35)", marginBottom:4 }}>Phase {ph.n}</div>
-                    <div className="font-display" style={{ fontSize:13, fontWeight:700, color:"#fff", lineHeight:1.2 }}>{ph.l}</div>
-                    <div className="caption" style={{ fontSize:8, color:"rgba(255,255,255,.22)", marginTop:3 }}>{ph.s}</div>
-                  </div>
-                  {i<arr.length-1&&<div key={`a${i}`} style={{ color:"rgba(255,255,255,.2)", textAlign:"center", fontSize:14 }}>›</div>}
-                </>
-              ))}
-            </div>
-          </div>
+          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:14 }}>Built for Scale. Designed for Impact.</h3>
+          <p style={{ fontSize:18, color:"rgba(255,255,255,.72)", maxWidth:560, margin:"0 auto" }}>
+            This is not a single facility — it is a scalable national infrastructure for blood access across Nigeria.
+          </p>
         </div>
       </div>
-      <style>{`@media(min-width:900px){.two-col,.two-col-rev{grid-template-columns:1fr 1fr !important;}}`}</style>
+      <style>{`@media(min-width:900px){ .tech-row{ grid-template-columns:1fr 1fr !important; } }`}</style>
     </section>
   );
 }
