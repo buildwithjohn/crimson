@@ -7,8 +7,8 @@ const SECTIONS = [
     icon: Wifi, num:"01",
     title:"Autonomous Delivery Infrastructure",
     body:"CrimsonWings deploys a hybrid logistics fleet — drones, cold-chain bikes, and refrigerated vans — moving blood efficiently across Lagos urban and coastal environments. Each delivery route is dynamically selected based on urgency, volume, and distance.",
-    image:"/phase-05.png",     /* drone over Lagos skyline */
-    imageAlt:"CrimsonWings medical drone delivering blood over Lagos",
+    image:"/new-tech-delivery.jpg",
+    imageAlt:"CrimsonWings branded cold-chain delivery van on Lagos streets",
     points:["Medical drones for urgent last-mile delivery","Cold-chain bikes for medium-range transport","Refrigerated vans for bulk delivery"],
     color:"#CC0000",
   },
@@ -16,8 +16,8 @@ const SECTIONS = [
     icon: Thermometer, num:"02",
     title:"Advanced Cold-Chain System",
     body:"From donor collection to final delivery, every unit of blood is preserved under strict temperature-controlled conditions. Our mobile and fixed storage systems maintain cold-chain integrity across every stage.",
-    image:"/phase-03.png",     /* walk-in cold room at -40°C */
-    imageAlt:"CrimsonWings walk-in cold storage room at -40°C",
+    image:"/new-tech-coldchain.png",
+    imageAlt:"CrimsonWings blood storage cold-chain facility with branded blood bags",
     points:["Collection drives","Screening centers","Transport vehicles","Central blood bank facilities"],
     color:"#2F80ED",
   },
@@ -25,8 +25,8 @@ const SECTIONS = [
     icon: Cpu, num:"03",
     title:"Intelligent Dispatch & Decision Engine",
     body:"At the core of CrimsonWings is a real-time decision system that instantly matches supply with demand, selects optimal delivery routes, balances inventory across locations, and tracks every unit from donor to patient.",
-    image:"/tech-dispatch.jpg",  /* branded dispatch center with Lagos map */
-    imageAlt:"CrimsonWings operations dispatch center",
+    image:"/tech-dispatch.jpg",
+    imageAlt:"CrimsonWings operations dispatch center with Lagos delivery map",
     points:["Matches supply with demand instantly","Selects optimal delivery routes","Balances inventory across locations","Tracks every unit — donor to patient"],
     color:"#CC0000",
   },
@@ -34,8 +34,8 @@ const SECTIONS = [
     icon: Network, num:"04",
     title:"Connected Infrastructure",
     body:"CrimsonWings operates as a distributed network spanning every stage of blood logistics across Lagos State — built for scale and designed for national impact.",
-    image:"/tech-network.jpg",   /* aerial Lagos hub network */
-    imageAlt:"CrimsonWings hub network across Lagos State",
+    image:"/tech-network.jpg",
+    imageAlt:"CrimsonWings aerial hub network across Lagos State",
     points:["Donor collection drives","Screening and processing centers","Mobile cold-chain units","Central blood bank operations","Delivery hubs across Lagos"],
     color:"#2F80ED",
   },
@@ -86,7 +86,6 @@ export default function Technology() {
                     ))}
                   </div>
                 </div>
-
                 <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
                   <div style={{ position:"relative", overflow:"hidden", border:`1px solid ${s.color}40` }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}

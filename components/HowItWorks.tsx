@@ -3,32 +3,32 @@ import { useReveal } from "./useReveal";
 import { Users, Truck, FlaskConical, Building2, Package, Hospital, Cpu, Zap, Wind, CheckCircle2, BarChart3 } from "lucide-react";
 
 /*
-  IMAGE MAP — what we have vs what's needed:
-  Step 01 Blood Collection      → phase-01.png ✅ (nurse + donor)
-  Step 02 Controlled Transport  → van.jpg ⬜ NEEDED (cold-chain van)
-  Step 03 Screening             → phase-02.png ✅ (lab scientist)
-  Step 04 Central Blood Bank    → phase-03.png ✅ (cold room)
-  Step 05 Smart Inventory       → phase-04.png ✅ (logistics dashboard)
-  Step 06 Hospital Request      → hospital-request.jpg ⬜ NEEDED (doctor on tablet)
-  Step 07 Intelligent Routing   → phase-04.png ✅ (dashboard reuse)
-  Step 08 Automated Dispatch    → tech-dispatch.jpg ✅ (branded dispatch center)
-  Step 09 Delivery Execution    → phase-05.png ✅ (drone over Lagos)
-  Step 10 Verification & Use    → phase-06.png ✅ (nurse QR scan)
-  Step 11 Traceability          → tech-network.jpg ✅ (network map reuse)
+  FINAL IMAGE MAP — all confirmed:
+  Step 01 Blood Collection      → phase-01.png       ✅ nurse + donor
+  Step 02 Controlled Transport  → new-tech-delivery.jpg ✅ CrimsonWings van Lagos streets
+  Step 03 Screening             → phase-02.png       ✅ lab scientist NAT machine
+  Step 04 Central Blood Bank    → new-tech-coldchain.png ✅ CrimsonWings branded cold storage
+  Step 05 Smart Inventory       → phase-04.png       ✅ logistics dashboard
+  Step 06 Hospital Request      → hospital-request.jpg ✅ doctor tablet blood request
+  Step 07 Intelligent Routing   → phase-04.png       ✅ dashboard (reuse)
+  Step 08 Automated Dispatch    → tech-dispatch.jpg  ✅ CrimsonWings dispatch centre
+  Step 09 Delivery Execution    → phase-05.png       ✅ drone over Lagos
+  Step 10 Verification & Use    → phase-06.png       ✅ nurse QR scan
+  Step 11 Traceability          → tech-network.jpg   ✅ aerial Lagos hub network
 */
 
 const STEPS = [
-  { num:"01", icon:Users,        title:"Blood Collection",               body:"Blood is collected through large-scale CrimsonWings donor drives and partner collection centers across Lagos.",                                                                                                                           image:"/phase-01.png",        hasImage:true,  color:"#CC0000" },
-  { num:"02", icon:Truck,        title:"Controlled Transport",           body:"Collected units are immediately secured in temperature-controlled CrimsonWings cold-chain vans for safe movement.",                                                                                                                       image:"/van.jpg",             hasImage:false, color:"#2F80ED" },
-  { num:"03", icon:FlaskConical, title:"Screening & Processing",         body:"Blood is transported to Lagos State-approved screening centers and CrimsonWings facilities for initial screening and component processing.",                                                                                               image:"/phase-02.png",        hasImage:true,  color:"#CC0000" },
-  { num:"04", icon:Building2,    title:"Central Blood Bank Integration", body:"All units transfer to the CrimsonWings HQ Blood Bank where inventory is logged digitally, advanced NAT screening is conducted, and units are cleared for safe medical use.",                                                               image:"/phase-03.png",        hasImage:true,  color:"#2F80ED" },
-  { num:"05", icon:Package,      title:"Smart Inventory Management",     body:"Every unit is stored within a controlled cold-chain system and tracked in real time across the entire CrimsonWings network.",                                                                                                             image:"/phase-04.png",        hasImage:true,  color:"#CC0000" },
-  { num:"06", icon:Hospital,     title:"Hospital Request",               body:"Hospitals and healthcare providers place requests through the CrimsonWings system — directly connected to our real-time inventory.",                                                                                                       image:"/hospital-request.jpg",hasImage:false, color:"#2F80ED" },
-  { num:"07", icon:Cpu,          title:"Intelligent Routing",            body:"The system automatically selects the best delivery method — drone for urgent small-volume, cold-chain bikes for medium range, cold-chain vans for bulk delivery.",                                                                         image:"/phase-04.png",        hasImage:true,  color:"#CC0000" },
-  { num:"08", icon:Zap,          title:"Automated Dispatch",             body:"Orders are processed through a decision engine that triggers immediate dispatch from the nearest hub or storage location — no manual delay.",                                                                                              image:"/tech-dispatch.jpg",   hasImage:true,  color:"#2F80ED" },
-  { num:"09", icon:Wind,         title:"Delivery Execution",             body:"Blood is transported via the selected logistics channel — drone, cold-chain bike, or van — and delivered directly to hospitals or designated endpoints.",                                                                                  image:"/phase-05.png",        hasImage:true,  color:"#CC0000" },
-  { num:"10", icon:CheckCircle2, title:"Verification & Use",             body:"Upon arrival, units are verified, logged as received in the CrimsonWings system, and released immediately for medical use.",                                                                                                              image:"/phase-06.png",        hasImage:true,  color:"#2F80ED" },
-  { num:"11", icon:BarChart3,    title:"Traceability & Reporting",       body:"Every unit remains traceable from donor to patient — enabling full audit trails, regulatory compliance, and data-driven system optimization.",                                                                                             image:"/tech-network.jpg",    hasImage:true,  color:"#CC0000" },
+  { num:"01", icon:Users,        title:"Blood Collection",               body:"Blood is collected through large-scale CrimsonWings donor drives and partner collection centers across Lagos.",                                                                                                         image:"/phase-01.png",           color:"#CC0000" },
+  { num:"02", icon:Truck,        title:"Controlled Transport",           body:"Collected units are immediately secured in temperature-controlled CrimsonWings cold-chain vans for safe movement to screening facilities.",                                                                             image:"/new-tech-delivery.jpg",  color:"#2F80ED" },
+  { num:"03", icon:FlaskConical, title:"Screening & Processing",         body:"Blood is transported to Lagos State-approved screening centers and CrimsonWings facilities for initial screening and component processing.",                                                                           image:"/phase-02.png",           color:"#CC0000" },
+  { num:"04", icon:Building2,    title:"Central Blood Bank Integration", body:"All units transfer to the CrimsonWings HQ Blood Bank where inventory is logged digitally, advanced NAT screening is conducted, and units are cleared for safe medical use.",                                           image:"/new-tech-coldchain.png", color:"#2F80ED" },
+  { num:"05", icon:Package,      title:"Smart Inventory Management",     body:"Every unit is stored within a controlled cold-chain system and tracked in real time across the entire CrimsonWings network.",                                                                                         image:"/phase-04.png",           color:"#CC0000" },
+  { num:"06", icon:Hospital,     title:"Hospital Request",               body:"Hospitals and healthcare providers place requests through the CrimsonWings system — directly connected to our real-time inventory.",                                                                                   image:"/hospital-request.jpg",   color:"#2F80ED" },
+  { num:"07", icon:Cpu,          title:"Intelligent Routing",            body:"The system automatically selects the best delivery method — drone for urgent small-volume, cold-chain bikes for medium range, cold-chain vans for bulk delivery.",                                                     image:"/phase-04.png",           color:"#CC0000" },
+  { num:"08", icon:Zap,          title:"Automated Dispatch",             body:"Orders are processed through a decision engine that triggers immediate dispatch from the nearest hub or storage location — no manual delay.",                                                                          image:"/tech-dispatch.jpg",      color:"#2F80ED" },
+  { num:"09", icon:Wind,         title:"Delivery Execution",             body:"Blood is transported via the selected logistics channel — drone, cold-chain bike, or van — and delivered directly to hospitals or designated endpoints.",                                                              image:"/phase-05.png",           color:"#CC0000" },
+  { num:"10", icon:CheckCircle2, title:"Verification & Use",             body:"Upon arrival, units are verified, logged as received in the CrimsonWings system, and released immediately for medical use.",                                                                                          image:"/phase-06.png",           color:"#2F80ED" },
+  { num:"11", icon:BarChart3,    title:"Traceability & Reporting",       body:"Every unit remains traceable from donor to patient — enabling full audit trails, regulatory compliance, and data-driven system optimization.",                                                                         image:"/tech-network.jpg",       color:"#CC0000" },
 ];
 
 const FLOW = [
@@ -58,7 +58,8 @@ export default function HowItWorks() {
             <em style={{ color:"var(--crimson)" }}>A Seamless Flow</em>
           </h2>
           <p className="body-lg reveal delay-2">
-            CrimsonWings transforms blood supply into a structured, traceable, and responsive system. Every unit is tracked from collection to the patient bedside.
+            CrimsonWings transforms blood supply into a structured, traceable, and responsive system.
+            Every unit is tracked from collection to the patient bedside.
           </p>
         </div>
 
@@ -68,7 +69,7 @@ export default function HowItWorks() {
             {FLOW.map((step, i) => (
               <div key={step.label} style={{ display:"flex", alignItems:"center", flex:1 }}>
                 <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto", minWidth:68 }}>
-                  <div style={{ width:50, height:50, display:"flex", alignItems:"center", justifyContent:"center", background: i===0||i===FLOW.length-1 ? "var(--crimson)" : "#1C1C2E", border:`2px solid ${i%2===0?"#CC0000":"#2F80ED"}`, borderRadius:"50%" }}>
+                  <div style={{ width:50, height:50, display:"flex", alignItems:"center", justifyContent:"center", background:i===0||i===FLOW.length-1?"var(--crimson)":"#1C1C2E", border:`2px solid ${i%2===0?"#CC0000":"#2F80ED"}`, borderRadius:"50%" }}>
                     <step.icon size={20} color="#fff"/>
                   </div>
                   <span className="caption" style={{ fontSize:9, color:"var(--ink)", textAlign:"center", maxWidth:68, lineHeight:1.4 }}>{step.label}</span>
@@ -83,35 +84,33 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* 11 steps */}
+        {/* 11 steps — all images assigned */}
         <div style={{ display:"flex", flexDirection:"column", gap:3 }}>
           {STEPS.map((step, i) => {
             const rev = i % 2 === 1;
             return (
               <div key={step.num} style={{ display:"grid", background:i%2===0?"#fff":"var(--off-white)", border:"1px solid var(--smoke)", marginBottom:2 }} className="how-row">
 
-                {/* Image side */}
-                <div style={{ order:rev?2:1, minHeight:280, position:"relative", overflow:"hidden", background: step.hasImage ? "#111" : "#F0EDE8" }}>
-                  {step.hasImage ? (
-                    <>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={step.image} alt={step.title} style={{ width:"100%", height:"100%", minHeight:280, objectFit:"cover", objectPosition:"center top", display:"block" }}/>
-                      <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(0,0,0,.45) 0%, transparent 55%)" }}/>
-                    </>
-                  ) : (
-                    <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:14, background:`linear-gradient(135deg, ${step.color}10, transparent)` }}>
-                      <step.icon size={52} style={{ color:`${step.color}30` }}/>
-                      <div className="caption" style={{ fontSize:10, color:"rgba(0,0,0,.3)", textAlign:"center", padding:"0 32px", lineHeight:1.7 }}>
-                        Upload <strong>{step.image.replace("/","")}</strong> to show this step
-                      </div>
-                    </div>
-                  )}
+                {/* Image */}
+                <div style={{ order:rev?2:1, minHeight:300, position:"relative", overflow:"hidden", background:"#111" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    style={{ width:"100%", height:"100%", minHeight:300, objectFit:"cover", objectPosition:"center", display:"block" }}
+                  />
+                  <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%)" }}/>
+                  {/* Step badge */}
                   <div style={{ position:"absolute", top:14, left:14, background:step.color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:3 }}>
                     {step.num}
                   </div>
+                  {/* Bottom label */}
+                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"12px 16px", zIndex:3 }}>
+                    <span className="caption" style={{ color:"rgba(255,255,255,.65)", fontSize:9 }}>Step {step.num} — {step.title}</span>
+                  </div>
                 </div>
 
-                {/* Content side */}
+                {/* Content */}
                 <div style={{ order:rev?1:2, padding:"clamp(28px,4vw,52px)", display:"flex", flexDirection:"column", justifyContent:"center" }}>
                   <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:18 }}>
                     <div style={{ width:48, height:48, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:`${step.color}12`, border:`1.5px solid ${step.color}35` }}>
@@ -136,8 +135,12 @@ export default function HowItWorks() {
           </p>
         </div>
       </div>
+
       <style>{`
-        @media(min-width:800px){ .how-row{ grid-template-columns:1fr 1fr !important; } .how-row>div{ min-height:320px; } }
+        @media(min-width:800px){
+          .how-row{ grid-template-columns:1fr 1fr !important; }
+          .how-row > div { min-height:320px; }
+        }
       `}</style>
     </section>
   );
