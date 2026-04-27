@@ -12,7 +12,7 @@ const STATS = [
 const TICKER = [
   "NAT Viral Screening","Walk-In Cold Rooms","Ultra-Low Temp Freezers",
   "Drone-Enabled Last Mile","Proprietary OS Platform","Triphasic Logistics",
-  "National Blood Infrastructure","Lagos State Partnership",
+  "National Blood Infrastructure","Ogun State Partnership",
 ];
 
 export default function Hero() {
@@ -96,7 +96,7 @@ export default function Hero() {
             }}>
               <span style={{ width:8, height:8, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", flexShrink:0, animation:"blink 2s ease-in-out infinite" }}/>
               <span className="caption" style={{ color:"rgba(255,255,255,.65)", fontSize:11, letterSpacing:".18em" }}>
-                System Active · Lagos State Operations
+                System Active · Ogun State Operations
               </span>
             </div>
 
@@ -126,9 +126,7 @@ export default function Hero() {
               fontSize:"clamp(16px,1.6vw,20px)", lineHeight:1.8,
               color:"rgba(255,255,255,.62)", maxWidth:520, marginBottom:36,
             }}>
-              Nigeria&apos;s most advanced digitized blood bank — integrating NAT viral
-              screening, ultra-scale cold storage, and a proprietary OS platform
-              with drone-enabled last-mile delivery across Lagos.
+              CrimsonWings is positioning Nigeria not just to distribute blood — but to own the upstream supply chain of life-saving biologics. Automated processing. Precision logistics. National scale.
             </p>
 
             {/* CTAs */}

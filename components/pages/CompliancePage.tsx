@@ -8,7 +8,7 @@ const STANDARDS = [
   { body:"WHO",    full:"World Health Organisation",                                  scope:"WHO blood safety guidelines and global best practices for NAT screening, cold chain, and logistics.", color:"#006DB7" },
   { body:"ISO",    full:"ISO 15189 — Medical Laboratories",                           scope:"Quality management systems for medical laboratories, covering NAT screening operations.", color:"#C9A84C" },
   { body:"AABB",   full:"American Association of Blood Banks",                        scope:"International accreditation standards for blood banking and transfusion medicine.", color:"#22c55e" },
-  { body:"LMOH",   full:"Lagos State Ministry of Health",                             scope:"State-level regulatory alignment, PPP framework compliance, and operational licensing.", color:"#9333EA" },
+  { body:"LMOH",   full:"Ogun State Ministry of Health",                             scope:"State-level regulatory alignment, PPP framework compliance, and operational licensing.", color:"#9333EA" },
 ];
 
 const SAFETY_PILLARS = [

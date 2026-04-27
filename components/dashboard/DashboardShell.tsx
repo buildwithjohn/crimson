@@ -518,7 +518,7 @@ export default function DashboardShell() {
                   <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                     <div>
                       <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:15, color:"#fff"}}>Hub Network</div>
-                      <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>5 hubs · Lagos State</div>
+                      <div style={{fontFamily:"var(--font-mono)", fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(255,255,255,.25)", marginTop:2}}>5 hubs · Ogun State</div>
                     </div>
                     <button onClick={()=>setActiveTab("hubs")} style={{fontFamily:"var(--font-mono)", fontSize:9, color:"#2F80ED", background:"none", border:"none", cursor:"pointer"}}>
                       MAP →
@@ -832,7 +832,7 @@ export default function DashboardShell() {
                 <div style={{padding:"14px 16px", borderBottom:"1px solid rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                   <div>
                     <div style={{fontFamily:"var(--font-display)", fontWeight:700, fontSize:14, color:"#fff"}}>Hospital Network</div>
-                    <div style={{fontFamily:"var(--font-mono)", fontSize:8, textTransform:"uppercase", color:"rgba(255,255,255,.25)", letterSpacing:".1em", marginTop:2}}>147 connected · Lagos State</div>
+                    <div style={{fontFamily:"var(--font-mono)", fontSize:8, textTransform:"uppercase", color:"rgba(255,255,255,.25)", letterSpacing:".1em", marginTop:2}}>147 connected · Ogun State</div>
                   </div>
                   <button style={{display:"flex", alignItems:"center", gap:5, background:"rgba(47,128,237,.12)", border:"1px solid rgba(47,128,237,.25)", color:"#2F80ED", padding:"6px 12px", cursor:"pointer", fontFamily:"var(--font-mono)", fontSize:9, letterSpacing:".08em"}}>
                     <Plus size={10}/> ADD HOSPITAL
@@ -1035,7 +1035,7 @@ export default function DashboardShell() {
           {/* Bottom footer */}
           <div style={{marginTop:20, paddingTop:14, borderTop:"1px solid rgba(255,255,255,.04)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:8}}>
             <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.15)", letterSpacing:".1em", textTransform:"uppercase"}}>
-              CrimsonWings OS v2.0 · Mission Control · Lagos State Operations · Refreshes every 60s
+              CrimsonWings OS v2.0 · Mission Control · Ogun State Operations · Refreshes every 60s
             </div>
             <div style={{fontFamily:"var(--font-mono)", fontSize:8, color:"rgba(255,255,255,.12)", letterSpacing:".1em"}}>
               Built by JAA Studio

@@ -24,7 +24,7 @@ const PILLARS = [
       "240,000–280,000 units projected in Year 1",
       "Hub-and-spoke infrastructure — scalable nationally",
       "End-to-end inventory management via proprietary OS",
-      "Public-Private Partnership alignment with Lagos State",
+      "Public-Private Partnership alignment with Ogun State",
     ],
   },
   {

@@ -22,9 +22,9 @@ export default function About() {
 
         {/* Big mission statement */}
         <h2 className="h2 font-display reveal delay-1" style={{ color:"var(--ink)", marginBottom:24, maxWidth:800 }}>
-          Nigeria&apos;s Most Advanced{" "}
-          <em style={{ color:"var(--crimson)" }}>Digitized Blood Bank</em>{" "}
-          & Medical Logistics Platform
+          Building Africa&apos;s Blood Infrastructure{" "}
+          <em style={{ color:"var(--crimson)" }}>for the Next Generation</em>{" "}
+          of Medicine
         </h2>
 
         <div style={{ display:"grid", gap:"clamp(40px,6vw,72px)", alignItems:"start" }} className="two-col">
@@ -32,9 +32,7 @@ export default function About() {
           {/* Left — body copy */}
           <div>
             <p className="body-lg reveal delay-2" style={{ marginBottom:20 }}>
-              CrimsonWings Blood Logistics Ltd is a fully digitized blood bank and integrated
-              medical logistics company — focused on the collection, advanced screening, storage,
-              and rapid delivery of safe blood and critical medical products across Nigeria.
+              CrimsonWings is positioning Nigeria not just to distribute blood — but to own the upstream supply chain of life-saving biologics. We are building Africa&apos;s most advanced automated blood processing and logistics infrastructure.
             </p>
             <p className="body-lg reveal delay-3" style={{ marginBottom:20 }}>
               Our operations are powered by <strong style={{ color:"var(--ink)", fontWeight:700 }}>Nucleic
@@ -116,7 +114,7 @@ export default function About() {
                 <div className="font-display" style={{ fontSize:28, fontWeight:800, color:"#fff", lineHeight:1 }}>2026</div>
               </div>
               <div style={{ flex:2, background:"rgba(204,0,0,.06)", border:"1px solid rgba(204,0,0,.15)", padding:"16px 20px" }}>
-                <div className="caption" style={{ color:"var(--crimson)", marginBottom:4 }}>Lagos State Coverage</div>
+                <div className="caption" style={{ color:"var(--crimson)", marginBottom:4 }}>Ogun State Coverage</div>
                 <div className="font-display" style={{ fontSize:20, fontWeight:700, color:"var(--ink)", lineHeight:1.2 }}>5 Strategic Hubs</div>
               </div>
             </div>

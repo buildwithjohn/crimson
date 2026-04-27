@@ -6,7 +6,7 @@ import { Shield, Award, Globe } from "lucide-react";
    Real logos would be img tags pointing to /public/logos/xxx.svg
    These are authentic organisation abbreviations styled as mono badges     */
 const STAKEHOLDERS = [
-  { abbr:"LSMOH",  name:"Lagos State Ministry of Health",      color:"#1B5E20", type:"Government" },
+  { abbr:"LSMOH",  name:"Ogun State Ministry of Health",      color:"#1B5E20", type:"Government" },
   { abbr:"FMOH",   name:"Federal Ministry of Health Nigeria",  color:"#1A237E", type:"Government" },
   { abbr:"NBTS",   name:"National Blood Transfusion Service",  color:"#CC0000", type:"Clinical"   },
   { abbr:"NAFDAC", name:"NAFDAC Nigeria",                      color:"#4A148C", type:"Regulatory" },

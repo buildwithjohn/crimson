@@ -29,11 +29,11 @@ const LEADERSHIP = [
     color:    "#C9A84C",
   },
   {
-    name:     "Prof. Titi A. Adeyemo",
+    name:     "Prof. Alani S. Akanmu",
     role:     "CMO",
     fullRole: "Chief Medical Officer",
-    bio:      "Distinguished Hematologist with 15+ years' clinical and research leadership in hematology and transfusion medicine. Expert in hemoglobinopathies, hemophilia, and translational research advancing sickle cell and bleeding disorder care systems.",
-    photo:    "/team-titi.jpg",
+    bio:      "Professor of Hematology with 30+ years' clinical, academic, and global research leadership in transfusion medicine, HIV care, and hematologic disorders — leading programs, policy, and over 200 peer-reviewed publications.",
+    photo:    "/team-cmo-new.jpg",
     color:    "#22c55e",
   },
 ];
@@ -42,9 +42,9 @@ const ADVISORS = [
   { name: "Prof. Olabisi Akinmade",    field: "Transfusion Medicine",        org: "University of Lagos Teaching Hospital"  },
   { name: "Dr. Samuel Okonkwo",        field: "Healthcare Technology",       org: "MIT Media Lab Africa"                   },
   { name: "Mrs. Adaeze Obi",           field: "Development Finance",         org: "African Development Bank"               },
-  { name: "Prof. Emmanuel Afolabi",    field: "Public Health & Policy",      org: "Lagos State University"                 },
+  { name: "Prof. Emmanuel Afolabi",    field: "Public Health & Policy",      org: "Ogun State University"                 },
   { name: "Dr. Miriam Hassan",         field: "WHO Blood Safety Standards",  org: "World Health Organisation"              },
-  { name: "Mr. Babatunde Fashola Jr.", field: "Government Relations",        org: "Lagos State PPP Office"                 },
+  { name: "Mr. Babatunde Fashola Jr.", field: "Government Relations",        org: "Ogun State PPP Office"                 },
 ];
 
 export default function AboutPage() {
