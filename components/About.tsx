@@ -8,6 +8,188 @@ const QUICK_STATS = [
   { val:"100%",      label:"NAT Screened",             color:"#22c55e" },
 ];
 
+
+/* ── Animated About Visual ─────────────────────────────────────────────────
+   A blood supply network SVG: central hub pulses outward to 5 state nodes,
+   animated flow particles travel along each line, stats appear around the ring
+─────────────────────────────────────────────────────────────────────────── */
+function AboutVisual() {
+  return (
+    <div style={{ position:"relative", userSelect:"none" }}>
+
+      {/* ── Main SVG network diagram ── */}
+      <div style={{
+        background:"linear-gradient(135deg, #0B1F33 0%, #0D2B44 100%)",
+        border:"1px solid rgba(204,0,0,.25)",
+        padding:"clamp(24px,3vw,40px)",
+        position:"relative", overflow:"hidden",
+        marginBottom:14,
+      }}>
+        {/* Grid background */}
+        <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"28px 28px", pointerEvents:"none" }}/>
+
+        {/* Scan line */}
+        <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.5),transparent)", animation:"ab-scan 5s linear infinite", pointerEvents:"none", zIndex:4 }}/>
+
+        {/* Header */}
+        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:16, position:"relative", zIndex:3 }}>
+          <div className="caption" style={{ color:"rgba(255,255,255,.4)", fontSize:9, letterSpacing:".18em" }}>
+            BLOOD NETWORK · OGUN STATE HQ
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+            <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", animation:"ab-blink 1.8s ease-in-out infinite" }}/>
+            <span className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.5)", letterSpacing:".12em" }}>LIVE</span>
+          </div>
+        </div>
+
+        {/* SVG Network */}
+        <svg viewBox="0 0 340 280" style={{ width:"100%", height:"auto", display:"block", position:"relative", zIndex:3 }}>
+          <defs>
+            {/* Glowing crimson gradient */}
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#CC0000" stopOpacity="0.9"/>
+              <stop offset="100%" stopColor="#CC0000" stopOpacity="0.1"/>
+            </radialGradient>
+            <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#CC0000" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#CC0000" stopOpacity="0"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          {/* Connection lines from centre to 5 hub nodes */}
+          {[
+            {x:170, y:40},   /* Top */
+            {x:310, y:110},  /* Top-right */
+            {x:290, y:230},  /* Bottom-right */
+            {x:50,  y:230},  /* Bottom-left */
+            {x:30,  y:110},  /* Top-left */
+          ].map((node, i) => (
+            <g key={i}>
+              {/* Base line */}
+              <line x1="170" y1="140" x2={node.x} y2={node.y}
+                stroke="rgba(204,0,0,.2)" strokeWidth="1.5" strokeDasharray="4 3"/>
+              {/* Animated flow line */}
+              <line x1="170" y1="140" x2={node.x} y2={node.y}
+                stroke="rgba(204,0,0,.6)" strokeWidth="1.5"
+                strokeDasharray="12 40"
+                style={{ animation:`ab-flow-${i} ${2 + i * 0.3}s linear infinite` }}/>
+            </g>
+          ))}
+
+          {/* Outer pulse rings from centre */}
+          {[40, 70, 100].map((r, i) => (
+            <circle key={r} cx="170" cy="140" r={r}
+              fill="none" stroke="rgba(204,0,0,.08)"
+              strokeWidth="1"
+              style={{ animation:`ab-ring-pulse 3s ease-out ${i * 1}s infinite` }}/>
+          ))}
+
+          {/* Hub nodes */}
+          {[
+            {x:170, y:40,  label:"Ogun HQ",    main:true  },
+            {x:310, y:110, label:"Edo",         main:false },
+            {x:290, y:230, label:"Rivers",      main:false },
+            {x:50,  y:230, label:"Akwa Ibom",   main:false },
+            {x:30,  y:110, label:"Delta",       main:false },
+          ].map((node, i) => (
+            <g key={i}>
+              {/* Glow halo */}
+              <circle cx={node.x} cy={node.y} r="18" fill="url(#nodeGlow)"/>
+              {/* Outer ring */}
+              <circle cx={node.x} cy={node.y} r="12"
+                fill="none" stroke="rgba(204,0,0,.4)" strokeWidth="1.5"
+                style={{ animation:`ab-node-pulse 2.5s ease-in-out ${i*0.4}s infinite` }}/>
+              {/* Inner dot */}
+              <circle cx={node.x} cy={node.y} r="6"
+                fill={node.main ? "#CC0000" : "rgba(204,0,0,.7)"}
+                filter="url(#glow)"/>
+              {/* Label */}
+              <text x={node.x} y={node.y + (node.y > 140 ? 26 : -18)}
+                textAnchor="middle"
+                style={{ fontFamily:"DM Mono, monospace", fontSize:9, fill:"rgba(255,255,255,.55)", letterSpacing:".08em" }}>
+                {node.label}
+              </text>
+            </g>
+          ))}
+
+          {/* Centre core */}
+          <circle cx="170" cy="140" r="28" fill="url(#coreGlow)" opacity="0.15"/>
+          <circle cx="170" cy="140" r="20"
+            fill="none" stroke="rgba(204,0,0,.5)" strokeWidth="2"
+            style={{ animation:"ab-core-spin 8s linear infinite" }} strokeDasharray="8 4"/>
+          <circle cx="170" cy="140" r="13"
+            fill="rgba(204,0,0,.85)" filter="url(#glow)"/>
+
+          {/* Blood drop icon in centre */}
+          <text x="170" y="145" textAnchor="middle"
+            style={{ fontFamily:"sans-serif", fontSize:14, fill:"#fff" }}>🩸</text>
+
+          {/* Flow particles */}
+          {[0,1,2,3,4].map(i => {
+            const nodes = [{x:170,y:40},{x:310,y:110},{x:290,y:230},{x:50,y:230},{x:30,y:110}];
+            const n = nodes[i];
+            return (
+              <circle key={i} r="3" fill="#CC0000" opacity="0.9" filter="url(#glow)"
+                style={{ animation:`ab-particle-${i} ${2+i*0.25}s linear ${i*0.4}s infinite` }}>
+                <animateMotion dur={`${2+i*0.25}s`} repeatCount="indefinite" begin={`${i*0.4}s`}
+                  path={`M170,140 L${n.x},${n.y}`}/>
+              </circle>
+            );
+          })}
+        </svg>
+
+        {/* Stats row */}
+        <div style={{
+          display:"grid", gridTemplateColumns:"repeat(3,1fr)",
+          gap:1, borderTop:"1px solid rgba(255,255,255,.07)", marginTop:16, paddingTop:16,
+          position:"relative", zIndex:3,
+        }}>
+          {[
+            {val:"9",      label:"Partner States"},
+            {val:"280K",   label:"Units / Year"},
+            {val:"<60min", label:"Delivery Time"},
+          ].map(s => (
+            <div key={s.label} style={{ textAlign:"center" }}>
+              <div className="font-display" style={{ fontSize:"clamp(20px,2.5vw,28px)", fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.val}</div>
+              <div className="caption" style={{ color:"rgba(255,255,255,.35)", fontSize:8, marginTop:4 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <style>{`
+          @keyframes ab-scan        { 0%{top:-2px} 100%{top:100%} }
+          @keyframes ab-blink       { 0%,100%{opacity:1} 50%{opacity:.2} }
+          @keyframes ab-core-spin   { from{stroke-dashoffset:0} to{stroke-dashoffset:-48} }
+          @keyframes ab-ring-pulse  { 0%{r:30;opacity:.6} 100%{r:110;opacity:0} }
+          @keyframes ab-node-pulse  { 0%,100%{r:12;opacity:.4} 50%{r:16;opacity:.9} }
+          @keyframes ab-flow-0 { from{stroke-dashoffset:0} to{stroke-dashoffset:-52} }
+          @keyframes ab-flow-1 { from{stroke-dashoffset:0} to{stroke-dashoffset:-52} }
+          @keyframes ab-flow-2 { from{stroke-dashoffset:0} to{stroke-dashoffset:-52} }
+          @keyframes ab-flow-3 { from{stroke-dashoffset:0} to{stroke-dashoffset:-52} }
+          @keyframes ab-flow-4 { from{stroke-dashoffset:0} to{stroke-dashoffset:-52} }
+        `}</style>
+      </div>
+
+      {/* ── Bottom badges ── */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
+        {[
+          {label:"Established",    val:"2026",            bg:"var(--crimson)", color:"rgba(255,255,255,.7)", valColor:"#fff"},
+          {label:"Strategic Hubs", val:"5 in Ogun State", bg:"rgba(204,0,0,.06)", color:"var(--crimson)", valColor:"var(--ink)", border:"1px solid rgba(204,0,0,.18)"},
+        ].map(b => (
+          <div key={b.label} style={{ background:b.bg, border:b.border||"none", padding:"16px 20px" }}>
+            <div className="caption" style={{ color:b.color, marginBottom:4, fontSize:9 }}>{b.label}</div>
+            <div className="font-display" style={{ fontSize:"clamp(16px,1.8vw,22px)", fontWeight:800, color:b.valColor, lineHeight:1.2 }}>{b.val}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function About() {
   const ref = useReveal();
   return (
@@ -67,57 +249,7 @@ export default function About() {
 
           {/* Right — stat cards */}
           <div className="reveal-right">
-            {/* Large feature card */}
-            <div style={{
-              background:"var(--dark-bg)", padding:"clamp(28px,4vw,44px)",
-              position:"relative", overflow:"hidden",
-              marginBottom:16,
-            }}>
-              {/* Top crimson bar */}
-              <div style={{ position:"absolute", top:0, left:0, right:0, height:4, background:"var(--crimson)" }}/>
-              {/* Corner glow */}
-              <div style={{ position:"absolute", bottom:0, right:0, width:200, height:200, borderRadius:"50%", background:"radial-gradient(circle, rgba(204,0,0,.15) 0%, transparent 70%)", pointerEvents:"none" }}/>
-
-              <div style={{ fontFamily:"var(--font-mono)", fontSize:10, letterSpacing:".16em", textTransform:"uppercase", color:"rgba(255,255,255,.4)", marginBottom:20 }}>
-                Platform Metrics
-              </div>
-
-              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:20, marginBottom:24 }}>
-                {QUICK_STATS.map(s => (
-                  <div key={s.label} style={{ borderLeft:`3px solid ${s.color}`, paddingLeft:16 }}>
-                    <div className="font-display" style={{
-                      fontSize:"clamp(20px,2.8vw,30px)", fontWeight:800,
-                      color:"#fff", lineHeight:1, marginBottom:6,
-                    }}>
-                      {s.val}
-                    </div>
-                    <div className="caption" style={{ color:"rgba(255,255,255,.45)", fontSize:9 }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ borderTop:"1px solid rgba(255,255,255,.1)", paddingTop:18 }}>
-                <p className="caption" style={{ color:"rgba(255,255,255,.35)", lineHeight:1.9, letterSpacing:".08em" }}>
-                  IN PARTNERSHIP WITH LAGOS STATE<br/>MINISTRY OF HEALTH
-                </p>
-              </div>
-
-              {/* Corner brackets */}
-              <div style={{ position:"absolute", bottom:14, right:14, width:28, height:28, borderBottom:"1px solid rgba(204,0,0,.5)", borderRight:"1px solid rgba(204,0,0,.5)" }}/>
-              <div style={{ position:"absolute", top:16, left:14, width:28, height:28, borderTop:"1px solid rgba(204,0,0,.3)", borderLeft:"1px solid rgba(204,0,0,.3)" }}/>
-            </div>
-
-            {/* Established badge */}
-            <div style={{ display:"flex", gap:12 }}>
-              <div style={{ flex:1, background:"var(--crimson)", padding:"16px 20px" }}>
-                <div className="caption" style={{ color:"rgba(255,255,255,.65)", marginBottom:4 }}>Established</div>
-                <div className="font-display" style={{ fontSize:28, fontWeight:800, color:"#fff", lineHeight:1 }}>2026</div>
-              </div>
-              <div style={{ flex:2, background:"rgba(204,0,0,.06)", border:"1px solid rgba(204,0,0,.15)", padding:"16px 20px" }}>
-                <div className="caption" style={{ color:"var(--crimson)", marginBottom:4 }}>Ogun State Coverage</div>
-                <div className="font-display" style={{ fontSize:20, fontWeight:700, color:"var(--ink)", lineHeight:1.2 }}>5 Strategic Hubs</div>
-              </div>
-            </div>
+            <AboutVisual/>
           </div>
         </div>
       </div>
