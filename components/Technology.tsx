@@ -49,6 +49,7 @@ const SECTIONS = [
     body:"CrimsonWings operates as a distributed network spanning every stage of blood logistics across Ogun State — built for scale and designed for national impact.",
     image:"/tech-network.jpg",
     imageAlt:"CrimsonWings aerial hub network across Ogun State",
+    isNetwork:true,
     points:["Donor collection drives","Screening and processing centers","Mobile cold-chain units","Central blood bank operations","Delivery hubs across Ogun State"],
     color:"#CC0000",
     isAnimated: false,
@@ -297,6 +298,8 @@ export default function Technology() {
                 <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
                   {s.isAnimated ? (
                     <AutomationDiagram/>
+                  ) : (s as any).isNetwork ? (
+                    <NetworkVisual compact={false}/>
                   ) : (
                     <div style={{ position:"relative", overflow:"hidden", border:`1px solid ${s.color}40` }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
