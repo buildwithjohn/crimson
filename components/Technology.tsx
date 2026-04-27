@@ -1,343 +1,538 @@
 "use client";
 import { useReveal } from "./useReveal";
-import { Wifi, Thermometer, Cpu, Network, Shield, Zap, Activity } from "lucide-react";
 
-const SECTIONS = [
+const STEPS = [
   {
-    icon: Wifi, num:"01",
-    title:"Autonomous Delivery Infrastructure",
-    body:"CrimsonWings deploys a hybrid logistics fleet — drones, cold-chain bikes, and refrigerated vans — moving blood efficiently across Ogun State urban and coastal environments. Each delivery route is dynamically selected based on urgency, volume, and distance.",
-    image:"/delivery-execution.jpg",
-    imageAlt:"CrimsonWings drone, motorbike and van fleet at hospital",
-    points:["Medical drones for urgent last-mile delivery","Cold-chain bikes for medium-range transport","Refrigerated vans for bulk delivery"],
-    color:"#CC0000",
-    isAnimated: false,
+    num: 1,
+    icon: "🩸",
+    label: "Sample Receiving",
+    sublabel: "Sample Intake",
+    subtext: "Controlled intake from Large Donor Drives",
+    punchline: "Direct Donor Drive intake. Zero friction.",
+    special: "intake",
+    color: "#CC0000",
   },
   {
-    icon: Thermometer, num:"02",
-    title:"Advanced Cold-Chain System",
-    body:"From donor collection to final delivery, every unit of blood is preserved under strict temperature-controlled conditions. Our mobile and fixed storage systems maintain cold-chain integrity across every stage.",
-    image:"/new-tech-coldchain.png",
-    imageAlt:"CrimsonWings branded cold-chain blood storage facility",
-    points:["Collection drives","Screening centers","Transport vehicles","Central blood bank facilities"],
-    color:"#2F80ED",
-    isAnimated: false,
+    num: 2,
+    icon: "⚙️",
+    label: "Automated Sorting (BLIM)",
+    sublabel: "Pre-Analytics Automation",
+    subtext: "Labeling • Routing • Tracking",
+    punchline: "Pre-analytics fully automated.",
+    special: null,
+    color: "#CC0000",
   },
   {
-    icon: Activity, num:"03",
-    title:"Automated Screening & Processing",
-    body:"Every blood unit passes through our fully automated NAT diagnostic engine — e801 immunoassay combined with cobas 8800 molecular screening. Zero manual intervention. Maximum precision.",
-    image:"",
-    imageAlt:"",
-    points:["e801 Immunoassay screening","cobas 8800 NAT molecular","Automated sample routing","Zero manual intervention"],
-    color:"#CC0000",
-    isAnimated: true,
+    num: 3,
+    icon: "🔄",
+    label: "Double Centrifuge (p671)",
+    sublabel: "Centrifugation Core",
+    subtext: "Standardized sample prep",
+    punchline: "Standardized sample integrity at scale.",
+    special: null,
+    color: "#CC0000",
   },
   {
-    icon: Cpu, num:"04",
-    title:"Intelligent Dispatch & Decision Engine",
-    body:"At the core of CrimsonWings is a real-time decision system that instantly matches supply with demand, selects optimal delivery routes, balances inventory across locations, and tracks every unit from donor to patient.",
-    image:"/tech-dispatch.jpg",
-    imageAlt:"CrimsonWings operations dispatch center",
-    points:["Matches supply with demand instantly","Selects optimal delivery routes","Balances inventory across locations","Tracks every unit — donor to patient"],
-    color:"#2F80ED",
-    isAnimated: false,
+    num: 4,
+    icon: "🏗️",
+    label: "CCM Vertical Flow",
+    sublabel: "Vertical Transport System",
+    subtext: "Floor-to-floor automation",
+    punchline: "No manual transfer. Continuous vertical flow.",
+    special: "conveyor",
+    color: "#CC0000",
   },
   {
-    icon: Network, num:"05",
-    title:"Connected Infrastructure",
-    body:"CrimsonWings operates as a distributed network spanning every stage of blood logistics across Ogun State — built for scale and designed for national impact.",
-    image:"/tech-network.jpg",
-    imageAlt:"CrimsonWings aerial hub network across Ogun State",
-    isNetwork:true,
-    points:["Donor collection drives","Screening and processing centers","Mobile cold-chain units","Central blood bank operations","Delivery hubs across Ogun State"],
-    color:"#CC0000",
-    isAnimated: false,
+    num: 5,
+    icon: "🧬",
+    label: "e801 + cobas 8800",
+    sublabel: "Diagnostic Engine",
+    subtext: "Immunoassay + NAT screening",
+    punchline: "Dual-layer diagnostics: serology + molecular.",
+    special: "analyzer",
+    color: "#CC0000",
+  },
+  {
+    num: 6,
+    icon: "🗄️",
+    label: "Automated Storage (p701)",
+    sublabel: "Smart Archiving",
+    subtext: "Traceable sample retention",
+    punchline: "Every sample tracked. Nothing lost.",
+    special: null,
+    color: "#CC0000",
+  },
+  {
+    num: 7,
+    icon: "🚁",
+    label: "Dispatch & Delivery",
+    sublabel: "Delivery Intelligence",
+    subtext: "≤60 min emergency response",
+    punchline: "From vein to patient in under 60 minutes.",
+    special: "drone",
+    color: "#CC0000",
   },
 ];
 
-/* ── 3D Automation Animation ─────────────────────────────────────────────── */
-function AutomationDiagram() {
-  const steps = [
-    { label:"Sample Intake",        sub:"Controlled donor drive intake",      icon:"🩸" },
-    { label:"BLIM Sorting",         sub:"Labeling · Routing · Tracking",      icon:"⚙️" },
-    { label:"Centrifuge p671",      sub:"Standardized sample separation",     icon:"🔄" },
-    { label:"e801 Immunoassay",     sub:"Serology screening",                 icon:"🧬" },
-    { label:"cobas 8800 NAT",       sub:"Molecular diagnostic testing",       icon:"🔬" },
-    { label:"Smart Archive p701",   sub:"Traceable sample retention",         icon:"🗄️" },
-  ];
-
-  return (
-    <div style={{
-      background:"linear-gradient(135deg, #0B1F33 0%, #0D2B44 100%)",
-      border:"1px solid rgba(204,0,0,.3)",
-      padding:"clamp(24px,3vw,40px)",
-      position:"relative", overflow:"hidden",
-      minHeight:400,
-    }}>
-      {/* Animated grid */}
-      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"28px 28px", pointerEvents:"none" }}/>
-
-      {/* Scan line */}
-      <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.7),transparent)", animation:"scanLine 4s linear infinite", pointerEvents:"none", zIndex:4 }}/>
-
-      {/* Floating data numbers */}
-      {[
-        {val:"2,500/hr", top:"8%",  left:"62%"},
-        {val:"99.99%",   top:"38%", left:"58%"},
-        {val:"≤4hrs",    top:"68%", left:"64%"},
-      ].map(d => (
-        <div key={d.val} style={{ position:"absolute", top:d.top, left:d.left, fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(204,0,0,.35)", letterSpacing:".12em", animation:"data-flicker 3s ease-in-out infinite", pointerEvents:"none", zIndex:1 }}>
-          {d.val}
-        </div>
-      ))}
-
-      {/* Header */}
-      <div style={{ textAlign:"center", marginBottom:24, position:"relative", zIndex:3 }}>
-        <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"6px 16px", background:"rgba(204,0,0,.12)", border:"1px solid rgba(204,0,0,.3)", marginBottom:10 }}>
-          <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", animation:"blink 1.5s ease-in-out infinite" }}/>
-          <span className="font-mono" style={{ fontSize:10, color:"rgba(255,255,255,.6)", letterSpacing:".16em" }}>PIPELINE ACTIVE</span>
-        </div>
-        <div className="caption" style={{ color:"rgba(255,255,255,.3)", fontSize:9 }}>2,500 tubes / hour · Zero manual steps</div>
-      </div>
-
-      {/* Two-column layout — left: flow, right: 3D sphere viz */}
-      <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:16, position:"relative", zIndex:3 }}>
-
-        {/* Steps */}
-        <div style={{ position:"relative" }}>
-          {/* Animated vertical line */}
-          <div style={{ position:"absolute", left:18, top:0, bottom:0, width:2, background:"rgba(204,0,0,.15)", overflow:"hidden" }}>
-            <div style={{ position:"absolute", top:0, left:0, right:0, height:"30%", background:"linear-gradient(to bottom,transparent,#CC0000,transparent)", animation:"pulse-down 2s ease-in-out infinite" }}/>
-          </div>
-
-          {steps.map((step, i) => (
-            <div key={step.label}>
-              <div style={{
-                display:"flex", alignItems:"center", gap:14,
-                padding:"10px 0",
-                animation:`fade-up .4s ease-out ${i*.08}s both`,
-              }}>
-                {/* Node */}
-                <div style={{
-                  width:36, height:36, borderRadius:"50%", flexShrink:0,
-                  background:`rgba(204,0,0,${.12 + i*.04})`,
-                  border:`1.5px solid rgba(204,0,0,${.4 + i*.08})`,
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  zIndex:1, cursor:"default",
-                  transition:"transform .2s, box-shadow .2s",
-                  fontSize:16,
-                }}
-                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1.2)";(e.currentTarget as HTMLElement).style.boxShadow="0 0 18px rgba(204,0,0,.8)";}}
-                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="none";(e.currentTarget as HTMLElement).style.boxShadow="none";}}
-                >
-                  {step.icon}
-                </div>
-
-                <div style={{ flex:1 }}>
-                  <div style={{ fontSize:13, fontWeight:600, color:"#fff", marginBottom:2 }}>{step.label}</div>
-                  <div className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.38)", letterSpacing:".1em" }}>{step.sub}</div>
-                </div>
-
-                {/* Activity bars */}
-                <div style={{ display:"flex", gap:2, alignItems:"flex-end", height:20 }}>
-                  {[4,7,5,9,6].map((h,j) => (
-                    <div key={j} style={{
-                      width:3, height:h,
-                      background:"rgba(204,0,0,.55)",
-                      animation:`bar-pulse 1s ease-in-out ${j*.12}s infinite`,
-                    }}/>
-                  ))}
-                </div>
-              </div>
-
-              {/* Arrow */}
-              {i < steps.length - 1 && (
-                <div style={{ paddingLeft:11, marginBottom:0 }}>
-                  <div style={{
-                    width:0, height:0,
-                    borderLeft:"7px solid transparent",
-                    borderRight:"7px solid transparent",
-                    borderTop:"9px solid rgba(204,0,0,.4)",
-                    animation:"arrow-pulse 2s ease-in-out infinite",
-                    animationDelay:`${i*.15}s`,
-                  }}/>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* 3D Sphere viz */}
-        <div style={{ width:90, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12 }}>
-          {/* Rotating 3D rings */}
-          <div style={{ position:"relative", width:80, height:80 }}>
-            <svg viewBox="0 0 80 80" style={{ width:80, height:80, animation:"spin-slow 8s linear infinite" }}>
-              <ellipse cx="40" cy="40" rx="36" ry="12" fill="none" stroke="rgba(204,0,0,.5)" strokeWidth="1.5"/>
-              <ellipse cx="40" cy="40" rx="28" ry="36" fill="none" stroke="rgba(47,128,237,.4)" strokeWidth="1.5"/>
-              <ellipse cx="40" cy="40" rx="36" ry="20" fill="none" stroke="rgba(204,0,0,.25)" strokeWidth="1" strokeDasharray="4 3"/>
-            </svg>
-            <div style={{
-              position:"absolute", top:"50%", left:"50%",
-              transform:"translate(-50%,-50%)",
-              width:18, height:18, borderRadius:"50%",
-              background:"radial-gradient(circle, #CC0000, #660000)",
-              boxShadow:"0 0 12px #CC0000",
-            }}/>
-          </div>
-
-          {/* Conveyor dots animation */}
-          <div style={{ position:"relative", width:80, height:16, overflow:"hidden" }}>
-            <div style={{
-              position:"absolute", top:"50%", left:0, right:0, height:1.5,
-              background:"rgba(204,0,0,.2)",
-              transform:"translateY(-50%)",
-            }}/>
-            {[0,1,2].map(i => (
-              <div key={i} style={{
-                position:"absolute", top:"50%",
-                width:6, height:6, borderRadius:"50%",
-                background:"#CC0000",
-                transform:"translateY(-50%)",
-                boxShadow:"0 0 6px #CC0000",
-                animation:`conveyor 2s linear ${i*.66}s infinite`,
-              }}/>
-            ))}
-          </div>
-
-          {/* Stats */}
-          {[{v:"99.99%",l:"Accuracy"},{v:"0",l:"Manual steps"}].map(s => (
-            <div key={s.l} style={{ textAlign:"center" }}>
-              <div className="font-display" style={{ fontSize:14, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
-              <div className="font-mono" style={{ fontSize:7, color:"rgba(255,255,255,.35)", letterSpacing:".1em", marginTop:2 }}>{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom strip */}
-      <div style={{ marginTop:20, borderTop:"1px solid rgba(255,255,255,.07)", paddingTop:14, display:"flex", justifyContent:"space-between", position:"relative", zIndex:3, flexWrap:"wrap", gap:8 }}>
-        {[{v:"2,500/hr",l:"Throughput"},{v:"NAT+Serology",l:"Dual-Layer"},{v:"≤4hrs",l:"Batch Time"},{v:"Zero",l:"Manual Steps"}].map(s => (
-          <div key={s.l} style={{ textAlign:"center" }}>
-            <div className="font-display" style={{ fontSize:15, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
-            <div className="caption" style={{ color:"rgba(255,255,255,.35)", fontSize:8, marginTop:2 }}>{s.l}</div>
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        @keyframes scanLine    { 0%{top:-2px} 100%{top:100%} }
-        @keyframes pulse-down  { 0%{top:-30%} 100%{top:110%} }
-        @keyframes arrow-pulse { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(3px)} }
-        @keyframes bar-pulse   { 0%,100%{transform:scaleY(1);opacity:.5} 50%{transform:scaleY(2);opacity:1} }
-        @keyframes fade-up     { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
-        @keyframes blink       { 0%,100%{opacity:1} 50%{opacity:.2} }
-        @keyframes data-flicker{ 0%,100%{opacity:.35} 50%{opacity:.7} }
-        @keyframes spin-slow   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-        @keyframes conveyor    { 0%{left:-8px;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{left:calc(100% + 8px);opacity:0} }
-      `}</style>
-    </div>
-  );
-}
+const DATA_FLOATS = [
+  "20,000 units/month",
+  "≤60 min delivery",
+  "2,500 tubes/hour",
+  "99.99% accuracy",
+  "Zero manual steps",
+];
 
 export default function Technology() {
   const ref = useReveal();
 
   return (
-    <section id="technology" ref={ref} style={{ background:"#0B1F33", paddingBlock:"var(--section-py)", position:"relative", overflow:"hidden" }}>
-      <div className="grid-lines-dark" style={{ position:"absolute", inset:0, opacity:.5 }}/>
-      <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:900, height:600, borderRadius:"50%", background:"radial-gradient(ellipse, rgba(204,0,0,.1) 0%, transparent 65%)", pointerEvents:"none" }}/>
+    <section
+      id="technology"
+      ref={ref}
+      style={{
+        background: "#FAFAFA",
+        paddingBlock: "var(--section-py)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Faint grid background */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        backgroundImage: "linear-gradient(rgba(0,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.04) 1px,transparent 1px)",
+        backgroundSize: "48px 48px",
+      }}/>
+
+      {/* Floating data numbers — faint background overlay */}
+      <div style={{ position:"absolute", inset:0, pointerEvents:"none", overflow:"hidden", zIndex:1 }}>
+        {DATA_FLOATS.map((val, i) => (
+          <div key={val} style={{
+            position:"absolute",
+            top: `${15 + i * 17}%`,
+            left: `${3 + (i % 2) * 55}%`,
+            fontFamily:"var(--font-mono)",
+            fontSize: "clamp(11px,1.2vw,14px)",
+            color:"rgba(204,0,0,.07)",
+            letterSpacing:".12em",
+            animation:`tech-data-fade 4s ease-in-out ${i*1.2}s infinite`,
+            userSelect:"none",
+          }}>{val}</div>
+        ))}
+      </div>
 
       <div className="container" style={{ position:"relative", zIndex:2 }}>
 
-        {/* Opening */}
-        <div style={{ textAlign:"center", maxWidth:800, margin:"0 auto clamp(56px,7vw,96px)" }}>
-          <div className="section-label reveal" style={{ justifyContent:"center", marginBottom:20 }}>
-            <span style={{ color:"rgba(255,255,255,.5)" }}>Automated Blood Intelligence Infrastructure</span>
+        {/* ══ OPENING STATEMENT ══════════════════════════════════════════ */}
+        <div style={{
+          textAlign:"center",
+          maxWidth:720,
+          margin:"0 auto clamp(56px,7vw,96px)",
+        }}>
+          <div className="section-label reveal" style={{ justifyContent:"center", marginBottom:16 }}>
+            Core Technology
           </div>
-          <h2 className="h2 font-display reveal delay-1" style={{ color:"#fff", marginBottom:20 }}>
-            CrimsonWings operates a{" "}
-            <em style={{ color:"var(--crimson)" }}>fully integrated, automation-driven</em>{" "}
-            blood processing and logistics system
+          <h2 className="h2 font-display reveal delay-1" style={{
+            color:"var(--ink)", marginBottom:14,
+          }}>
+            Automated Blood{" "}
+            <em style={{ color:"var(--crimson)" }}>Intelligence Infrastructure</em>
           </h2>
-          <p className="body-lg reveal delay-2" style={{ color:"rgba(255,255,255,.78)" }}>
-            Engineered for speed, safety, and scale.
+          <p className="body-lg reveal delay-2" style={{ color:"var(--steel)" }}>
+            CrimsonWings operates a{" "}
+            <strong style={{ color:"var(--ink)" }}>fully integrated, automation-driven blood processing and logistics system</strong>
+            , engineered for speed, safety, and scale.
           </p>
         </div>
 
-        {/* Modules */}
-        <div style={{ display:"flex", flexDirection:"column", gap:"clamp(56px,7vw,88px)" }}>
-          {SECTIONS.map((s, i) => {
-            const rev = i % 2 === 1;
-            return (
-              <div key={s.num} style={{ display:"grid", gap:"clamp(28px,4vw,56px)", alignItems:"center" }} className="tech-row">
+        {/* ══ MAIN 2-COLUMN FLOW ═════════════════════════════════════════ */}
+        <div style={{
+          display:"grid",
+          gap:"clamp(32px,5vw,64px)",
+          alignItems:"flex-start",
+          marginBottom:"clamp(56px,7vw,96px)",
+        }} className="tech-two-col">
 
-                {/* Text */}
-                <div style={{ order: rev ? 2 : 1 }} className={rev ? "reveal-right" : "reveal"}>
-                  <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:24 }}>
-                    <div style={{ width:56, height:56, flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center", background:`${s.color}20`, border:`1.5px solid ${s.color}50` }}>
-                      <s.icon size={26} style={{ color:s.color }}/>
-                    </div>
-                    <div>
-                      <div className="caption" style={{ color:`${s.color}cc`, marginBottom:5, fontSize:11 }}>Module {s.num}</div>
-                      <h3 className="h3 font-display" style={{ color:"#fff", lineHeight:1.2 }}>{s.title}</h3>
+          {/* ── LEFT: 7-step vertical flow ── */}
+          <div style={{ position:"relative" }}>
+
+            {/* Animated vertical line connecting all cards */}
+            <div style={{
+              position:"absolute",
+              left: 28,
+              top: 40,
+              bottom: 40,
+              width: 2,
+              background:"rgba(204,0,0,.1)",
+              overflow:"hidden",
+              zIndex:0,
+            }}>
+              {/* Glowing pulse traveling downward */}
+              <div style={{
+                position:"absolute",
+                left:0, right:0,
+                height:"25%",
+                background:"linear-gradient(to bottom, transparent, #CC0000, transparent)",
+                animation:"tech-pulse-down 2.5s ease-in-out infinite",
+              }}/>
+            </div>
+
+            {/* Steps */}
+            <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
+              {STEPS.map((step, i) => (
+                <div key={step.num}>
+                  {/* Card */}
+                  <div
+                    className="reveal"
+                    style={{
+                      transitionDelay: `${i * 0.08}s`,
+                      position:"relative",
+                      zIndex:1,
+                    }}
+                  >
+                    <div style={{
+                      display:"flex", alignItems:"center", gap:16,
+                      background:"#fff",
+                      borderRadius:16,
+                      boxShadow:"0 2px 16px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04)",
+                      padding:"clamp(14px,1.8vw,20px) clamp(16px,2vw,24px)",
+                      border:"1px solid rgba(204,0,0,.08)",
+                      transition:"transform .25s var(--ease-expo), box-shadow .25s, border-color .25s",
+                      cursor:"default",
+                    }}
+                      onMouseEnter={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.transform = "translateY(-3px) scale(1.01)";
+                        el.style.boxShadow = "0 8px 32px rgba(204,0,0,.14), 0 2px 8px rgba(0,0,0,.06)";
+                        el.style.borderColor = "rgba(204,0,0,.3)";
+                        const icon = el.querySelector(".step-icon") as HTMLElement;
+                        if (icon) { icon.style.background = "rgba(204,0,0,.15)"; icon.style.boxShadow = "0 0 16px rgba(204,0,0,.4)"; }
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget as HTMLElement;
+                        el.style.transform = "none";
+                        el.style.boxShadow = "0 2px 16px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04)";
+                        el.style.borderColor = "rgba(204,0,0,.08)";
+                        const icon = el.querySelector(".step-icon") as HTMLElement;
+                        if (icon) { icon.style.background = "rgba(204,0,0,.07)"; icon.style.boxShadow = "none"; }
+                      }}
+                    >
+                      {/* Step number + icon */}
+                      <div className="step-icon" style={{
+                        width:56, height:56, borderRadius:"50%", flexShrink:0,
+                        background:"rgba(204,0,0,.07)",
+                        border:"1.5px solid rgba(204,0,0,.15)",
+                        display:"flex", flexDirection:"column",
+                        alignItems:"center", justifyContent:"center",
+                        gap:1,
+                        transition:"background .25s, box-shadow .25s",
+                        position:"relative", overflow:"hidden",
+                      }}>
+                        {/* Analyzer pulsing rings — step 5 */}
+                        {step.special === "analyzer" && (
+                          <>
+                            <div style={{ position:"absolute", inset:0, borderRadius:"50%", border:"2px solid rgba(204,0,0,.4)", animation:"tech-ring-pulse 1.4s ease-out infinite" }}/>
+                            <div style={{ position:"absolute", inset:4, borderRadius:"50%", border:"1px solid rgba(204,0,0,.25)", animation:"tech-ring-pulse 1.4s ease-out .4s infinite" }}/>
+                          </>
+                        )}
+                        <span style={{ fontSize:20, lineHeight:1 }}>{step.icon}</span>
+                        <span className="font-mono" style={{ fontSize:8, color:"rgba(204,0,0,.6)", letterSpacing:".08em" }}>0{step.num}</span>
+                      </div>
+
+                      {/* Text */}
+                      <div style={{ flex:1, minWidth:0 }}>
+                        <div className="caption" style={{ color:"rgba(204,0,0,.55)", fontSize:9, marginBottom:3, letterSpacing:".12em" }}>
+                          {step.sublabel}
+                        </div>
+                        <div className="font-display" style={{
+                          fontSize:"clamp(14px,1.5vw,17px)", fontWeight:700,
+                          color:"var(--ink)", lineHeight:1.2, marginBottom:4,
+                        }}>
+                          {step.label}
+                        </div>
+                        <div style={{ fontSize:12, color:"var(--steel-light)", lineHeight:1.4 }}>
+                          {step.subtext}
+                        </div>
+
+                        {/* Conveyor belt — step 4 */}
+                        {step.special === "conveyor" && (
+                          <div style={{ marginTop:8, height:6, background:"rgba(204,0,0,.06)", borderRadius:3, overflow:"hidden", position:"relative" }}>
+                            <div style={{
+                              position:"absolute", inset:0,
+                              background:"repeating-linear-gradient(90deg, rgba(204,0,0,.4) 0px, rgba(204,0,0,.4) 8px, transparent 8px, transparent 16px)",
+                              animation:"tech-conveyor 1s linear infinite",
+                            }}/>
+                          </div>
+                        )}
+
+                        {/* Drone trail — step 7 */}
+                        {step.special === "drone" && (
+                          <div style={{ marginTop:8, position:"relative", height:12 }}>
+                            <div style={{
+                              position:"absolute", left:0, top:"50%", transform:"translateY(-50%)",
+                              fontSize:16,
+                              animation:"tech-drone-fly 2.5s ease-in-out infinite",
+                            }}>🚁</div>
+                            <div style={{
+                              position:"absolute", left:20, top:"50%", transform:"translateY(-50%)",
+                              height:1, width:60,
+                              background:"linear-gradient(to right, rgba(204,0,0,.5), transparent)",
+                              animation:"tech-drone-trail 2.5s ease-in-out infinite",
+                            }}/>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Flow particle indicator */}
+                      <div style={{ flexShrink:0, display:"flex", flexDirection:"column", gap:3 }}>
+                        {[0,1,2].map(j => (
+                          <div key={j} style={{
+                            width:3, height: 6 + j*3,
+                            background:"rgba(204,0,0,.3)",
+                            borderRadius:2,
+                            animation:`tech-bar 1s ease-in-out ${j*.15 + i*.05}s infinite`,
+                          }}/>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <p className="body-lg" style={{ color:"rgba(255,255,255,.78)", marginBottom:28 }}>{s.body}</p>
-                  <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-                    {s.points.map(pt => (
-                      <div key={pt} style={{ display:"flex", alignItems:"center", gap:14 }}>
-                        <div style={{ width:8, height:8, borderRadius:"50%", background:s.color, flexShrink:0, boxShadow:`0 0 10px ${s.color}` }}/>
-                        <span style={{ fontSize:17, color:"rgba(255,255,255,.72)", lineHeight:1.5 }}>{pt}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Visual */}
-                <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
-                  {s.isAnimated ? (
-                    <AutomationDiagram/>
-                  ) : (s as any).isNetwork ? (
-                    <NetworkVisual compact={false}/>
-                  ) : (
-                    <div style={{ position:"relative", overflow:"hidden", border:`1px solid ${s.color}40` }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={s.image} alt={s.imageAlt} style={{ width:"100%", height:"340px", objectFit:"cover", objectPosition:"center", display:"block" }}/>
-                      <div style={{ position:"absolute", top:0, left:0, right:0, height:4, background:`linear-gradient(90deg, ${s.color}, transparent)`, zIndex:2 }}/>
-                      <div style={{ position:"absolute", top:12, right:12, width:28, height:28, borderTop:`2px solid ${s.color}`, borderRight:`2px solid ${s.color}`, zIndex:2 }}/>
-                      <div style={{ position:"absolute", bottom:12, left:12, width:28, height:28, borderBottom:`2px solid ${s.color}`, borderLeft:`2px solid ${s.color}`, zIndex:2 }}/>
-                      <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"12px 16px", background:"linear-gradient(to top, rgba(0,0,0,.7), transparent)", zIndex:2 }}>
-                        <span className="caption" style={{ color:"rgba(255,255,255,.7)", fontSize:9 }}>Module {s.num} — {s.title}</span>
-                      </div>
+                  {/* Arrow + flow particle between steps */}
+                  {i < STEPS.length - 1 && (
+                    <div style={{
+                      display:"flex", flexDirection:"column", alignItems:"center",
+                      paddingLeft:28, gap:2, margin:"4px 0",
+                      position:"relative", zIndex:1,
+                    }}>
+                      {/* Traveling dot */}
+                      <div style={{
+                        width:8, height:8, borderRadius:"50%",
+                        background:"#CC0000",
+                        boxShadow:"0 0 8px rgba(204,0,0,.8)",
+                        animation:`tech-particle-down 2.5s ease-in-out ${i * 0.3}s infinite`,
+                        /* speed increases toward delivery */
+                        animationDuration: `${2.5 - i * 0.2}s`,
+                      }}/>
+                      {/* Downward arrow */}
+                      <div style={{
+                        width:0, height:0,
+                        borderLeft:"6px solid transparent",
+                        borderRight:"6px solid transparent",
+                        borderTop:`8px solid rgba(204,0,0,${i === 3 ? .6 : .35})`,
+                        animation:"tech-arrow-pulse 1.5s ease-in-out infinite",
+                        animationDelay: `${i * 0.15}s`,
+                        /* Step 4 arrow is thicker to mark transition */
+                        transform: i === 3 ? "scale(1.3)" : "none",
+                      }}/>
                     </div>
                   )}
                 </div>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
+
+          {/* ── RIGHT: punchlines ── */}
+          <div style={{ paddingTop: "clamp(8px,2vw,32px)" }}>
+            {/* Micro-header */}
+            <div className="reveal" style={{
+              background:"var(--ink)",
+              padding:"clamp(16px,2vw,24px) clamp(20px,2.5vw,32px)",
+              borderRadius:12,
+              marginBottom:"clamp(24px,3vw,40px)",
+              position:"relative", overflow:"hidden",
+            }}>
+              <div style={{
+                position:"absolute", top:0, left:0, right:0, height:3,
+                background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))",
+              }}/>
+              <h3 className="font-display" style={{
+                fontSize:"clamp(18px,2vw,26px)", fontWeight:800,
+                color:"#fff", lineHeight:1.25, textAlign:"center",
+              }}>
+                One continuous system.{" "}
+                <em style={{ color:"var(--crimson)" }}>No breaks. No delays.</em>
+              </h3>
+            </div>
+
+            {/* Punchlines — aligned to steps */}
+            <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
+              {STEPS.map((step, i) => (
+                <div key={step.num}>
+                  <div
+                    className="reveal"
+                    style={{
+                      transitionDelay: `${i * 0.09}s`,
+                      display:"flex", alignItems:"center", gap:14,
+                      padding:"clamp(14px,1.8vw,20px) clamp(16px,2vw,24px)",
+                      background: i % 2 === 0 ? "#fff" : "rgba(204,0,0,.02)",
+                      borderRadius:12,
+                      border:"1px solid rgba(204,0,0,.07)",
+                      transition:"background .2s, border-color .2s",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLElement).style.background = "rgba(204,0,0,.05)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(204,0,0,.2)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLElement).style.background = i % 2 === 0 ? "#fff" : "rgba(204,0,0,.02)";
+                      (e.currentTarget as HTMLElement).style.borderColor = "rgba(204,0,0,.07)";
+                    }}
+                  >
+                    {/* Step number badge */}
+                    <div style={{
+                      flexShrink:0,
+                      width:32, height:32, borderRadius:"50%",
+                      background:"rgba(204,0,0,.08)",
+                      border:"1.5px solid rgba(204,0,0,.2)",
+                      display:"flex", alignItems:"center", justifyContent:"center",
+                    }}>
+                      <span className="font-mono" style={{ fontSize:10, fontWeight:700, color:"var(--crimson)" }}>
+                        {step.num}
+                      </span>
+                    </div>
+                    {/* Punchline */}
+                    <p className="font-display" style={{
+                      fontSize:"clamp(14px,1.4vw,17px)", fontWeight:600,
+                      color:"var(--ink)", lineHeight:1.4, margin:0,
+                    }}>
+                      {step.punchline}
+                    </p>
+                  </div>
+
+                  {/* Spacer between punchlines matching step gaps */}
+                  {i < STEPS.length - 1 && <div style={{ height:10 }}/>}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Closing */}
-        <div className="reveal" style={{ marginTop:"clamp(64px,8vw,100px)", border:"1px solid rgba(204,0,0,.4)", background:"rgba(204,0,0,.08)", padding:"clamp(40px,5vw,64px)", textAlign:"center", transitionDelay:".3s", position:"relative", overflow:"hidden" }}>
-          <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))" }}/>
-          <div style={{ display:"flex", justifyContent:"center", gap:16, flexWrap:"wrap", marginBottom:24 }}>
-            {[Shield, Zap, Network].map((Icon, i) => (
-              <div key={i} style={{ width:48, height:48, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(204,0,0,.2)", border:"1px solid rgba(204,0,0,.4)" }}>
-                <Icon size={22} style={{ color:"var(--crimson)" }}/>
+        {/* ══ MOVING ANIMATION STRIP ═════════════════════════════════════ */}
+        <div className="reveal" style={{
+          background:"var(--ink)",
+          borderRadius:16,
+          padding:"clamp(20px,3vw,36px)",
+          marginBottom:"clamp(40px,5vw,64px)",
+          position:"relative", overflow:"hidden",
+          transitionDelay:".3s",
+        }}>
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))" }}/>
+
+          {/* Label */}
+          <div className="caption" style={{ color:"rgba(255,255,255,.35)", marginBottom:20, textAlign:"center", fontSize:10 }}>
+            Sample → Conveyor → Analyzer → Storage → Delivery
+          </div>
+
+          {/* Animation track */}
+          <div style={{
+            display:"flex", alignItems:"center",
+            gap:0, overflowX:"auto",
+            paddingBottom:8,
+          }}>
+            {[
+              {icon:"🩸", label:"Intake"},
+              {icon:"⚙️", label:"Processing"},
+              {icon:"🏗️", label:"Conveyor"},
+              {icon:"🧬", label:"Analyzer"},
+              {icon:"🗄️", label:"Storage"},
+              {icon:"🚁", label:"Delivery"},
+            ].map((item, i) => (
+              <div key={item.label} style={{ display:"flex", alignItems:"center", flex:1, minWidth:0 }}>
+                {/* Node */}
+                <div style={{
+                  display:"flex", flexDirection:"column", alignItems:"center",
+                  gap:6, flexShrink:0,
+                }}>
+                  <div style={{
+                    width:48, height:48, borderRadius:"50%",
+                    background: i === 0 || i === 5 ? "rgba(204,0,0,.3)" : "rgba(255,255,255,.06)",
+                    border:"1.5px solid rgba(204,0,0,.4)",
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontSize:20,
+                    animation:`tech-node-glow 2s ease-in-out ${i * 0.3}s infinite`,
+                  }}>{item.icon}</div>
+                  <span className="caption" style={{ color:"rgba(255,255,255,.4)", fontSize:9, textAlign:"center" }}>{item.label}</span>
+                </div>
+
+                {/* Connector with traveling dot */}
+                {i < 5 && (
+                  <div style={{ flex:1, height:2, background:"rgba(255,255,255,.08)", position:"relative", overflow:"visible", margin:"0 4px", marginBottom:20 }}>
+                    {/* Static dashes */}
+                    <div style={{ position:"absolute", inset:0, background:"repeating-linear-gradient(90deg,rgba(204,0,0,.3) 0,rgba(204,0,0,.3) 6px,transparent 6px,transparent 14px)" }}/>
+                    {/* Traveling dot — speed increases */}
+                    <div style={{
+                      position:"absolute", top:"50%", transform:"translateY(-50%)",
+                      width:8, height:8, borderRadius:"50%",
+                      background:"#CC0000",
+                      boxShadow:"0 0 10px rgba(204,0,0,.9)",
+                      animation:`tech-track-dot 1.5s linear ${i * 0.22}s infinite`,
+                      /* speed increases toward delivery */
+                      animationDuration:`${1.5 - i * 0.18}s`,
+                    }}/>
+                    {/* Arrow head */}
+                    <div style={{
+                      position:"absolute", right:-5, top:"50%", transform:"translateY(-50%)",
+                      width:0, height:0,
+                      borderTop:"4px solid transparent",
+                      borderBottom:"4px solid transparent",
+                      borderLeft:"6px solid rgba(204,0,0,.5)",
+                    }}/>
+                  </div>
+                )}
               </div>
             ))}
           </div>
-          <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:14 }}>
-            A Vertically Integrated Transfusion Technology Platform
-          </h3>
-          <p style={{ fontSize:19, color:"rgba(255,255,255,.75)", maxWidth:620, margin:"0 auto", fontStyle:"italic" }}>
-            Combining automation, diagnostics, and logistics into one continuous blood delivery engine.
-          </p>
+        </div>
+
+        {/* ══ CLOSING STATEMENT ══════════════════════════════════════════ */}
+        <div className="reveal" style={{
+          textAlign:"center",
+          padding:"clamp(40px,5vw,64px)",
+          background:"linear-gradient(135deg, #060D1A 0%, #0B1F33 100%)",
+          borderRadius:16,
+          position:"relative", overflow:"hidden",
+          transitionDelay:".4s",
+        }}>
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:4, background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))" }}/>
+          {/* Glow */}
+          <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:400, height:200, borderRadius:"50%", background:"radial-gradient(ellipse,rgba(204,0,0,.12),transparent 70%)", pointerEvents:"none" }}/>
+
+          <div style={{ position:"relative", zIndex:2 }}>
+            <div className="caption" style={{ color:"rgba(255,255,255,.35)", marginBottom:16, letterSpacing:".2em" }}>
+              Platform Architecture
+            </div>
+            <h3 className="h3 font-display" style={{ color:"#fff", marginBottom:14, lineHeight:1.3 }}>
+              A Vertically Integrated{" "}
+              <em style={{ color:"var(--crimson)" }}>Transfusion Technology Platform</em>
+            </h3>
+            <p style={{
+              fontSize:"clamp(16px,1.6vw,19px)",
+              color:"rgba(255,255,255,.65)",
+              maxWidth:620, margin:"0 auto",
+              fontStyle:"italic", lineHeight:1.75,
+            }}>
+              Combining automation, diagnostics, and logistics into one continuous blood delivery engine.
+            </p>
+          </div>
         </div>
       </div>
 
-      <style>{`@media(min-width:900px){ .tech-row{ grid-template-columns:1fr 1fr !important; } }`}</style>
+      <style>{`
+        @media(min-width:900px){
+          .tech-two-col { grid-template-columns: 1fr 1fr !important; }
+        }
+
+        @keyframes tech-pulse-down    { 0%{top:-25%} 100%{top:110%} }
+        @keyframes tech-arrow-pulse   { 0%,100%{opacity:.35;transform:translateY(0)} 50%{opacity:1;transform:translateY(4px)} }
+        @keyframes tech-particle-down { 0%{opacity:0;transform:translateY(-6px)} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;transform:translateY(20px)} }
+        @keyframes tech-bar           { 0%,100%{transform:scaleY(1);opacity:.4} 50%{transform:scaleY(1.8);opacity:1} }
+        @keyframes tech-ring-pulse    { 0%{transform:scale(1);opacity:.7} 100%{transform:scale(1.6);opacity:0} }
+        @keyframes tech-conveyor      { from{background-position:0 0} to{background-position:32px 0} }
+        @keyframes tech-drone-fly     { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(12px) translateY(-3px)} }
+        @keyframes tech-drone-trail   { 0%,100%{opacity:.3;width:30px} 50%{opacity:.7;width:60px} }
+        @keyframes tech-node-glow     { 0%,100%{box-shadow:0 0 0 rgba(204,0,0,0)} 50%{box-shadow:0 0 18px rgba(204,0,0,.6)} }
+        @keyframes tech-track-dot     { 0%{left:0;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{left:100%;opacity:0} }
+        @keyframes tech-data-fade     { 0%,100%{opacity:.07} 50%{opacity:.18} }
+      `}</style>
     </section>
   );
 }
