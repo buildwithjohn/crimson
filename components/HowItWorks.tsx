@@ -48,6 +48,73 @@ const FLOW = [
 
 /* ── 3D Network Map — Ogun State + 9 Partner States ─────────────────────── */
 
+function HowItWorksAutomation({ stepNum, color }: { stepNum: string; color: string }) {
+  const steps = [
+    { icon:"🩸", label:"Sample Intake",    sub:"Intake from donor drive" },
+    { icon:"⚙️", label:"BLIM Sorting",     sub:"Auto labeling & routing" },
+    { icon:"🔄", label:"Centrifuge p671",  sub:"Sample separation" },
+    { icon:"🧬", label:"e801 Immunoassay", sub:"Serology screening" },
+    { icon:"🔬", label:"cobas 8800 NAT",   sub:"Molecular diagnostics" },
+  ];
+  return (
+    <div style={{ background:"linear-gradient(135deg,#0B1F33,#0D2B44)", border:"1px solid rgba(204,0,0,.3)", padding:"clamp(20px,3vw,32px)", minHeight:300, position:"relative", overflow:"hidden", height:"100%" }}>
+      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"24px 24px", pointerEvents:"none" }}/>
+      <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.6),transparent)", animation:"hw-scan 3s linear infinite", pointerEvents:"none", zIndex:4 }}/>
+      {/* Step badge */}
+      <div style={{ position:"absolute", top:14, left:14, background:color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:10 }}>{stepNum}</div>
+      <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:20, position:"relative", zIndex:3, paddingTop:8 }}>
+        <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 6px #22c55e", animation:"hw-blink 1.5s ease-in-out infinite" }}/>
+        <span className="font-mono" style={{ fontSize:10, color:"rgba(255,255,255,.55)", letterSpacing:".14em" }}>AUTOMATION ACTIVE · 2,500 TUBES/HR</span>
+      </div>
+      <div style={{ position:"relative", zIndex:3 }}>
+        <div style={{ position:"absolute", left:22, top:0, bottom:0, width:2, background:"rgba(204,0,0,.12)", overflow:"hidden" }}>
+          <div style={{ position:"absolute", top:0, left:0, right:0, height:"35%", background:"linear-gradient(to bottom,transparent,#CC0000,transparent)", animation:"hw-pulse-down 2.5s ease-in-out infinite" }}/>
+        </div>
+        {steps.map((step, i) => (
+          <div key={step.label}>
+            <div style={{ display:"flex", alignItems:"center", gap:14, padding:"10px 0", animation:`hw-fade-up .4s ease-out ${i*.07}s both` }}>
+              <div style={{ width:44, height:44, borderRadius:"50%", flexShrink:0, background:`rgba(204,0,0,${.1+i*.04})`, border:"1.5px solid rgba(204,0,0,.5)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, zIndex:1, transition:"transform .2s, box-shadow .2s", cursor:"default" }}
+                onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1.2)";(e.currentTarget as HTMLElement).style.boxShadow="0 0 16px rgba(204,0,0,.8)";}}
+                onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="none";(e.currentTarget as HTMLElement).style.boxShadow="none";}}
+              >{step.icon}</div>
+              <div style={{ flex:1 }}>
+                <div style={{ fontSize:13, fontWeight:600, color:"#fff", marginBottom:2 }}>{step.label}</div>
+                <div className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.35)", letterSpacing:".1em" }}>{step.sub}</div>
+              </div>
+              <div style={{ display:"flex", gap:2, alignItems:"flex-end", height:18 }}>
+                {[3,6,4,8,5].map((h,j) => (
+                  <div key={j} style={{ width:3, height:h, background:"rgba(204,0,0,.6)", animation:`hw-bar 1s ease-in-out ${j*.1}s infinite` }}/>
+                ))}
+              </div>
+            </div>
+            {i < steps.length-1 && (
+              <div style={{ paddingLeft:14 }}>
+                <div style={{ width:0, height:0, borderLeft:"6px solid transparent", borderRight:"6px solid transparent", borderTop:"8px solid rgba(204,0,0,.4)", animation:`hw-arrow 2s ease-in-out ${i*.1}s infinite` }}/>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div style={{ marginTop:16, borderTop:"1px solid rgba(255,255,255,.07)", paddingTop:12, display:"flex", justifyContent:"space-around", position:"relative", zIndex:3, flexWrap:"wrap", gap:8 }}>
+        {[{v:"99.99%",l:"Accuracy"},{v:"Zero",l:"Manual Steps"},{v:"NAT+IgM",l:"Dual Layer"}].map(s=>(
+          <div key={s.l} style={{ textAlign:"center" }}>
+            <div className="font-display" style={{ fontSize:14, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
+            <div className="font-mono" style={{ fontSize:8, color:"rgba(255,255,255,.35)", letterSpacing:".08em", marginTop:2 }}>{s.l}</div>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @keyframes hw-scan       { 0%{top:-2px} 100%{top:100%} }
+        @keyframes hw-blink      { 0%,100%{opacity:1} 50%{opacity:.2} }
+        @keyframes hw-pulse-down { 0%{top:-35%} 100%{top:110%} }
+        @keyframes hw-bar        { 0%,100%{transform:scaleY(1);opacity:.5} 50%{transform:scaleY(2);opacity:1} }
+        @keyframes hw-arrow      { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(3px)} }
+        @keyframes hw-fade-up    { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+      `}</style>
+    </div>
+  );
+}
+
 export default function HowItWorks() {
   const ref = useReveal();
   return (
