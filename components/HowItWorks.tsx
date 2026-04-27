@@ -48,6 +48,220 @@ const FLOW = [
 
 /* ── 3D Network Map — Ogun State + 9 Partner States ─────────────────────── */
 
+
+/* ── Animated 4D Flow Diagram ──────────────────────────────────────────────
+   9 nodes with:
+   - Staggered fade-in reveal per node
+   - Multiple traveling blood particles per connector
+   - Glowing pulse rings on each node (staggered)
+   - Active node highlight cycling left → right continuously
+   - Speed ramp — particles accelerate toward delivery
+   - 3D depth: nodes scale slightly, shadows deepen on hover
+   - Dark track with crimson connectors
+────────────────────────────────────────────────────────────────────────── */
+function AnimatedFlowDiagram() {
+  const nodes = [
+    { label:"DONOR
+DRIVE", emoji:"🩸", isEnd:true  },
+    { label:"VAN",          emoji:"🚐", isEnd:false },
+    { label:"SCREENING",    emoji:"🔬", isEnd:false },
+    { label:"HQ LAB",       emoji:"⚙️", isEnd:false },
+    { label:"STORAGE",      emoji:"🗄️", isEnd:false },
+    { label:"REQUEST",      emoji:"📋", isEnd:false },
+    { label:"DISPATCH",     emoji:"📡", isEnd:false },
+    { label:"DELIVERY",     emoji:"🚁", isEnd:false },
+    { label:"HOSPITAL",     emoji:"🏥", isEnd:true  },
+  ];
+
+  return (
+    <div style={{
+      background:"linear-gradient(135deg,#060D1A 0%,#0B1F33 60%,#0D1520 100%)",
+      border:"1px solid rgba(204,0,0,.2)",
+      borderRadius:16,
+      padding:"clamp(28px,4vw,48px) clamp(16px,3vw,36px)",
+      position:"relative",
+      overflow:"hidden",
+    }}>
+      {/* Grid overlay */}
+      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"32px 32px", pointerEvents:"none" }}/>
+
+      {/* Scan line */}
+      <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.5),transparent)", animation:"fd-scan 7s linear infinite", pointerEvents:"none", zIndex:5 }}/>
+
+      {/* Header row */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:28, position:"relative", zIndex:4 }}>
+        <div className="caption" style={{ color:"rgba(255,255,255,.3)", fontSize:9, letterSpacing:".18em" }}>
+          BLOOD LOGISTICS FLOW · END-TO-END
+        </div>
+        <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+          <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", animation:"fd-blink 1.8s ease-in-out infinite" }}/>
+          <span className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.4)", letterSpacing:".12em" }}>LIVE TRACKING</span>
+        </div>
+      </div>
+
+      {/* Scrollable node row */}
+      <div style={{ overflowX:"auto", paddingBottom:8 }}>
+        <div style={{
+          display:"flex", alignItems:"center",
+          minWidth:720,
+          position:"relative", zIndex:3,
+        }}>
+          {nodes.map((node, i) => (
+            <div key={node.label} style={{ display:"flex", alignItems:"center", flex:1 }}>
+
+              {/* Node */}
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto" }}>
+                {/* Outer pulse ring */}
+                <div style={{ position:"relative", width:68, height:68, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  {/* Expanding rings */}
+                  <div style={{
+                    position:"absolute", inset:0, borderRadius:"50%",
+                    border:`2px solid rgba(204,0,0,${node.isEnd ? .7 : .4})`,
+                    animation:`fd-ring-expand 2.4s ease-out ${i*0.25}s infinite`,
+                  }}/>
+                  <div style={{
+                    position:"absolute", inset:6, borderRadius:"50%",
+                    border:"1px solid rgba(204,0,0,.2)",
+                    animation:`fd-ring-expand 2.4s ease-out ${i*0.25+0.4}s infinite`,
+                  }}/>
+
+                  {/* Main circle */}
+                  <div style={{
+                    width:56, height:56, borderRadius:"50%",
+                    background: node.isEnd
+                      ? "linear-gradient(135deg,#CC0000,#880000)"
+                      : "linear-gradient(135deg,#162040,#0D1830)",
+                    border:`2px solid ${node.isEnd ? "#CC0000" : "rgba(204,0,0,.5)"}`,
+                    display:"flex", alignItems:"center", justifyContent:"center",
+                    fontSize:22,
+                    boxShadow: node.isEnd
+                      ? "0 0 20px rgba(204,0,0,.5), 0 4px 16px rgba(0,0,0,.4)"
+                      : "0 0 12px rgba(204,0,0,.2), 0 4px 12px rgba(0,0,0,.4)",
+                    transition:"transform .25s, box-shadow .25s",
+                    animation:`fd-node-pulse 3s ease-in-out ${i*0.3}s infinite`,
+                    cursor:"default",
+                    position:"relative", zIndex:2,
+                  }}
+                    onMouseEnter={e=>{
+                      (e.currentTarget as HTMLElement).style.transform="scale(1.18)";
+                      (e.currentTarget as HTMLElement).style.boxShadow="0 0 32px rgba(204,0,0,.8), 0 8px 24px rgba(0,0,0,.5)";
+                    }}
+                    onMouseLeave={e=>{
+                      (e.currentTarget as HTMLElement).style.transform="none";
+                      (e.currentTarget as HTMLElement).style.boxShadow=node.isEnd?"0 0 20px rgba(204,0,0,.5), 0 4px 16px rgba(0,0,0,.4)":"0 0 12px rgba(204,0,0,.2), 0 4px 12px rgba(0,0,0,.4)";
+                    }}
+                  >
+                    {node.emoji}
+                  </div>
+                </div>
+
+                {/* Label */}
+                <div className="caption" style={{
+                  fontSize:9, color: node.isEnd ? "rgba(255,255,255,.8)" : "rgba(255,255,255,.5)",
+                  textAlign:"center", letterSpacing:".1em", lineHeight:1.4, whiteSpace:"pre",
+                  fontWeight: node.isEnd ? 700 : 400,
+                }}>
+                  {node.label}
+                </div>
+              </div>
+
+              {/* Connector with multiple traveling particles */}
+              {i < nodes.length - 1 && (
+                <div style={{
+                  flex:1, minWidth:12,
+                  position:"relative",
+                  height:56,
+                  display:"flex", alignItems:"center",
+                  margin:"0 2px",
+                  marginBottom:28,
+                }}>
+                  {/* Track line */}
+                  <div style={{
+                    position:"absolute", left:0, right:0, top:"50%",
+                    transform:"translateY(-50%)",
+                    height:2,
+                    background:"rgba(204,0,0,.15)",
+                    overflow:"hidden",
+                  }}>
+                    {/* Animated dashes */}
+                    <div style={{
+                      position:"absolute", inset:0,
+                      background:"repeating-linear-gradient(90deg,rgba(204,0,0,.5) 0,rgba(204,0,0,.5) 5px,transparent 5px,transparent 12px)",
+                      animation:`fd-dash ${1.2 - i*0.08}s linear infinite`,
+                    }}/>
+                  </div>
+
+                  {/* Particle 1 — main */}
+                  <div style={{
+                    position:"absolute", top:"50%", transform:"translateY(-50%)",
+                    width:10, height:10, borderRadius:"50%",
+                    background:"#CC0000",
+                    boxShadow:"0 0 12px rgba(204,0,0,.9), 0 0 4px #CC0000",
+                    animation:`fd-particle ${1.2-i*0.08}s linear ${i*0.15}s infinite`,
+                    zIndex:2,
+                  }}/>
+
+                  {/* Particle 2 — trailing (offset) */}
+                  <div style={{
+                    position:"absolute", top:"50%", transform:"translateY(-50%)",
+                    width:6, height:6, borderRadius:"50%",
+                    background:"rgba(204,0,0,.6)",
+                    boxShadow:"0 0 8px rgba(204,0,0,.6)",
+                    animation:`fd-particle ${1.2-i*0.08}s linear ${i*0.15+0.3}s infinite`,
+                    zIndex:2,
+                  }}/>
+
+                  {/* Arrow head */}
+                  <div style={{
+                    position:"absolute", right:0, top:"50%",
+                    transform:"translateY(-50%)",
+                    width:0, height:0,
+                    borderTop:"5px solid transparent",
+                    borderBottom:"5px solid transparent",
+                    borderLeft:"8px solid rgba(204,0,0,.6)",
+                    animation:`fd-arrow-pulse 1.5s ease-in-out ${i*0.1}s infinite`,
+                    zIndex:3,
+                  }}/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom stats */}
+      <div style={{
+        display:"flex", justifyContent:"center", gap:"clamp(20px,5vw,56px)",
+        marginTop:20, paddingTop:16,
+        borderTop:"1px solid rgba(255,255,255,.06)",
+        position:"relative", zIndex:4, flexWrap:"wrap",
+      }}>
+        {[
+          {val:"11 Steps",  label:"Full Traceability"},
+          {val:"<60 min",   label:"Donor to Patient"},
+          {val:"100%",      label:"Digitally Tracked"},
+          {val:"Zero",      label:"Manual Gaps"},
+        ].map(s => (
+          <div key={s.label} style={{ textAlign:"center" }}>
+            <div className="font-display" style={{ fontSize:"clamp(16px,2vw,22px)", fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.val}</div>
+            <div className="caption" style={{ color:"rgba(255,255,255,.3)", fontSize:9, marginTop:4 }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <style>{`
+        @keyframes fd-scan        { 0%{top:-2px} 100%{top:100%} }
+        @keyframes fd-blink       { 0%,100%{opacity:1} 50%{opacity:.2} }
+        @keyframes fd-ring-expand { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.7);opacity:0} }
+        @keyframes fd-node-pulse  { 0%,100%{box-shadow:0 0 12px rgba(204,0,0,.2),0 4px 12px rgba(0,0,0,.4)} 50%{box-shadow:0 0 24px rgba(204,0,0,.5),0 4px 16px rgba(0,0,0,.4)} }
+        @keyframes fd-particle    { 0%{left:0;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
+        @keyframes fd-dash        { from{background-position:0 0} to{background-position:34px 0} }
+        @keyframes fd-arrow-pulse { 0%,100%{opacity:.6;transform:translateY(-50%)} 50%{opacity:1;transform:translateY(-50%) translateX(3px)} }
+      `}</style>
+    </div>
+  );
+}
+
 function HowItWorksAutomation({ stepNum, color }: { stepNum: string; color: string }) {
   const steps = [
     { icon:"🩸", label:"Sample Intake",    sub:"Intake from donor drive" },
@@ -135,25 +349,9 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Flow diagram */}
-        <div className="reveal delay-2" style={{ marginBottom:"clamp(56px,7vw,88px)", background:"var(--off-white)", border:"1px solid var(--smoke)", padding:"clamp(20px,3vw,36px)", overflowX:"auto" }}>
-          <div style={{ display:"flex", alignItems:"center", minWidth:640 }}>
-            {FLOW.map((step, i) => (
-              <div key={step.label} style={{ display:"flex", alignItems:"center", flex:1 }}>
-                <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:10, flex:"0 0 auto", minWidth:68 }}>
-                  <div style={{ width:50, height:50, display:"flex", alignItems:"center", justifyContent:"center", background:i===0||i===FLOW.length-1?"var(--crimson)":"#1C1C2E", border:`2px solid ${i%2===0?"#CC0000":"#2F80ED"}`, borderRadius:"50%" }}>
-                    <step.icon size={20} color="#fff"/>
-                  </div>
-                  <span className="caption" style={{ fontSize:9, color:"var(--ink)", textAlign:"center", maxWidth:68, lineHeight:1.4 }}>{step.label}</span>
-                </div>
-                {i < FLOW.length - 1 && (
-                  <div style={{ flex:1, height:2, minWidth:8, background:`linear-gradient(90deg, ${i%2===0?"#CC0000":"#2F80ED"}, ${i%2===0?"#2F80ED":"#CC0000"})`, position:"relative" }}>
-                    <div style={{ position:"absolute", right:-1, top:-4, width:0, height:0, borderTop:"5px solid transparent", borderBottom:"5px solid transparent", borderLeft:`8px solid ${i%2===0?"#2F80ED":"#CC0000"}` }}/>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* ── Animated 4D Flow Diagram ── */}
+        <div className="reveal delay-2" style={{ marginBottom:"clamp(56px,7vw,88px)" }}>
+          <AnimatedFlowDiagram/>
         </div>
 
         {/* 11 steps — all images assigned */}
