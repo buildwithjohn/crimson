@@ -45,7 +45,7 @@ const FLOW = [
 
 
 /* ── Automation visual for Step 03 ── */
-function HowItWorksAutomation() {
+function HowItWorksAutomation({ stepNum, color }: { stepNum: string; color: string }) {
   const steps = [
     { icon:"🩸", label:"Sample Intake",    sub:"Intake from donor drive" },
     { icon:"⚙️", label:"BLIM Sorting",     sub:"Auto labeling & routing" },
@@ -55,6 +55,8 @@ function HowItWorksAutomation() {
   ];
   return (
     <div style={{ background:"linear-gradient(135deg,#0B1F33,#0D2B44)", border:"1px solid rgba(204,0,0,.3)", padding:"clamp(20px,3vw,32px)", minHeight:300, position:"relative", overflow:"hidden" }}>
+      {/* Step badge */}
+      <div style={{ position:"absolute", top:14, left:14, background:color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:10 }}>{stepNum}</div>
       <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"24px 24px", pointerEvents:"none" }}/>
       <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.6),transparent)", animation:"scanLine 3s linear infinite", pointerEvents:"none", zIndex:4 }}/>
 
@@ -161,29 +163,27 @@ export default function HowItWorks() {
             return (
               <div key={step.num} style={{ display:"grid", background:i%2===0?"#fff":"var(--off-white)", border:"1px solid var(--smoke)", marginBottom:2 }} className="how-row">
 
-                {/* Image */}
-                <div style={{ order:rev?2:1, minHeight:300, position:"relative", overflow:"hidden", background:"#111" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    style={{ width:"100%", height:"100%", minHeight:300, objectFit:"cover", objectPosition:"center", display:"block" }}
-                  />
-                  <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%)" }}/>
-                  {/* Step badge */}
-                  {!(step as any).isAutomation && (
-                    <>
-                  <div style={{ position:"absolute", top:14, left:14, background:step.color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:3 }}>
-                    {step.num}
-                  </div>
-                  <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"12px 16px", zIndex:3 }}>
-                    <span className="caption" style={{ color:"rgba(255,255,255,.65)", fontSize:9 }}>Step {step.num} — {step.title}</span>
-                  </div>
-                    </>
-                  )}
-                  {(step as any).isAutomation && (
-                    <div style={{ position:"absolute", top:14, left:14, background:step.color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:3 }}>
-                      {step.num}
+                {/* Image side */}
+                <div style={{ order:rev?2:1, minHeight:300, position:"relative", overflow:"hidden" }}>
+                  {(step as any).isAutomation ? (
+                    /* Automation animation for Step 03 */
+                    <HowItWorksAutomation stepNum={step.num} color={step.color}/>
+                  ) : (
+                    /* Regular photo */
+                    <div style={{ position:"relative", height:"100%", minHeight:300, background:"#111" }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        style={{ width:"100%", height:"100%", minHeight:300, objectFit:"cover", objectPosition:"center", display:"block" }}
+                      />
+                      <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%)" }}/>
+                      <div style={{ position:"absolute", top:14, left:14, background:step.color, color:"#fff", fontFamily:"var(--font-display)", fontWeight:800, fontSize:14, padding:"5px 14px", zIndex:3 }}>
+                        {step.num}
+                      </div>
+                      <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"12px 16px", zIndex:3 }}>
+                        <span className="caption" style={{ color:"rgba(255,255,255,.65)", fontSize:9 }}>Step {step.num} — {step.title}</span>
+                      </div>
                     </div>
                   )}
                 </div>
