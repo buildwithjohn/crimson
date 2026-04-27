@@ -61,8 +61,7 @@ const FLOW = [
 ────────────────────────────────────────────────────────────────────────── */
 function AnimatedFlowDiagram() {
   const nodes = [
-    { label:"DONOR
-DRIVE", emoji:"🩸", isEnd:true  },
+    { label:"DONOR DRIVE", emoji:"🩸", isEnd:true  },
     { label:"VAN",          emoji:"🚐", isEnd:false },
     { label:"SCREENING",    emoji:"🔬", isEnd:false },
     { label:"HQ LAB",       emoji:"⚙️", isEnd:false },
@@ -158,7 +157,7 @@ DRIVE", emoji:"🩸", isEnd:true  },
                 {/* Label */}
                 <div className="caption" style={{
                   fontSize:9, color: node.isEnd ? "rgba(255,255,255,.8)" : "rgba(255,255,255,.5)",
-                  textAlign:"center", letterSpacing:".1em", lineHeight:1.4, whiteSpace:"pre",
+                  textAlign:"center", letterSpacing:".1em", lineHeight:1.4, whiteSpace:"normal",
                   fontWeight: node.isEnd ? 700 : 400,
                 }}>
                   {node.label}
