@@ -5,13 +5,15 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label:"About",        href:"#about"       },
-  { label:"The Problem",  href:"#problem"     },
-  { label:"Solution",     href:"#solution"    },
-  { label:"Technology",   href:"#technology"  },
-  { label:"How It Works", href:"#how-it-works"},
-  { label:"Impact",       href:"#impact"      },
-  { label:"Contact",      href:"#contact"     },
+  { label:"About",            href:"#about"       },
+  { label:"The Problem",      href:"#problem"     },
+  { label:"Solution",         href:"#solution"    },
+  { label:"Technology",       href:"#technology"  },
+  { label:"How It Works",     href:"#how-it-works"},
+  { label:"What We Offer",    href:"#services"    },
+  { label:"Impact",           href:"#impact"      },
+  { label:"Leadership & Team",href:"/about"       },
+  { label:"Contact",          href:"#contact"     },
 ];
 
 export default function Navbar() {

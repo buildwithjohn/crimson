@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { useReveal } from "./useReveal";
 import { Wifi, Thermometer, Cpu, Network, Shield, Zap, Activity } from "lucide-react";
 
@@ -8,8 +7,8 @@ const SECTIONS = [
     icon: Wifi, num:"01",
     title:"Autonomous Delivery Infrastructure",
     body:"CrimsonWings deploys a hybrid logistics fleet — drones, cold-chain bikes, and refrigerated vans — moving blood efficiently across Ogun State urban and coastal environments. Each delivery route is dynamically selected based on urgency, volume, and distance.",
-    image:"/new-tech-delivery.jpg",
-    imageAlt:"CrimsonWings branded cold-chain delivery van",
+    image:"/delivery-execution.jpg",
+    imageAlt:"CrimsonWings drone, motorbike and van fleet at hospital",
     points:["Medical drones for urgent last-mile delivery","Cold-chain bikes for medium-range transport","Refrigerated vans for bulk delivery"],
     color:"#CC0000",
     isAnimated: false,
@@ -39,7 +38,7 @@ const SECTIONS = [
     title:"Intelligent Dispatch & Decision Engine",
     body:"At the core of CrimsonWings is a real-time decision system that instantly matches supply with demand, selects optimal delivery routes, balances inventory across locations, and tracks every unit from donor to patient.",
     image:"/tech-dispatch.jpg",
-    imageAlt:"CrimsonWings operations dispatch center with Lagos map",
+    imageAlt:"CrimsonWings operations dispatch center",
     points:["Matches supply with demand instantly","Selects optimal delivery routes","Balances inventory across locations","Tracks every unit — donor to patient"],
     color:"#2F80ED",
     isAnimated: false,
@@ -56,148 +55,185 @@ const SECTIONS = [
   },
 ];
 
-/* Animated automation diagram for Module 03 */
+/* ── 3D Automation Animation ─────────────────────────────────────────────── */
 function AutomationDiagram() {
   const steps = [
-    { label:"Sample Intake", sub:"Donor drive intake" },
-    { label:"BLIM Sorting", sub:"Labeling & routing" },
-    { label:"Centrifuge p671", sub:"Sample separation" },
-    { label:"e801 Immunoassay", sub:"Serology screening" },
-    { label:"cobas 8800 NAT", sub:"Molecular testing" },
-    { label:"Smart Archive p701", sub:"Traceable storage" },
+    { label:"Sample Intake",        sub:"Controlled donor drive intake",      icon:"🩸" },
+    { label:"BLIM Sorting",         sub:"Labeling · Routing · Tracking",      icon:"⚙️" },
+    { label:"Centrifuge p671",      sub:"Standardized sample separation",     icon:"🔄" },
+    { label:"e801 Immunoassay",     sub:"Serology screening",                 icon:"🧬" },
+    { label:"cobas 8800 NAT",       sub:"Molecular diagnostic testing",       icon:"🔬" },
+    { label:"Smart Archive p701",   sub:"Traceable sample retention",         icon:"🗄️" },
   ];
 
   return (
     <div style={{
-      background:"#0B1F33",
+      background:"linear-gradient(135deg, #0B1F33 0%, #0D2B44 100%)",
       border:"1px solid rgba(204,0,0,.3)",
       padding:"clamp(24px,3vw,40px)",
-      position:"relative",
-      overflow:"hidden",
+      position:"relative", overflow:"hidden",
+      minHeight:400,
     }}>
-      {/* Animated background grid */}
-      <div style={{
-        position:"absolute", inset:0,
-        backgroundImage:"linear-gradient(rgba(204,0,0,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(204,0,0,.05) 1px, transparent 1px)",
-        backgroundSize:"32px 32px",
-        pointerEvents:"none",
-      }}/>
+      {/* Animated grid */}
+      <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(204,0,0,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,.04) 1px,transparent 1px)", backgroundSize:"28px 28px", pointerEvents:"none" }}/>
 
-      {/* Scanning line animation */}
-      <div style={{
-        position:"absolute", left:0, right:0, height:2,
-        background:"linear-gradient(90deg, transparent, rgba(204,0,0,.6), transparent)",
-        animation:"scanLine 4s linear infinite",
-        pointerEvents:"none", zIndex:3,
-      }}/>
+      {/* Scan line */}
+      <div style={{ position:"absolute", left:0, right:0, height:1.5, background:"linear-gradient(90deg,transparent,rgba(204,0,0,.7),transparent)", animation:"scanLine 4s linear infinite", pointerEvents:"none", zIndex:4 }}/>
+
+      {/* Floating data numbers */}
+      {[
+        {val:"2,500/hr", top:"8%",  left:"62%"},
+        {val:"99.99%",   top:"38%", left:"58%"},
+        {val:"≤4hrs",    top:"68%", left:"64%"},
+      ].map(d => (
+        <div key={d.val} style={{ position:"absolute", top:d.top, left:d.left, fontFamily:"var(--font-mono)", fontSize:10, color:"rgba(204,0,0,.35)", letterSpacing:".12em", animation:"data-flicker 3s ease-in-out infinite", pointerEvents:"none", zIndex:1 }}>
+          {d.val}
+        </div>
+      ))}
 
       {/* Header */}
-      <div style={{ textAlign:"center", marginBottom:28, position:"relative", zIndex:2 }}>
-        <div className="caption" style={{ color:"rgba(204,0,0,.8)", fontSize:10, marginBottom:8, letterSpacing:".2em" }}>
-          AUTOMATED PIPELINE — ACTIVE
+      <div style={{ textAlign:"center", marginBottom:24, position:"relative", zIndex:3 }}>
+        <div style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"6px 16px", background:"rgba(204,0,0,.12)", border:"1px solid rgba(204,0,0,.3)", marginBottom:10 }}>
+          <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 8px #22c55e", animation:"blink 1.5s ease-in-out infinite" }}/>
+          <span className="font-mono" style={{ fontSize:10, color:"rgba(255,255,255,.6)", letterSpacing:".16em" }}>PIPELINE ACTIVE</span>
         </div>
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}>
-          <div style={{ width:8, height:8, borderRadius:"50%", background:"#22c55e", animation:"blink 1.5s ease-in-out infinite", boxShadow:"0 0 8px #22c55e" }}/>
-          <span className="font-mono" style={{ fontSize:11, color:"rgba(255,255,255,.6)", letterSpacing:".12em" }}>
-            2,500 tubes / hour
-          </span>
-        </div>
+        <div className="caption" style={{ color:"rgba(255,255,255,.3)", fontSize:9 }}>2,500 tubes / hour · Zero manual steps</div>
       </div>
 
-      {/* Steps */}
-      <div style={{ display:"flex", flexDirection:"column", gap:0, position:"relative", zIndex:2 }}>
-        {/* Animated vertical line */}
-        <div style={{
-          position:"absolute", left:27, top:20, bottom:20, width:2,
-          background:"rgba(204,0,0,.15)",
-          overflow:"hidden",
-        }}>
-          <div style={{
-            position:"absolute", top:0, left:0, right:0,
-            height:"40%",
-            background:"linear-gradient(to bottom, transparent, #CC0000, transparent)",
-            animation:"pulse-down 2s ease-in-out infinite",
-          }}/>
-        </div>
+      {/* Two-column layout — left: flow, right: 3D sphere viz */}
+      <div style={{ display:"grid", gridTemplateColumns:"1fr auto", gap:16, position:"relative", zIndex:3 }}>
 
-        {steps.map((step, i) => (
-          <div key={step.label}>
-            <div style={{
-              display:"flex", alignItems:"center", gap:16,
-              padding:"12px 0",
-              animation:`fade-up .5s ease-out ${i * .1}s both`,
-            }}>
-              {/* Circle node */}
-              <div style={{
-                width:28, height:28, borderRadius:"50%",
-                background:`rgba(204,0,0,.${2+i})`,
-                border:"1.5px solid rgba(204,0,0,.6)",
-                display:"flex", alignItems:"center", justifyContent:"center",
-                flexShrink:0, zIndex:1,
-                transition:"transform .2s, box-shadow .2s",
-              }}
-                onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1.25)";(e.currentTarget as HTMLElement).style.boxShadow="0 0 14px #CC0000";}}
-                onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="none";(e.currentTarget as HTMLElement).style.boxShadow="none";}}
-              >
-                <span className="font-mono" style={{ fontSize:8, color:"#CC0000", fontWeight:700 }}>0{i+1}</span>
-              </div>
-
-              {/* Content */}
-              <div style={{ flex:1 }}>
-                <div style={{ fontSize:14, fontWeight:600, color:"#fff", marginBottom:2 }}>{step.label}</div>
-                <div className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.4)", letterSpacing:".1em" }}>{step.sub}</div>
-              </div>
-
-              {/* Pulsing activity indicator */}
-              <div style={{ display:"flex", gap:3, alignItems:"center" }}>
-                {[0,1,2].map(j => (
-                  <div key={j} style={{
-                    width:3, height: 8 + j * 4,
-                    background:"rgba(204,0,0,.5)",
-                    animation:`bar-pulse 1s ease-in-out ${j*.15}s infinite`,
-                  }}/>
-                ))}
-              </div>
-            </div>
-
-            {/* Arrow between steps */}
-            {i < steps.length - 1 && (
-              <div style={{ paddingLeft:20, marginBottom:0 }}>
-                <div style={{
-                  width:0, height:0,
-                  borderLeft:"8px solid transparent",
-                  borderRight:"8px solid transparent",
-                  borderTop:"10px solid rgba(204,0,0,.35)",
-                  marginLeft:6,
-                  animation:"arrow-pulse 2s ease-in-out infinite",
-                }}/>
-              </div>
-            )}
+        {/* Steps */}
+        <div style={{ position:"relative" }}>
+          {/* Animated vertical line */}
+          <div style={{ position:"absolute", left:18, top:0, bottom:0, width:2, background:"rgba(204,0,0,.15)", overflow:"hidden" }}>
+            <div style={{ position:"absolute", top:0, left:0, right:0, height:"30%", background:"linear-gradient(to bottom,transparent,#CC0000,transparent)", animation:"pulse-down 2s ease-in-out infinite" }}/>
           </div>
-        ))}
+
+          {steps.map((step, i) => (
+            <div key={step.label}>
+              <div style={{
+                display:"flex", alignItems:"center", gap:14,
+                padding:"10px 0",
+                animation:`fade-up .4s ease-out ${i*.08}s both`,
+              }}>
+                {/* Node */}
+                <div style={{
+                  width:36, height:36, borderRadius:"50%", flexShrink:0,
+                  background:`rgba(204,0,0,${.12 + i*.04})`,
+                  border:`1.5px solid rgba(204,0,0,${.4 + i*.08})`,
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                  zIndex:1, cursor:"default",
+                  transition:"transform .2s, box-shadow .2s",
+                  fontSize:16,
+                }}
+                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.transform="scale(1.2)";(e.currentTarget as HTMLElement).style.boxShadow="0 0 18px rgba(204,0,0,.8)";}}
+                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.transform="none";(e.currentTarget as HTMLElement).style.boxShadow="none";}}
+                >
+                  {step.icon}
+                </div>
+
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:13, fontWeight:600, color:"#fff", marginBottom:2 }}>{step.label}</div>
+                  <div className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.38)", letterSpacing:".1em" }}>{step.sub}</div>
+                </div>
+
+                {/* Activity bars */}
+                <div style={{ display:"flex", gap:2, alignItems:"flex-end", height:20 }}>
+                  {[4,7,5,9,6].map((h,j) => (
+                    <div key={j} style={{
+                      width:3, height:h,
+                      background:"rgba(204,0,0,.55)",
+                      animation:`bar-pulse 1s ease-in-out ${j*.12}s infinite`,
+                    }}/>
+                  ))}
+                </div>
+              </div>
+
+              {/* Arrow */}
+              {i < steps.length - 1 && (
+                <div style={{ paddingLeft:11, marginBottom:0 }}>
+                  <div style={{
+                    width:0, height:0,
+                    borderLeft:"7px solid transparent",
+                    borderRight:"7px solid transparent",
+                    borderTop:"9px solid rgba(204,0,0,.4)",
+                    animation:"arrow-pulse 2s ease-in-out infinite",
+                    animationDelay:`${i*.15}s`,
+                  }}/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* 3D Sphere viz */}
+        <div style={{ width:90, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12 }}>
+          {/* Rotating 3D rings */}
+          <div style={{ position:"relative", width:80, height:80 }}>
+            <svg viewBox="0 0 80 80" style={{ width:80, height:80, animation:"spin-slow 8s linear infinite" }}>
+              <ellipse cx="40" cy="40" rx="36" ry="12" fill="none" stroke="rgba(204,0,0,.5)" strokeWidth="1.5"/>
+              <ellipse cx="40" cy="40" rx="28" ry="36" fill="none" stroke="rgba(47,128,237,.4)" strokeWidth="1.5"/>
+              <ellipse cx="40" cy="40" rx="36" ry="20" fill="none" stroke="rgba(204,0,0,.25)" strokeWidth="1" strokeDasharray="4 3"/>
+            </svg>
+            <div style={{
+              position:"absolute", top:"50%", left:"50%",
+              transform:"translate(-50%,-50%)",
+              width:18, height:18, borderRadius:"50%",
+              background:"radial-gradient(circle, #CC0000, #660000)",
+              boxShadow:"0 0 12px #CC0000",
+            }}/>
+          </div>
+
+          {/* Conveyor dots animation */}
+          <div style={{ position:"relative", width:80, height:16, overflow:"hidden" }}>
+            <div style={{
+              position:"absolute", top:"50%", left:0, right:0, height:1.5,
+              background:"rgba(204,0,0,.2)",
+              transform:"translateY(-50%)",
+            }}/>
+            {[0,1,2].map(i => (
+              <div key={i} style={{
+                position:"absolute", top:"50%",
+                width:6, height:6, borderRadius:"50%",
+                background:"#CC0000",
+                transform:"translateY(-50%)",
+                boxShadow:"0 0 6px #CC0000",
+                animation:`conveyor 2s linear ${i*.66}s infinite`,
+              }}/>
+            ))}
+          </div>
+
+          {/* Stats */}
+          {[{v:"99.99%",l:"Accuracy"},{v:"0",l:"Manual steps"}].map(s => (
+            <div key={s.l} style={{ textAlign:"center" }}>
+              <div className="font-display" style={{ fontSize:14, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
+              <div className="font-mono" style={{ fontSize:7, color:"rgba(255,255,255,.35)", letterSpacing:".1em", marginTop:2 }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Bottom stat */}
-      <div style={{
-        marginTop:20, borderTop:"1px solid rgba(255,255,255,.08)",
-        paddingTop:16, display:"flex", justifyContent:"space-between",
-        position:"relative", zIndex:2, flexWrap:"wrap", gap:10,
-      }}>
-        {[{v:"99.99%",l:"Accuracy"},{v:"Zero",l:"Manual Steps"},{v:"≤4hrs",l:"Batch Time"}].map(s => (
+      {/* Bottom strip */}
+      <div style={{ marginTop:20, borderTop:"1px solid rgba(255,255,255,.07)", paddingTop:14, display:"flex", justifyContent:"space-between", position:"relative", zIndex:3, flexWrap:"wrap", gap:8 }}>
+        {[{v:"2,500/hr",l:"Throughput"},{v:"NAT+Serology",l:"Dual-Layer"},{v:"≤4hrs",l:"Batch Time"},{v:"Zero",l:"Manual Steps"}].map(s => (
           <div key={s.l} style={{ textAlign:"center" }}>
-            <div className="font-display" style={{ fontSize:18, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
-            <div className="caption" style={{ color:"rgba(255,255,255,.4)", fontSize:9, marginTop:3 }}>{s.l}</div>
+            <div className="font-display" style={{ fontSize:15, fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
+            <div className="caption" style={{ color:"rgba(255,255,255,.35)", fontSize:8, marginTop:2 }}>{s.l}</div>
           </div>
         ))}
       </div>
 
       <style>{`
-        @keyframes pulse-down { 0%{top:-40%} 100%{top:100%} }
-        @keyframes arrow-pulse { 0%,100%{opacity:.35} 50%{opacity:1} }
-        @keyframes bar-pulse { 0%,100%{transform:scaleY(1);opacity:.5} 50%{transform:scaleY(1.6);opacity:1} }
-        @keyframes fade-up { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-        @keyframes scanLine { 0%{top:-2px} 100%{top:100%} }
+        @keyframes scanLine    { 0%{top:-2px} 100%{top:100%} }
+        @keyframes pulse-down  { 0%{top:-30%} 100%{top:110%} }
+        @keyframes arrow-pulse { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(3px)} }
+        @keyframes bar-pulse   { 0%,100%{transform:scaleY(1);opacity:.5} 50%{transform:scaleY(2);opacity:1} }
+        @keyframes fade-up     { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:none} }
+        @keyframes blink       { 0%,100%{opacity:1} 50%{opacity:.2} }
+        @keyframes data-flicker{ 0%,100%{opacity:.35} 50%{opacity:.7} }
+        @keyframes spin-slow   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes conveyor    { 0%{left:-8px;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{left:calc(100% + 8px);opacity:0} }
       `}</style>
     </div>
   );
@@ -213,7 +249,7 @@ export default function Technology() {
 
       <div className="container" style={{ position:"relative", zIndex:2 }}>
 
-        {/* ── OPENING STATEMENT ── */}
+        {/* Opening */}
         <div style={{ textAlign:"center", maxWidth:800, margin:"0 auto clamp(56px,7vw,96px)" }}>
           <div className="section-label reveal" style={{ justifyContent:"center", marginBottom:20 }}>
             <span style={{ color:"rgba(255,255,255,.5)" }}>Automated Blood Intelligence Infrastructure</span>
@@ -228,7 +264,7 @@ export default function Technology() {
           </p>
         </div>
 
-        {/* ── 5 MODULES ── */}
+        {/* Modules */}
         <div style={{ display:"flex", flexDirection:"column", gap:"clamp(56px,7vw,88px)" }}>
           {SECTIONS.map((s, i) => {
             const rev = i % 2 === 1;
@@ -257,7 +293,7 @@ export default function Technology() {
                   </div>
                 </div>
 
-                {/* Visual side — image or animation */}
+                {/* Visual */}
                 <div style={{ order: rev ? 1 : 2 }} className={rev ? "reveal" : "reveal-right"}>
                   {s.isAnimated ? (
                     <AutomationDiagram/>
@@ -279,16 +315,8 @@ export default function Technology() {
           })}
         </div>
 
-        {/* ── CLOSING STATEMENT ── */}
-        <div className="reveal" style={{
-          marginTop:"clamp(64px,8vw,100px)",
-          border:"1px solid rgba(204,0,0,.4)",
-          background:"rgba(204,0,0,.08)",
-          padding:"clamp(40px,5vw,64px)",
-          textAlign:"center",
-          transitionDelay:".3s",
-          position:"relative", overflow:"hidden",
-        }}>
+        {/* Closing */}
+        <div className="reveal" style={{ marginTop:"clamp(64px,8vw,100px)", border:"1px solid rgba(204,0,0,.4)", background:"rgba(204,0,0,.08)", padding:"clamp(40px,5vw,64px)", textAlign:"center", transitionDelay:".3s", position:"relative", overflow:"hidden" }}>
           <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))" }}/>
           <div style={{ display:"flex", justifyContent:"center", gap:16, flexWrap:"wrap", marginBottom:24 }}>
             {[Shield, Zap, Network].map((Icon, i) => (
@@ -305,6 +333,7 @@ export default function Technology() {
           </p>
         </div>
       </div>
+
       <style>{`@media(min-width:900px){ .tech-row{ grid-template-columns:1fr 1fr !important; } }`}</style>
     </section>
   );
