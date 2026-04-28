@@ -129,16 +129,14 @@ export default function AboutPage() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                {/* Crimson top bar — all cards */}
-                <div style={{ height: 4, background: "var(--crimson)" }} />
-
-                {/* Photo area */}
+                {/* Full-bleed photo */}
                 <div style={{
                   position: "relative",
                   width: "100%",
-                  paddingBottom: "72%",
-                  background: "#000",
+                  paddingBottom: "85%",
+                  background: "#111",
                   overflow: "hidden",
+                  borderRadius: "12px 12px 0 0",
                 }}>
                   <Image
                     src={person.photo}
@@ -146,52 +144,40 @@ export default function AboutPage() {
                     fill
                     style={{
                       objectFit: "cover",
-                      objectPosition: "center 15%",
+                      objectPosition: "center 10%",
                       transition: "transform .5s var(--ease-expo)",
                     }}
                     className="team-photo"
                     sizes="(max-width:700px) 100vw, (max-width:1000px) 50vw, 25vw"
                   />
-                  {/* Gradient fade bottom of photo */}
+                  {/* Role badge — overlaid bottom-left on photo */}
                   <div style={{
-                    position: "absolute", bottom: 0, left: 0, right: 0,
-                    height: 60,
-                    background: "linear-gradient(to top, var(--white), transparent)",
-                    pointerEvents: "none",
-                  }} />
+                    position: "absolute", bottom: 16, left: 16, zIndex: 3,
+                    background: "var(--crimson)",
+                    color: "#fff",
+                    fontFamily: "var(--font-mono)",
+                    fontWeight: 700,
+                    fontSize: 11,
+                    letterSpacing: ".14em",
+                    padding: "5px 14px",
+                    textTransform: "uppercase",
+                  }}>
+                    {person.role}
+                  </div>
                 </div>
 
-                {/* Info */}
-                <div style={{ padding: "24px 28px 32px" }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-                    <h3 className="font-display" style={{
-                      fontSize: "clamp(17px,1.8vw,21px)",
-                      fontWeight: 700,
-                      color: "var(--ink)",
-                      lineHeight: 1.2,
-                    }}>
-                      {person.name}
-                    </h3>
-                    {/* Role badge */}
-                    <span className="font-mono" style={{
-                      fontSize: 10, fontWeight: 600,
-                      letterSpacing: ".1em",
-                      padding: "4px 10px",
-                      background: `${person.color}12`,
-                      color: person.color,
-                      border: `1px solid ${person.color}30`,
-                      flexShrink: 0,
-                      marginLeft: 10,
-                    }}>
-                      {person.role}
-                    </span>
-                  </div>
-
-                  <div className="caption" style={{ color: "var(--steel-light)", marginBottom: 14, fontSize: 10 }}>
-                    {person.fullRole}
-                  </div>
-
-                  <p className="body-md" style={{ color: "var(--steel)", lineHeight: 1.75 }}>
+                {/* Info below photo */}
+                <div style={{ padding: "20px 24px 28px", textAlign: "center" }}>
+                  <h3 className="font-display" style={{
+                    fontSize: "clamp(17px,1.8vw,20px)",
+                    fontWeight: 700,
+                    color: "var(--ink)",
+                    lineHeight: 1.25,
+                    marginBottom: 12,
+                  }}>
+                    {person.name}
+                  </h3>
+                  <p className="body-md" style={{ color: "var(--steel)", lineHeight: 1.75, textAlign: "left" }}>
                     {person.bio}
                   </p>
                 </div>
