@@ -129,15 +129,15 @@ export default function AboutPage() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
-                {/* Colour top bar */}
-                <div style={{ height: 4, background: person.color }} />
+                {/* Crimson top bar — all cards */}
+                <div style={{ height: 4, background: "var(--crimson)" }} />
 
                 {/* Photo area */}
                 <div style={{
                   position: "relative",
                   width: "100%",
                   paddingBottom: "72%",
-                  background: "#f0f0ee",
+                  background: "#000",
                   overflow: "hidden",
                 }}>
                   <Image
@@ -146,7 +146,7 @@ export default function AboutPage() {
                     fill
                     style={{
                       objectFit: "cover",
-                      objectPosition: "center top",
+                      objectPosition: "center 15%",
                       transition: "transform .5s var(--ease-expo)",
                     }}
                     className="team-photo"
