@@ -3,12 +3,12 @@ import Link from "next/link";
 import { ArrowLeft, Shield, CheckCircle2, FileText, Award, AlertTriangle } from "lucide-react";
 
 const STANDARDS = [
-  { body:"NBSA",   full:"National Blood Service Agency",                              scope:"Primary federal regulatory body for blood banking in Nigeria. CrimsonWings operates in full alignment with NBSA frameworks, protocols, and national blood service standards.", color:"#CC0000" },
+  { body:"NBSA",   full:"National Blood Service Agency",                              scope:"Primary federal regulatory body for blood banking in Nigeria — formerly the National Blood Transfusion Service (NBTS). CrimsonWings operates in full alignment with NBSA frameworks, protocols, and national blood service standards.", color:"#CC0000" },
+  { body:"OSMOH",  full:"Ogun State Ministry of Health",                              scope:"Primary state-level regulatory partner. CrimsonWings headquarters and central operations are anchored in Ogun State, with full PPP framework compliance and operational licensing.", color:"#9333EA" },
   { body:"WHO",    full:"World Health Organisation",                                  scope:"WHO blood safety guidelines and global best practices for NAT screening, cold chain, and logistics.", color:"#006DB7" },
   { body:"ISO",    full:"ISO 15189 — Medical Laboratories",                           scope:"Quality management systems for medical laboratories, covering NAT screening operations.", color:"#C9A84C" },
   { body:"NAFDAC", full:"National Agency for Food & Drug Administration and Control", scope:"Blood product registration, facility licensing, and manufacturing standards compliance.", color:"#7A0000" },
   { body:"SMOH",   full:"Partner State Ministries of Health",                         scope:"Regulatory alignment across all nine partner states: Ogun, Edo, Bayelsa, Akwa Ibom, Delta, Rivers, Cross River, Ondo, and Lagos State.", color:"#22c55e" },
-  { body:"NBTS",   full:"National Blood Transfusion Service",                         scope:"Alignment with federal blood banking protocols, donor management, and reporting frameworks.", color:"#2F80ED" },
 ];
 
 const SAFETY_PILLARS = [
