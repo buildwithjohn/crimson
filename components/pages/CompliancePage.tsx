@@ -3,12 +3,12 @@ import Link from "next/link";
 import { ArrowLeft, Shield, CheckCircle2, FileText, Award, AlertTriangle } from "lucide-react";
 
 const STANDARDS = [
-  { body:"NAFDAC", full:"National Agency for Food & Drug Administration and Control", scope:"Blood product registration, facility licensing, and manufacturing standards compliance.", color:"#8A0303" },
-  { body:"NBTS",   full:"National Blood Transfusion Service",                         scope:"Alignment with federal blood banking protocols, donor management, and reporting frameworks.", color:"#2F80ED" },
+  { body:"NBSA",   full:"National Blood Service Agency",                              scope:"Primary federal regulatory body for blood banking in Nigeria. CrimsonWings operates in full alignment with NBSA frameworks, protocols, and national blood service standards.", color:"#CC0000" },
   { body:"WHO",    full:"World Health Organisation",                                  scope:"WHO blood safety guidelines and global best practices for NAT screening, cold chain, and logistics.", color:"#006DB7" },
   { body:"ISO",    full:"ISO 15189 — Medical Laboratories",                           scope:"Quality management systems for medical laboratories, covering NAT screening operations.", color:"#C9A84C" },
-  { body:"AABB",   full:"American Association of Blood Banks",                        scope:"International accreditation standards for blood banking and transfusion medicine.", color:"#22c55e" },
-  { body:"LMOH",   full:"Ogun State Ministry of Health",                             scope:"State-level regulatory alignment, PPP framework compliance, and operational licensing.", color:"#9333EA" },
+  { body:"NAFDAC", full:"National Agency for Food & Drug Administration and Control", scope:"Blood product registration, facility licensing, and manufacturing standards compliance.", color:"#7A0000" },
+  { body:"SMOH",   full:"Partner State Ministries of Health",                         scope:"Regulatory alignment across all nine partner states: Ogun, Edo, Bayelsa, Akwa Ibom, Delta, Rivers, Cross River, Ondo, and Lagos State.", color:"#22c55e" },
+  { body:"NBTS",   full:"National Blood Transfusion Service",                         scope:"Alignment with federal blood banking protocols, donor management, and reporting frameworks.", color:"#2F80ED" },
 ];
 
 const SAFETY_PILLARS = [
@@ -43,7 +43,7 @@ const SAFETY_PILLARS = [
   {
     icon: AlertTriangle,
     title: "Adverse Event Reporting",
-    desc: "Structured adverse event reporting aligned with NAFDAC and WHO haemovigilance frameworks — ensuring transparency, accountability, and continuous improvement.",
+    desc: "Structured adverse event reporting aligned with NBSA and WHO haemovigilance frameworks — ensuring transparency, accountability, and continuous improvement.",
     status: "Framework Ready",
     color: "#0EA5E9",
   },
