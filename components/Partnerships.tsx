@@ -6,18 +6,18 @@ import { Shield, Award, Globe } from "lucide-react";
    Real logos would be img tags pointing to /public/logos/xxx.svg
    These are authentic organisation abbreviations styled as mono badges     */
 const STAKEHOLDERS = [
-  { abbr:"LSMOH",  name:"Ogun State Ministry of Health",      color:"#1B5E20", type:"Government" },
-  { abbr:"FMOH",   name:"Federal Ministry of Health Nigeria",  color:"#1A237E", type:"Government" },
-  { abbr:"NBTS",   name:"National Blood Transfusion Service",  color:"#CC0000", type:"Clinical"   },
-  { abbr:"NAFDAC", name:"NAFDAC Nigeria",                      color:"#4A148C", type:"Regulatory" },
+  { abbr:"NBSA",   name:"National Blood Service Agency",       color:"#CC0000", type:"Federal"    },
   { abbr:"WHO",    name:"World Health Organisation",           color:"#006DB7", type:"Global"     },
-  { abbr:"ICRC",   name:"International Committee Red Cross",   color:"#C62828", type:"NGO"        },
-  { abbr:"LASUTH", name:"Lagos University Teaching Hospital",  color:"#01579B", type:"Hospital"   },
-  { abbr:"LUTH",   name:"Lagos University Teaching Hospital",  color:"#004D40", type:"Hospital"   },
+  { abbr:"FMOH",   name:"Federal Ministry of Health Nigeria",  color:"#1A237E", type:"Government" },
+  { abbr:"NAFDAC", name:"NAFDAC Nigeria",                      color:"#4A148C", type:"Regulatory" },
+  { abbr:"NBTS",   name:"National Blood Transfusion Service",  color:"#880000", type:"Clinical"   },
+  { abbr:"SMOH",   name:"Partner State Ministries of Health",  color:"#1B5E20", type:"Government" },
   { abbr:"NMA",    name:"Nigerian Medical Association",        color:"#33691E", type:"Medical"    },
+  { abbr:"LUTH",   name:"Lagos Univ. Teaching Hospital",       color:"#004D40", type:"Hospital"   },
+  { abbr:"AfDB",   name:"African Development Bank",            color:"#1565C0", type:"Finance"    },
   { abbr:"IFC",    name:"International Finance Corporation",   color:"#E65100", type:"Finance"    },
-  { abbr:"AfDB",   name:"African Development Bank",           color:"#1565C0", type:"Finance"    },
-  { abbr:"USAID",  name:"United States Agency for Int'l Dev", color:"#002868", type:"Aid"        },
+  { abbr:"ICRC",   name:"International Committee Red Cross",   color:"#C62828", type:"NGO"        },
+  { abbr:"USAID",  name:"United States Agency for Int'l Dev",  color:"#002868", type:"Aid"        },
 ];
 
 /* Double the array for seamless infinite marquee */
@@ -88,7 +88,7 @@ export default function Partnerships() {
             </p>
             <div className="reveal delay-3" style={{ display:"flex", flexDirection:"column", gap:20 }}>
               {[
-                { icon:Shield, title:"Regulatory Compliance", desc:"NAFDAC, WHO, and ISO-aligned protocols across all operations" },
+                { icon:Shield, title:"Regulatory Compliance", desc:"NBSA, WHO, and ISO-aligned protocols across all operations" },
                 { icon:Award,  title:"Clinical Leadership",   desc:"Expert leadership in transfusion medicine and medical logistics" },
                 { icon:Globe,  title:"PPP Framework Ready",   desc:"Structured for public-private partnership at state and federal level" },
               ].map(item => (
