@@ -24,22 +24,7 @@ export default function Technology() {
         backgroundSize: "48px 48px",
       }}/>
 
-      {/* Floating data numbers — faint background overlay */}
-      <div style={{ position:"absolute", inset:0, pointerEvents:"none", overflow:"hidden", zIndex:1 }}>
-        {DATA_FLOATS.map((val, i) => (
-          <div key={val} style={{
-            position:"absolute",
-            top: `${15 + i * 17}%`,
-            left: `${3 + (i % 2) * 55}%`,
-            fontFamily:"var(--font-mono)",
-            fontSize: "clamp(11px,1.2vw,14px)",
-            color:"rgba(204,0,0,.07)",
-            letterSpacing:".12em",
-            animation:`tech-data-fade 4s ease-in-out ${i*1.2}s infinite`,
-            userSelect:"none",
-          }}>{val}</div>
-        ))}
-      </div>
+</div>
 
       <div className="container" style={{ position:"relative", zIndex:2 }}>
 
