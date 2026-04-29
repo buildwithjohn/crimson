@@ -484,95 +484,104 @@ export default function Technology() {
         </div>
 
 
-        {/* ══ TECHNOLOGY OVERVIEW VIDEO ════════════════════════════════════ */}
+        {/* ══ TECHNOLOGY OVERVIEW VIDEO — PRESENTATIONAL LOOP ══════════════ */}
         <div className="reveal" style={{
-          marginBottom:"clamp(40px,5vw,64px)",
+          marginBottom:"clamp(48px,6vw,80px)",
           transitionDelay:".2s",
         }}>
-          {/* Header */}
-          <div style={{
-            display:"flex", alignItems:"center", justifyContent:"space-between",
-            marginBottom:16, flexWrap:"wrap", gap:12,
-          }}>
-            <div>
-              <h3 className="font-display" style={{
-                fontSize:"clamp(20px,2.5vw,28px)", fontWeight:700,
-                color:"var(--ink)", marginBottom:4,
-              }}>
-                See the Full System in Action
-              </h3>
-              <p className="body-md" style={{ color:"var(--steel)" }}>
-                End-to-end automation — from donor intake to patient delivery in 60 seconds.
-              </p>
-            </div>
-            <div style={{
-              display:"flex", alignItems:"center", gap:8,
-              padding:"8px 16px",
-              background:"rgba(204,0,0,.07)",
-              border:"1px solid rgba(204,0,0,.2)",
-            }}>
-              <div style={{ width:8, height:8, borderRadius:"50%", background:"var(--crimson)", animation:"tech-node-glow 1.5s ease-in-out infinite" }}/>
-              <span className="caption" style={{ color:"var(--crimson)", fontSize:10 }}>7 Steps · 64 Seconds</span>
-            </div>
-          </div>
-
-          {/* Video player */}
+          {/* Video — no controls, autoplay loop, fullwidth cinematic */}
           <div style={{
             position:"relative",
-            borderRadius:12,
-            overflow:"hidden",
-            border:"2px solid rgba(204,0,0,.2)",
-            boxShadow:"0 8px 48px rgba(0,0,0,.12), 0 2px 16px rgba(204,0,0,.08)",
             background:"#000",
+            overflow:"hidden",
+            boxShadow:"0 24px 80px rgba(0,0,0,.35), 0 4px 24px rgba(204,0,0,.12)",
           }}>
-            {/* Crimson top bar */}
+            {/* Thin crimson top line */}
             <div style={{
-              position:"absolute", top:0, left:0, right:0, height:4, zIndex:2,
+              position:"absolute", top:0, left:0, right:0, height:3, zIndex:3,
               background:"linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))",
             }}/>
 
             <video
-              controls
+              autoPlay
+              muted
+              loop
               playsInline
-              preload="metadata"
-              poster="/tech-dispatch.jpg"
+              preload="auto"
               style={{
                 width:"100%",
                 display:"block",
-                maxHeight:"540px",
-                objectFit:"contain",
-                background:"#000",
+                maxHeight:"580px",
+                objectFit:"cover",
               }}
             >
               <source src="/tech-overview.mp4" type="video/mp4"/>
-              Your browser does not support the video tag.
             </video>
+
+            {/* Subtle vignette overlay — deepens edges like a cinema screen */}
+            <div style={{
+              position:"absolute", inset:0, zIndex:2, pointerEvents:"none",
+              background:"radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%)",
+            }}/>
           </div>
 
-          {/* Caption */}
+          {/* Explanation below — clean, minimal */}
           <div style={{
-            display:"flex", justifyContent:"center", gap:"clamp(16px,4vw,48px)",
-            marginTop:16, flexWrap:"wrap",
-          }}>
-            {[
-              "Sample Intake","Automated Sorting","Centrifugation",
-              "Vertical Transport","Diagnostics","Smart Archiving","Delivery",
-            ].map((label, i) => (
-              <div key={label} style={{ display:"flex", alignItems:"center", gap:6 }}>
-                <div style={{
-                  width:18, height:18, borderRadius:"50%",
-                  background:"rgba(204,0,0,.1)",
-                  border:"1px solid rgba(204,0,0,.3)",
-                  display:"flex", alignItems:"center", justifyContent:"center",
-                  flexShrink:0,
-                }}>
-                  <span className="font-mono" style={{ fontSize:7, fontWeight:700, color:"var(--crimson)" }}>
-                    {String(i+1).padStart(2,"0")}
-                  </span>
-                </div>
-                <span className="caption" style={{ fontSize:9, color:"var(--steel-light)" }}>{label}</span>
+            background:"var(--ink)",
+            padding:"clamp(28px,4vw,44px) clamp(24px,4vw,48px)",
+            display:"grid",
+            gap:"clamp(20px,3vw,32px)",
+          }} className="video-caption-grid">
+
+            {/* Left — headline */}
+            <div>
+              <div className="caption" style={{ color:"var(--crimson)", marginBottom:10, fontSize:10 }}>
+                System Overview
               </div>
-            ))}
+              <h3 className="font-display" style={{
+                fontSize:"clamp(20px,2.5vw,30px)", fontWeight:700,
+                color:"#fff", lineHeight:1.25, marginBottom:12,
+              }}>
+                One Continuous System.{" "}
+                <em style={{ color:"var(--crimson)" }}>No Breaks. No Delays.</em>
+              </h3>
+              <p style={{ fontSize:16, color:"rgba(255,255,255,.6)", lineHeight:1.75 }}>
+                From the moment blood is collected to the second it reaches a patient —
+                CrimsonWings operates as a single, uninterrupted automated pipeline.
+                Seven stages. Zero manual gaps.
+              </p>
+            </div>
+
+            {/* Right — 7 step pills */}
+            <div style={{ display:"flex", flexDirection:"column", gap:8, justifyContent:"center" }}>
+              {[
+                {n:"01", label:"Sample Receiving",      punch:"Zero friction intake"},
+                {n:"02", label:"Automated Sorting",     punch:"BLIM pre-analytics"},
+                {n:"03", label:"Centrifugation",        punch:"p671 sample prep"},
+                {n:"04", label:"Vertical Transport",    punch:"CCM floor-to-floor"},
+                {n:"05", label:"Diagnostic Engine",     punch:"e801 + cobas 8800"},
+                {n:"06", label:"Smart Archiving",       punch:"p701 traceable storage"},
+                {n:"07", label:"Dispatch & Delivery",   punch:"≤60 min to patient"},
+              ].map(s => (
+                <div key={s.n} style={{
+                  display:"flex", alignItems:"center", gap:12,
+                  padding:"8px 14px",
+                  background:"rgba(255,255,255,.04)",
+                  border:"1px solid rgba(255,255,255,.07)",
+                  transition:"background .2s",
+                }}
+                  onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(204,0,0,.12)"}
+                  onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.04)"}
+                >
+                  <span className="font-mono" style={{
+                    fontSize:9, fontWeight:700, color:"var(--crimson)",
+                    flexShrink:0, width:20,
+                  }}>{s.n}</span>
+                  <span style={{ fontSize:13, fontWeight:600, color:"#fff", flex:1 }}>{s.label}</span>
+                  <span className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.35)", textAlign:"right" }}>{s.punch}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
