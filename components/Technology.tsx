@@ -483,6 +483,99 @@ export default function Technology() {
           </div>
         </div>
 
+
+        {/* ══ TECHNOLOGY OVERVIEW VIDEO ════════════════════════════════════ */}
+        <div className="reveal" style={{
+          marginBottom:"clamp(40px,5vw,64px)",
+          transitionDelay:".2s",
+        }}>
+          {/* Header */}
+          <div style={{
+            display:"flex", alignItems:"center", justifyContent:"space-between",
+            marginBottom:16, flexWrap:"wrap", gap:12,
+          }}>
+            <div>
+              <h3 className="font-display" style={{
+                fontSize:"clamp(20px,2.5vw,28px)", fontWeight:700,
+                color:"var(--ink)", marginBottom:4,
+              }}>
+                See the Full System in Action
+              </h3>
+              <p className="body-md" style={{ color:"var(--steel)" }}>
+                End-to-end automation — from donor intake to patient delivery in 60 seconds.
+              </p>
+            </div>
+            <div style={{
+              display:"flex", alignItems:"center", gap:8,
+              padding:"8px 16px",
+              background:"rgba(204,0,0,.07)",
+              border:"1px solid rgba(204,0,0,.2)",
+            }}>
+              <div style={{ width:8, height:8, borderRadius:"50%", background:"var(--crimson)", animation:"tech-node-glow 1.5s ease-in-out infinite" }}/>
+              <span className="caption" style={{ color:"var(--crimson)", fontSize:10 }}>7 Steps · 64 Seconds</span>
+            </div>
+          </div>
+
+          {/* Video player */}
+          <div style={{
+            position:"relative",
+            borderRadius:12,
+            overflow:"hidden",
+            border:"2px solid rgba(204,0,0,.2)",
+            boxShadow:"0 8px 48px rgba(0,0,0,.12), 0 2px 16px rgba(204,0,0,.08)",
+            background:"#000",
+          }}>
+            {/* Crimson top bar */}
+            <div style={{
+              position:"absolute", top:0, left:0, right:0, height:4, zIndex:2,
+              background:"linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))",
+            }}/>
+
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              poster="/tech-dispatch.jpg"
+              style={{
+                width:"100%",
+                display:"block",
+                maxHeight:"540px",
+                objectFit:"contain",
+                background:"#000",
+              }}
+            >
+              <source src="/tech-overview.mp4" type="video/mp4"/>
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          {/* Caption */}
+          <div style={{
+            display:"flex", justifyContent:"center", gap:"clamp(16px,4vw,48px)",
+            marginTop:16, flexWrap:"wrap",
+          }}>
+            {[
+              "Sample Intake","Automated Sorting","Centrifugation",
+              "Vertical Transport","Diagnostics","Smart Archiving","Delivery",
+            ].map((label, i) => (
+              <div key={label} style={{ display:"flex", alignItems:"center", gap:6 }}>
+                <div style={{
+                  width:18, height:18, borderRadius:"50%",
+                  background:"rgba(204,0,0,.1)",
+                  border:"1px solid rgba(204,0,0,.3)",
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                  flexShrink:0,
+                }}>
+                  <span className="font-mono" style={{ fontSize:7, fontWeight:700, color:"var(--crimson)" }}>
+                    {String(i+1).padStart(2,"0")}
+                  </span>
+                </div>
+                <span className="caption" style={{ fontSize:9, color:"var(--steel-light)" }}>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* ══ CLOSING STATEMENT ══════════════════════════════════════════ */}
         <div className="reveal" style={{
           textAlign:"center",
