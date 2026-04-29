@@ -1,6 +1,37 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { useReveal } from "./useReveal";
 import { Shield, Zap, Network } from "lucide-react";
+
+function VideoPlayer() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.playsInline = true;
+    v.loop = true;
+    v.play().catch(() => {
+      // Autoplay blocked — try again on first user interaction
+      const resume = () => { v.play(); document.removeEventListener("click", resume); };
+      document.addEventListener("click", resume);
+    });
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      muted
+      loop
+      playsInline
+      preload="auto"
+      style={{ width: "100%", display: "block", maxHeight: "580px", objectFit: "cover" }}
+    >
+      <source src="/tech-vid-v2.mp4" type="video/mp4"/>
+    </video>
+  );
+}
 
 export default function Technology() {
   const ref = useReveal();
@@ -57,16 +88,7 @@ export default function Technology() {
               background: "linear-gradient(90deg, var(--crimson), #2F80ED, var(--crimson))",
             }}/>
 
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              style={{ width: "100%", display: "block", maxHeight: "580px", objectFit: "cover" }}
-            >
-              <source src="/tech-overview.mp4" type="video/mp4"/>
-            </video>
+            <VideoPlayer/>
 
             {/* Vignette overlay */}
             <div style={{
