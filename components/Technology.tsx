@@ -2,66 +2,198 @@
 import { useReveal } from "./useReveal";
 import { Shield, Zap, Network } from "lucide-react";
 
-const STEPS = [
-  {
-    num: "01",
-    label: "Sample Receiving",
-    sublabel: "SAMPLE INTAKE",
-    sub: "Controlled intake from Large Donor Drive",
-    punch: "Direct Donor Drive intake. Zero friction.",
-    special: null,
-  },
-  {
-    num: "02",
-    label: "Automated Sorting (BLIM)",
-    sublabel: "PRE-ANALYTICS AUTOMATION",
-    sub: "Labeling · Routing · Tracking",
-    punch: "Pre-analytics fully automated.",
-    special: null,
-  },
-  {
-    num: "03",
-    label: "Double Centrifuge / Aliquot (p671 / p612)",
-    sublabel: "CENTRIFUGATION CORE",
-    sub: "Standardized sample prep",
-    punch: "Standardized sample integrity at scale.",
-    special: null,
-  },
-  {
-    num: "04",
-    label: "CCM Vertical Flow",
-    sublabel: "VERTICAL TRANSPORT SYSTEM",
-    sub: "Floor-to-floor automation",
-    punch: "No manual transfer. Continuous vertical flow.",
-    special: "conveyor",
-  },
-  {
-    num: "05",
-    label: "e801 + cobas 6800",
-    sublabel: "DIAGNOSTIC ENGINE",
-    sub: "Immunoassay + NAT screening",
-    punch: "Dual-layer diagnostics: serology + molecular.",
-    special: "analyzer",
-  },
-  {
-    num: "06",
-    label: "Automated Archiving / Storage (p701)",
-    sublabel: "SMART ARCHIVING",
-    sub: "Traceable sample retention",
-    punch: "Every sample tracked. Nothing lost.",
-    special: null,
-  },
-  {
-    num: "07",
-    label: "Delivery Intelligence (Dispatch & Delivery)",
-    sublabel: "DELIVERY INTELLIGENCE",
-    sub: "≤60 min emergency response",
-    punch: "From vein to patient in under 60 minutes.",
-    special: "drone",
-  },
-];
-
 const FLOW_NODES = ["Sample", "Conveyor", "Analyzer", "Storage", "Delivery"];
+
+
+/* ── Compact 3D Flow Chart — exactly per CEO sketch ──────────────────────
+   Left: 7 diamond-shaped step nodes connected by animated line + arrows
+   Right: punchlines aligned to each step
+   Top: "One continuous system. No breaks. No delays."
+   Animations: pulse line, traveling particles, conveyor (step4), analyzer rings (step5), drone trail (step7)
+──────────────────────────────────────────────────────────────────────── */
+function TechFlowChart() {
+  const steps = [
+    { n:"01", emoji:"🩸", label:"Sample Receiving",                  sub:"Controlled intake from Donor Drives",  punch:"Direct Donor Drive intake. Zero friction.",              special:null        },
+    { n:"02", emoji:"⚙️", label:"Automated Sorting (BLIM)",          sub:"Labeling · Routing · Tracking",        punch:"Pre-analytics fully automated.",                         special:null        },
+    { n:"03", emoji:"🔄", label:"Double Centrifuge / Aliquot",       sub:"p671 / p612 · Standardized sample prep", punch:"Standardized sample integrity at scale.",              special:null        },
+    { n:"04", emoji:"🏗️", label:"CCM Vertical Flow",                 sub:"Floor-to-floor automation",            punch:"No manual transfer. Continuous vertical flow.",          special:"conveyor"  },
+    { n:"05", emoji:"🧬", label:"e801 + cobas 6800",                 sub:"Immunoassay + NAT screening",          punch:"Dual-layer diagnostics: serology + molecular.",          special:"analyzer"  },
+    { n:"06", emoji:"🗄️", label:"Automated Archiving / Storage",     sub:"p701 · Traceable sample retention",   punch:"Every sample tracked. Nothing lost.",                    special:null        },
+    { n:"07", emoji:"🚁", label:"Delivery Intelligence",             sub:"Dispatch & Delivery · ≤60 min",        punch:"From vein to patient in under 60 minutes.",             special:"drone"     },
+  ];
+
+  return (
+    <div style={{ background:"var(--white)", border:"1px solid rgba(204,0,0,.1)", borderRadius:16, overflow:"hidden" }}>
+
+      {/* Header bar */}
+      <div style={{ background:"var(--ink)", padding:"14px 24px", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:10, position:"relative" }}>
+        <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(90deg,#CC0000,#2F80ED,#CC0000)" }}/>
+        <p className="font-display" style={{ fontSize:"clamp(14px,1.6vw,18px)", fontWeight:700, color:"#fff", margin:0 }}>
+          One continuous system.{" "}
+          <em style={{ color:"#CC0000" }}>No breaks. No delays.</em>
+        </p>
+        <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+          <div style={{ width:7, height:7, borderRadius:"50%", background:"#22c55e", boxShadow:"0 0 6px #22c55e", animation:"t-blink 1.8s ease-in-out infinite" }}/>
+          <span className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.45)", letterSpacing:".14em" }}>7 STEPS · AUTOMATED</span>
+        </div>
+      </div>
+
+      {/* Two-column grid */}
+      <div style={{ display:"grid", gap:0 }} className="tfc-grid">
+
+        {/* LEFT — flow nodes */}
+        <div style={{ padding:"clamp(16px,2.5vw,28px) clamp(12px,2vw,24px)", borderRight:"1px solid rgba(204,0,0,.08)", position:"relative" }}>
+
+          {/* Vertical spine */}
+          <div style={{
+            position:"absolute", left:"clamp(28px,4vw,40px)", top:20, bottom:20,
+            width:2, background:"rgba(204,0,0,.08)", overflow:"hidden",
+          }}>
+            <div style={{
+              position:"absolute", left:0, right:0, height:"28%",
+              background:"linear-gradient(to bottom,transparent,#CC0000,transparent)",
+              animation:"t-pulse-down 2s ease-in-out infinite",
+            }}/>
+          </div>
+
+          {steps.map((step, i) => (
+            <div key={step.n}>
+              {/* Step node */}
+              <div style={{
+                display:"flex", alignItems:"center", gap:12,
+                animation:`t-fadein .4s ease-out ${i*.06}s both`,
+                position:"relative", zIndex:1,
+              }}>
+
+                {/* Diamond icon — 3D rotated square */}
+                <div style={{
+                  width:44, height:44, flexShrink:0,
+                  background: i===0||i===6 ? "#CC0000" : "#fff",
+                  border:`2px solid ${i===0||i===6?"#CC0000":"rgba(204,0,0,.3)"}`,
+                  transform:"rotate(45deg)",
+                  display:"flex", alignItems:"center", justifyContent:"center",
+                  boxShadow: i===0||i===6
+                    ? "4px 4px 0 rgba(180,0,0,.25), -1px -1px 0 rgba(255,100,100,.2)"
+                    : "3px 3px 0 rgba(204,0,0,.12), -1px -1px 0 rgba(255,255,255,.8)",
+                  transition:"transform .2s, box-shadow .2s",
+                  position:"relative", overflow:"hidden",
+                  cursor:"default",
+                }}
+                  onMouseEnter={e=>{
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform="rotate(45deg) scale(1.12)";
+                    el.style.boxShadow="5px 5px 0 rgba(204,0,0,.3), 0 0 16px rgba(204,0,0,.2)";
+                  }}
+                  onMouseLeave={e=>{
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.transform="rotate(45deg)";
+                    el.style.boxShadow=i===0||i===6?"4px 4px 0 rgba(180,0,0,.25)":"3px 3px 0 rgba(204,0,0,.12)";
+                  }}
+                >
+                  {/* Analyzer rings */}
+                  {step.special==="analyzer" && (
+                    <>
+                      <div style={{ position:"absolute", inset:0, border:"2px solid rgba(204,0,0,.5)", animation:"t-ring 1.4s ease-out infinite", transform:"rotate(-45deg)" }}/>
+                      <div style={{ position:"absolute", inset:6, border:"1px solid rgba(204,0,0,.3)", animation:"t-ring 1.4s ease-out .4s infinite", transform:"rotate(-45deg)" }}/>
+                    </>
+                  )}
+                  <div style={{ transform:"rotate(-45deg)", fontSize:16, lineHeight:1, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                    <span style={{ color: i===0||i===6?"#fff":"inherit" }}>{step.emoji}</span>
+                  </div>
+                </div>
+
+                {/* Text */}
+                <div style={{ flex:1, minWidth:0 }}>
+                  <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:2 }}>
+                    <span className="font-mono" style={{ fontSize:8, fontWeight:700, color:"#CC0000" }}>{step.n}</span>
+                    <div style={{ flex:1, height:"1px", background:"rgba(204,0,0,.1)" }}/>
+                  </div>
+                  <div className="font-display" style={{ fontSize:"clamp(11px,1.2vw,13px)", fontWeight:700, color:"var(--ink)", lineHeight:1.3, marginBottom:2 }}>
+                    {step.label}
+                  </div>
+                  <div style={{ fontSize:10, color:"var(--steel-light)", lineHeight:1.4 }}>
+                    {step.sub}
+                  </div>
+                  {/* Conveyor */}
+                  {step.special==="conveyor" && (
+                    <div style={{ marginTop:5, height:4, borderRadius:2, overflow:"hidden", background:"rgba(204,0,0,.06)" }}>
+                      <div style={{ height:"100%", background:"repeating-linear-gradient(90deg,rgba(204,0,0,.5) 0,rgba(204,0,0,.5) 6px,transparent 6px,transparent 12px)", animation:"t-conveyor .8s linear infinite" }}/>
+                    </div>
+                  )}
+                  {/* Drone */}
+                  {step.special==="drone" && (
+                    <div style={{ marginTop:4, display:"flex", alignItems:"center", gap:5 }}>
+                      <span style={{ fontSize:11, animation:"t-drone 2.5s ease-in-out infinite" }}>🚁</span>
+                      <div style={{ flex:1, height:1, background:"linear-gradient(to right,rgba(204,0,0,.5),transparent)", animation:"t-trail 2.5s ease-in-out infinite" }}/>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Arrow connector */}
+              {i < steps.length-1 && (
+                <div style={{ display:"flex", alignItems:"center", paddingLeft:"clamp(16px,3.5vw,32px)", margin:"4px 0", gap:4, position:"relative", zIndex:1 }}>
+                  <div style={{
+                    width:8, height:8, borderRadius:"50%",
+                    background:"#CC0000", boxShadow:"0 0 6px rgba(204,0,0,.7)",
+                    animation:`t-particle ${1.8-i*.15}s ease-in-out ${i*.25}s infinite`,
+                    flexShrink:0,
+                  }}/>
+                  <div style={{
+                    width:0, height:0,
+                    borderLeft:"5px solid transparent",
+                    borderRight:"5px solid transparent",
+                    borderTop:`7px solid rgba(204,0,0,${i===3?.7:.3})`,
+                    transform: i===3?"scale(1.3)":"none",
+                    animation:"t-arrow 1.4s ease-in-out infinite",
+                    animationDelay:`${i*.12}s`,
+                  }}/>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* RIGHT — punchlines */}
+        <div style={{ padding:"clamp(16px,2.5vw,28px) clamp(12px,2vw,24px)", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
+          {steps.map((step, i) => (
+            <div key={step.n} style={{
+              flex:1,
+              display:"flex", alignItems:"center", gap:10,
+              padding:"clamp(6px,1vw,10px) 0",
+              borderBottom: i<steps.length-1?"1px solid rgba(204,0,0,.06)":"none",
+              animation:`t-fadein .4s ease-out ${i*.07}s both`,
+            }}>
+              <div style={{
+                width:22, height:22, borderRadius:"50%", flexShrink:0,
+                background:"rgba(204,0,0,.07)", border:"1px solid rgba(204,0,0,.18)",
+                display:"flex", alignItems:"center", justifyContent:"center",
+              }}>
+                <span className="font-mono" style={{ fontSize:8, fontWeight:700, color:"#CC0000" }}>{i+1}</span>
+              </div>
+              <p className="font-display" style={{ fontSize:"clamp(11px,1.1vw,13px)", fontWeight:600, color:"var(--ink)", lineHeight:1.4, margin:0 }}>
+                {step.punch}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        @media(min-width:640px){ .tfc-grid{ grid-template-columns:1fr 1fr !important; } }
+        @keyframes t-blink      { 0%,100%{opacity:1} 50%{opacity:.2} }
+        @keyframes t-pulse-down { 0%{top:-28%} 100%{top:110%} }
+        @keyframes t-fadein     { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+        @keyframes t-particle   { 0%{opacity:0;transform:translateY(-4px)} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;transform:translateY(14px)} }
+        @keyframes t-arrow      { 0%,100%{opacity:.3;transform:translateY(0)} 50%{opacity:1;transform:translateY(3px)} }
+        @keyframes t-ring       { 0%{transform:rotate(-45deg) scale(1);opacity:.7} 100%{transform:rotate(-45deg) scale(1.7);opacity:0} }
+        @keyframes t-conveyor   { from{background-position:0 0} to{background-position:24px 0} }
+        @keyframes t-drone      { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(8px) translateY(-2px)} }
+        @keyframes t-trail      { 0%,100%{opacity:.3} 50%{opacity:.65} }
+      `}</style>
+    </div>
+  );
+}
 
 export default function Technology() {
   const ref = useReveal();
@@ -102,206 +234,9 @@ export default function Technology() {
           </p>
         </div>
 
-        {/* ══ MICRO HEADER ══ */}
-        <div className="reveal" style={{
-          background:"var(--ink)",
-          padding:"clamp(16px,2vw,22px) clamp(20px,3vw,36px)",
-          marginBottom:"clamp(32px,4vw,52px)",
-          display:"flex", alignItems:"center", justifyContent:"center",
-          position:"relative", overflow:"hidden",
-          transitionDelay:".1s",
-        }}>
-          <div style={{ position:"absolute", top:0, left:0, right:0, height:3, background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))" }}/>
-          <p className="font-display" style={{ fontSize:"clamp(16px,1.8vw,22px)", fontWeight:700, color:"#fff", textAlign:"center", margin:0 }}>
-            One continuous system.{" "}
-            <em style={{ color:"var(--crimson)" }}>No breaks. No delays.</em>
-          </p>
-        </div>
-
-        {/* ══ 2-COLUMN MAIN LAYOUT ══ */}
-        <div style={{ display:"grid", gap:"clamp(24px,4vw,56px)", alignItems:"start", marginBottom:"clamp(40px,5vw,64px)" }} className="tech-grid">
-
-          {/* ── LEFT: 7-step vertical flow ── */}
-          <div style={{ position:"relative" }}>
-
-            {/* Animated vertical connecting line */}
-            <div style={{
-              position:"absolute", left:22, top:28, bottom:28,
-              width:2, background:"rgba(204,0,0,.1)", overflow:"hidden", zIndex:0,
-            }}>
-              <div style={{
-                position:"absolute", left:0, right:0, height:"30%",
-                background:"linear-gradient(to bottom, transparent, #CC0000, transparent)",
-                animation:"t-pulse-down 2.2s ease-in-out infinite",
-              }}/>
-            </div>
-
-            <div style={{ display:"flex", flexDirection:"column", gap:0 }}>
-              {STEPS.map((step, i) => (
-                <div key={step.num}>
-                  {/* Card */}
-                  <div className="reveal" style={{ transitionDelay:`${i*.07}s`, position:"relative", zIndex:1 }}>
-                    <div style={{
-                      display:"flex", alignItems:"center", gap:14,
-                      background:"#fff",
-                      borderRadius:14,
-                      boxShadow:"0 2px 14px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04)",
-                      padding:"clamp(12px,1.5vw,16px) clamp(14px,1.8vw,20px)",
-                      border:"1px solid rgba(204,0,0,.07)",
-                      transition:"transform .22s, box-shadow .22s, border-color .22s",
-                      cursor:"default",
-                    }}
-                      onMouseEnter={e=>{
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.transform="translateY(-2px) scale(1.01)";
-                        el.style.boxShadow="0 8px 28px rgba(204,0,0,.13), 0 2px 8px rgba(0,0,0,.05)";
-                        el.style.borderColor="rgba(204,0,0,.28)";
-                        const ic = el.querySelector(".t-icon") as HTMLElement;
-                        if(ic){ic.style.background="rgba(204,0,0,.14)";ic.style.boxShadow="0 0 14px rgba(204,0,0,.35)";}
-                      }}
-                      onMouseLeave={e=>{
-                        const el = e.currentTarget as HTMLElement;
-                        el.style.transform="none";
-                        el.style.boxShadow="0 2px 14px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04)";
-                        el.style.borderColor="rgba(204,0,0,.07)";
-                        const ic = el.querySelector(".t-icon") as HTMLElement;
-                        if(ic){ic.style.background="rgba(204,0,0,.07)";ic.style.boxShadow="none";}
-                      }}
-                    >
-                      {/* Icon circle */}
-                      <div className="t-icon" style={{
-                        width:46, height:46, borderRadius:"50%", flexShrink:0,
-                        background:"rgba(204,0,0,.07)",
-                        border:"1.5px solid rgba(204,0,0,.15)",
-                        display:"flex", flexDirection:"column",
-                        alignItems:"center", justifyContent:"center",
-                        transition:"background .22s, box-shadow .22s",
-                        position:"relative", overflow:"hidden", zIndex:1,
-                      }}>
-                        {/* Analyzer rings — step 5 */}
-                        {step.special === "analyzer" && (
-                          <>
-                            <div style={{ position:"absolute", inset:0, borderRadius:"50%", border:"2px solid rgba(204,0,0,.45)", animation:"t-ring 1.4s ease-out infinite" }}/>
-                            <div style={{ position:"absolute", inset:5, borderRadius:"50%", border:"1px solid rgba(204,0,0,.25)", animation:"t-ring 1.4s ease-out .4s infinite" }}/>
-                          </>
-                        )}
-                        <span style={{ fontSize:16, lineHeight:1 }}>
-                          {["🩸","⚙️","🔄","🏗️","🧬","🗄️","🚁"][i]}
-                        </span>
-                        <span className="font-mono" style={{ fontSize:7, color:"rgba(204,0,0,.6)", marginTop:1 }}>{step.num}</span>
-                      </div>
-
-                      {/* Text */}
-                      <div style={{ flex:1, minWidth:0 }}>
-                        <div className="caption" style={{ color:"rgba(204,0,0,.5)", fontSize:8, marginBottom:2, letterSpacing:".12em" }}>
-                          {step.sublabel}
-                        </div>
-                        <div className="font-display" style={{
-                          fontSize:"clamp(12px,1.3vw,14px)", fontWeight:700,
-                          color:"var(--ink)", lineHeight:1.25, marginBottom:3,
-                        }}>
-                          {step.label}
-                        </div>
-                        <div style={{ fontSize:11, color:"var(--steel-light)", lineHeight:1.4 }}>
-                          {step.sub}
-                        </div>
-
-                        {/* Conveyor belt — step 4 */}
-                        {step.special === "conveyor" && (
-                          <div style={{ marginTop:6, height:5, background:"rgba(204,0,0,.06)", borderRadius:3, overflow:"hidden" }}>
-                            <div style={{
-                              position:"relative", height:"100%",
-                              background:"repeating-linear-gradient(90deg,rgba(204,0,0,.45) 0,rgba(204,0,0,.45) 7px,transparent 7px,transparent 14px)",
-                              animation:"t-conveyor .9s linear infinite",
-                            }}/>
-                          </div>
-                        )}
-
-                        {/* Drone trail — step 7 */}
-                        {step.special === "drone" && (
-                          <div style={{ marginTop:5, display:"flex", alignItems:"center", gap:6 }}>
-                            <span style={{ fontSize:13, animation:"t-drone 2.5s ease-in-out infinite" }}>🚁</span>
-                            <div style={{ flex:1, height:1, background:"linear-gradient(to right, rgba(204,0,0,.5), transparent)", animation:"t-trail 2.5s ease-in-out infinite" }}/>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Activity bars */}
-                      <div style={{ flexShrink:0, display:"flex", gap:2, alignItems:"flex-end" }}>
-                        {[3,5,4].map((h,j)=>(
-                          <div key={j} style={{
-                            width:3, height:h+2,
-                            background:"rgba(204,0,0,.3)", borderRadius:2,
-                            animation:`t-bar 1s ease-in-out ${j*.15+i*.04}s infinite`,
-                          }}/>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Arrow + particle between steps */}
-                  {i < STEPS.length-1 && (
-                    <div style={{
-                      display:"flex", flexDirection:"column", alignItems:"flex-start",
-                      paddingLeft:22, margin:"3px 0", gap:1, position:"relative", zIndex:1,
-                    }}>
-                      <div style={{
-                        width:8, height:8, borderRadius:"50%",
-                        background:"#CC0000", boxShadow:"0 0 7px rgba(204,0,0,.8)",
-                        animation:`t-particle 2.2s ease-in-out ${i*.28}s infinite`,
-                        animationDuration:`${2.2-i*.18}s`,
-                      }}/>
-                      <div style={{
-                        width:0, height:0,
-                        borderLeft:`5px solid transparent`,
-                        borderRight:`5px solid transparent`,
-                        borderTop:`7px solid rgba(204,0,0,${i===3?.6:.32})`,
-                        transform: i===3 ? "scale(1.25)" : "none",
-                        animation:"t-arrow 1.5s ease-in-out infinite",
-                        animationDelay:`${i*.14}s`,
-                      }}/>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── RIGHT: punchlines ── */}
-          <div style={{ display:"flex", flexDirection:"column", gap:0, paddingTop:"clamp(4px,1vw,20px)" }}>
-            {STEPS.map((step, i) => (
-              <div key={step.num}>
-                <div className="reveal" style={{
-                  transitionDelay:`${i*.08}s`,
-                  display:"flex", alignItems:"center", gap:12,
-                  padding:"clamp(12px,1.5vw,16px) clamp(14px,1.8vw,20px)",
-                  background: i%2===0 ? "#fff" : "rgba(204,0,0,.018)",
-                  borderRadius:12,
-                  border:"1px solid rgba(204,0,0,.065)",
-                  transition:"background .2s, border-color .2s",
-                  cursor:"default",
-                }}
-                  onMouseEnter={e=>{(e.currentTarget as HTMLElement).style.background="rgba(204,0,0,.05)";(e.currentTarget as HTMLElement).style.borderColor="rgba(204,0,0,.2)";}}
-                  onMouseLeave={e=>{(e.currentTarget as HTMLElement).style.background=i%2===0?"#fff":"rgba(204,0,0,.018)";(e.currentTarget as HTMLElement).style.borderColor="rgba(204,0,0,.065)";}}
-                >
-                  <div style={{
-                    flexShrink:0, width:28, height:28, borderRadius:"50%",
-                    background:"rgba(204,0,0,.08)", border:"1.5px solid rgba(204,0,0,.2)",
-                    display:"flex", alignItems:"center", justifyContent:"center",
-                  }}>
-                    <span className="font-mono" style={{ fontSize:9, fontWeight:700, color:"var(--crimson)" }}>{i+1}</span>
-                  </div>
-                  <p className="font-display" style={{
-                    fontSize:"clamp(12px,1.2vw,14px)", fontWeight:600,
-                    color:"var(--ink)", lineHeight:1.4, margin:0,
-                  }}>
-                    {step.punch}
-                  </p>
-                </div>
-                {i < STEPS.length-1 && <div style={{ height:8 }}/>}
-              </div>
-            ))}
-          </div>
+        {/* ══ FLOW CHART — 2-column grid ══ */}
+        <div className="reveal" style={{ marginBottom:"clamp(36px,5vw,56px)", transitionDelay:".1s" }}>
+          <TechFlowChart/>
         </div>
 
         {/* ══ MOVING ANIMATION STRIP — Sample → Conveyor → Analyzer → Storage → Delivery ══ */}
@@ -410,21 +345,7 @@ export default function Technology() {
 
       </div>
 
-      <style>{`
-        @media(min-width:900px){ .tech-grid{ grid-template-columns:1fr 1fr !important; } }
-        @keyframes t-pulse-down  { 0%{top:-30%} 100%{top:110%} }
-        @keyframes t-arrow       { 0%,100%{opacity:.32;transform:translateY(0)} 50%{opacity:1;transform:translateY(3px)} }
-        @keyframes t-arrow-r     { 0%,100%{opacity:.55;transform:translateY(-50%)} 50%{opacity:1;transform:translateY(-50%) translateX(3px)} }
-        @keyframes t-particle    { 0%{opacity:0;transform:translateY(-5px)} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0;transform:translateY(18px)} }
-        @keyframes t-bar         { 0%,100%{transform:scaleY(1);opacity:.4} 50%{transform:scaleY(1.9);opacity:1} }
-        @keyframes t-ring        { 0%{transform:scale(1);opacity:.7} 100%{transform:scale(1.65);opacity:0} }
-        @keyframes t-conveyor    { from{background-position:0 0} to{background-position:28px 0} }
-        @keyframes t-drone       { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(10px) translateY(-3px)} }
-        @keyframes t-trail       { 0%,100%{opacity:.3} 50%{opacity:.7} }
-        @keyframes t-glow        { 0%,100%{box-shadow:0 0 0 rgba(204,0,0,0)} 50%{box-shadow:0 0 18px rgba(204,0,0,.55)} }
-        @keyframes t-track       { 0%{left:0;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
-        @keyframes t-dash        { from{background-position:0 0} to{background-position:22px 0} }
-      `}</style>
+
     </section>
   );
 }
