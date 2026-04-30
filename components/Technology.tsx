@@ -190,6 +190,10 @@ function TechFlowChart() {
         @keyframes t-conveyor   { from{background-position:0 0} to{background-position:24px 0} }
         @keyframes t-drone      { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(8px) translateY(-2px)} }
         @keyframes t-trail      { 0%,100%{opacity:.3} 50%{opacity:.65} }
+        @keyframes t-glow       { 0%,100%{box-shadow:0 0 0 rgba(204,0,0,0)} 50%{box-shadow:0 0 18px rgba(204,0,0,.55)} }
+        @keyframes t-track      { 0%{left:0;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
+        @keyframes t-dash       { from{background-position:0 0} to{background-position:22px 0} }
+        @keyframes t-arrow-r    { 0%,100%{opacity:.55;transform:translateY(-50%)} 50%{opacity:1;transform:translateY(-50%) translateX(3px)} }
       `}</style>
     </div>
   );
