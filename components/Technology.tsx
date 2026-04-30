@@ -312,7 +312,13 @@ export default function Technology() {
               ))}
             </div>
           </div>
-        </div>
+
+        <style>{`
+          @keyframes t-glow    { 0%,100%{box-shadow:0 0 0 rgba(204,0,0,0)} 50%{box-shadow:0 0 18px rgba(204,0,0,.55)} }
+          @keyframes t-track   { 0%{left:0;opacity:0} 8%{opacity:1} 92%{opacity:1} 100%{left:100%;opacity:0} }
+          @keyframes t-dash    { from{background-position:0 0} to{background-position:22px 0} }
+          @keyframes t-arrow-r { 0%,100%{opacity:.55;transform:translateY(-50%)} 50%{opacity:1;transform:translateY(-50%) translateX(3px)} }
+        `}</style>
 
         {/* ══ CLOSING ══ */}
         <div className="reveal" style={{
