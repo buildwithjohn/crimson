@@ -215,11 +215,40 @@ export default function HowItWorks() {
           <AnimatedFlowDiagram/>
         </div>
 
-        {/* Video placeholder */}
+        {/* Process summary video — Vimeo */}
         <div className="reveal" style={{ transitionDelay:".3s" }}>
-          <div style={{ background:"#0B1F33", borderRadius:12, padding:"clamp(20px,3vw,36px)", border:"1px solid rgba(204,0,0,.2)", display:"flex", alignItems:"center", justifyContent:"center", gap:14, minHeight:80 }}>
-            <div style={{ width:7, height:7, borderRadius:"50%", background:"rgba(204,0,0,.4)", animation:"hw-blink 1.5s ease-in-out infinite" }}/>
-            <span className="font-mono" style={{ fontSize:11, color:"rgba(255,255,255,.3)", letterSpacing:".16em" }}>PROCESS SUMMARY VIDEO · UPLOADING SOON</span>
+          <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
+            <div style={{ width:8, height:8, borderRadius:"50%", background:"#CC0000", boxShadow:"0 0 8px rgba(204,0,0,.7)", animation:"hw-blink 1.5s ease-in-out infinite" }}/>
+            <span className="font-mono" style={{ fontSize:9, color:"var(--steel-light)", letterSpacing:".14em" }}>PROCESS SUMMARY · SEE IT IN ACTION</span>
+          </div>
+          <div style={{ position:"relative", borderRadius:12, overflow:"hidden", boxShadow:"0 20px 60px rgba(0,0,0,.25), 0 4px 20px rgba(204,0,0,.1)", border:"1px solid rgba(204,0,0,.2)", background:"#000" }}>
+            <div style={{ position:"absolute", top:0, left:0, right:0, height:3, zIndex:3, background:"linear-gradient(90deg,#CC0000,#2F80ED,#CC0000)" }}/>
+            <div style={{ padding:"55.77% 0 0 0", position:"relative" }}>
+              <iframe
+                src="https://player.vimeo.com/video/1188372143?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%" }}
+                title="CrimsonWings — End-to-End Blood Logistics Process"
+              />
+            </div>
+            <div style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none", background:"radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.5) 100%)" }}/>
+          </div>
+          <div style={{ marginTop:2, background:"var(--ink)", borderRadius:"0 0 12px 12px", padding:"clamp(16px,2.5vw,28px) clamp(20px,3vw,36px)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
+            <div>
+              <h3 className="font-display" style={{ fontSize:"clamp(15px,1.8vw,20px)", fontWeight:700, color:"#fff", marginBottom:4 }}>
+                From Donor to Patient — <em style={{ color:"#CC0000" }}>One Unbroken Chain</em>
+              </h3>
+              <p style={{ fontSize:13, color:"rgba(255,255,255,.45)", margin:0 }}>11 steps. Zero manual gaps. Every unit tracked from collection to bedside.</p>
+            </div>
+            <div style={{ display:"flex", gap:20, flexWrap:"wrap" }}>
+              {[{v:"11",l:"Steps"},{v:"<60m",l:"End-to-End"},{v:"100%",l:"Tracked"}].map(s=>(
+                <div key={s.l} style={{ textAlign:"center" }}>
+                  <div className="font-display" style={{ fontSize:"clamp(16px,2vw,22px)", fontWeight:800, color:"#CC0000", lineHeight:1 }}>{s.v}</div>
+                  <div className="caption" style={{ color:"rgba(255,255,255,.3)", fontSize:8, marginTop:3 }}>{s.l}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

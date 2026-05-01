@@ -118,7 +118,6 @@ function TechFlowChart() {
 
       <style>{`
         @media(min-width:640px){ .tfc-grid{ grid-template-columns:1fr 1fr !important; } }
-        @media(min-width:700px){ .vid-caption-grid{ grid-template-columns:1fr 1fr !important; } }
         @keyframes tfc-blink    { 0%,100%{opacity:1} 50%{opacity:.2} }
         @keyframes tfc-pulse    { 0%{top:-28%} 100%{top:110%} }
         @keyframes tfc-fadein   { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
@@ -203,68 +202,6 @@ export default function Technology() {
           <p className="body-md reveal delay-2" style={{ color:"var(--steel)" }}>
             CrimsonWings operates a <strong style={{ color:"var(--ink)" }}>fully integrated, automation-driven blood processing and logistics system</strong> — engineered for speed, safety, and scale.
           </p>
-        </div>
-
-        {/* Vimeo video — presentational, autoplay, muted, loop */}
-        <div className="reveal" style={{ marginBottom:"clamp(36px,5vw,56px)", transitionDelay:".1s" }}>
-          <div style={{
-            position:"relative",
-            borderRadius:12,
-            overflow:"hidden",
-            boxShadow:"0 24px 80px rgba(0,0,0,.3), 0 4px 24px rgba(204,0,0,.1)",
-            border:"1px solid rgba(204,0,0,.2)",
-          }}>
-            {/* Crimson top line */}
-            <div style={{ position:"absolute", top:0, left:0, right:0, height:3, zIndex:3, background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))" }}/>
-            {/* Vimeo embed */}
-            <div style={{ padding:"55.77% 0 0 0", position:"relative" }}>
-              <iframe
-                src="https://player.vimeo.com/video/1188372143?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%" }}
-                title="CrimsonWings — Automated Blood Intelligence Infrastructure"
-              />
-            </div>
-            <script src="https://player.vimeo.com/api/player.js" async/>
-            {/* Vignette overlay */}
-            <div style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none", background:"radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.4) 100%)" }}/>
-          </div>
-
-          {/* Caption below video */}
-          <div style={{ background:"var(--ink)", padding:"clamp(20px,3vw,32px) clamp(20px,3vw,40px)", display:"grid", gap:"clamp(16px,2vw,28px)" }} className="vid-caption-grid">
-            <div>
-              <div className="caption" style={{ color:"var(--crimson)", marginBottom:8, fontSize:10 }}>System Overview</div>
-              <h3 className="font-display" style={{ fontSize:"clamp(16px,2vw,24px)", fontWeight:700, color:"#fff", lineHeight:1.3, marginBottom:10 }}>
-                One Continuous System. <em style={{ color:"var(--crimson)" }}>No Breaks. No Delays.</em>
-              </h3>
-              <p style={{ fontSize:14, color:"rgba(255,255,255,.55)", lineHeight:1.7, margin:0 }}>
-                From donor intake to patient delivery — seven automated stages, zero manual gaps.
-              </p>
-            </div>
-            <div style={{ display:"flex", flexDirection:"column", gap:6, justifyContent:"center" }}>
-              {[
-                {n:"01",l:"Sample Receiving",    p:"Zero friction intake"},
-                {n:"02",l:"Automated Sorting",   p:"BLIM pre-analytics"},
-                {n:"03",l:"Centrifugation",      p:"p671 sample prep"},
-                {n:"04",l:"Vertical Transport",  p:"CCM floor-to-floor"},
-                {n:"05",l:"Diagnostic Engine",   p:"e801 + cobas 6800"},
-                {n:"06",l:"Smart Archiving",     p:"p701 traceable storage"},
-                {n:"07",l:"Dispatch & Delivery", p:"≤60 min to patient"},
-              ].map(s => (
-                <div key={s.n} style={{ display:"flex", alignItems:"center", gap:10, padding:"6px 12px", background:"rgba(255,255,255,.04)", border:"1px solid rgba(255,255,255,.06)", transition:"background .2s" }}
-                  onMouseEnter={e=>(e.currentTarget as HTMLElement).style.background="rgba(204,0,0,.1)"}
-                  onMouseLeave={e=>(e.currentTarget as HTMLElement).style.background="rgba(255,255,255,.04)"}
-                >
-                  <span className="font-mono" style={{ fontSize:9, fontWeight:700, color:"var(--crimson)", flexShrink:0, width:18 }}>{s.n}</span>
-                  <span style={{ fontSize:12, fontWeight:600, color:"#fff", flex:1 }}>{s.l}</span>
-                  <span className="font-mono" style={{ fontSize:9, color:"rgba(255,255,255,.3)" }}>{s.p}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Flow chart */}
