@@ -216,16 +216,19 @@ export default function Technology() {
           }}>
             {/* Crimson top line */}
             <div style={{ position:"absolute", top:0, left:0, right:0, height:3, zIndex:3, background:"linear-gradient(90deg,var(--crimson),#2F80ED,var(--crimson))" }}/>
-            {/* Vimeo embed — 55.77% aspect ratio from their embed code */}
+            {/* Vimeo embed */}
             <div style={{ padding:"55.77% 0 0 0", position:"relative" }}>
               <iframe
-                src="https://player.vimeo.com/video/1188372143?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+                src="https://player.vimeo.com/video/1188372143?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1"
                 frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
                 style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%" }}
                 title="CrimsonWings — Automated Blood Intelligence Infrastructure"
               />
             </div>
+            <script src="https://player.vimeo.com/api/player.js" async/>
             {/* Vignette overlay */}
             <div style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none", background:"radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.4) 100%)" }}/>
           </div>
