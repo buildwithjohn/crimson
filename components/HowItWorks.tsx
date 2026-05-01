@@ -221,6 +221,7 @@ export default function HowItWorks() {
             <div style={{ width:8, height:8, borderRadius:"50%", background:"#CC0000", boxShadow:"0 0 8px rgba(204,0,0,.7)", animation:"hw-blink 1.5s ease-in-out infinite" }}/>
             <span className="font-mono" style={{ fontSize:9, color:"var(--steel-light)", letterSpacing:".14em" }}>PROCESS SUMMARY · SEE IT IN ACTION</span>
           </div>
+          <div style={{ maxWidth:720, margin:"0 auto" }}>
           <div style={{ position:"relative", borderRadius:12, overflow:"hidden", boxShadow:"0 20px 60px rgba(0,0,0,.25), 0 4px 20px rgba(204,0,0,.1)", border:"1px solid rgba(204,0,0,.2)", background:"#000" }}>
             <div style={{ position:"absolute", top:0, left:0, right:0, height:3, zIndex:3, background:"linear-gradient(90deg,#CC0000,#2F80ED,#CC0000)" }}/>
             <div style={{ padding:"56.25% 0 0 0", position:"relative" }}>
@@ -234,6 +235,7 @@ export default function HowItWorks() {
               />
             </div>
             <div style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none", background:"radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.5) 100%)" }}/>
+          </div>
           </div>
           <div style={{ marginTop:2, background:"var(--ink)", borderRadius:"0 0 12px 12px", padding:"clamp(16px,2.5vw,28px) clamp(20px,3vw,36px)", display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:12 }}>
             <div>
