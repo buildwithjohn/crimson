@@ -223,11 +223,12 @@ export default function HowItWorks() {
           </div>
           <div style={{ position:"relative", borderRadius:12, overflow:"hidden", boxShadow:"0 20px 60px rgba(0,0,0,.25), 0 4px 20px rgba(204,0,0,.1)", border:"1px solid rgba(204,0,0,.2)", background:"#000" }}>
             <div style={{ position:"absolute", top:0, left:0, right:0, height:3, zIndex:3, background:"linear-gradient(90deg,#CC0000,#2F80ED,#CC0000)" }}/>
-            <div style={{ padding:"55.77% 0 0 0", position:"relative" }}>
+            <div style={{ padding:"56.25% 0 0 0", position:"relative" }}>
               <iframe
-                src="https://player.vimeo.com/video/1188372143?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&muted=1&loop=1&background=1"
+                src="https://www.youtube.com/embed/zeYRgFMPRL0?autoplay=1&mute=1&loop=1&playlist=zeYRgFMPRL0&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
                 frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
                 style={{ position:"absolute", top:0, left:0, width:"100%", height:"100%" }}
                 title="CrimsonWings — End-to-End Blood Logistics Process"
               />
