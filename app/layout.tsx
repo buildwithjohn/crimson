@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   keywords: "CrimsonWings Blood Logistics, blood bank Nigeria, blood delivery Ogun State, NAT screening, drone blood delivery, medical logistics Nigeria, blood supply chain",
 
   openGraph: {
-    title: "CrimsonWings Blood Logistics Ltd",
-    description: "National-scale healthcare infrastructure. Digitized blood bank. Drone-enabled delivery. On Time. Every Time.",
+    title: "CrimsonWings Blood Logistics Ltd | Nigeria",  /* 50 chars */
+    description: "National-scale healthcare infrastructure powering Nigeria's blood supply chain. Automated processing, NAT screening, and drone-enabled delivery — on time, every time.",  /* 154 chars */
     type: "website",
     url: BASE_URL,
     siteName: "CrimsonWings Blood Logistics Ltd",
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "CrimsonWings Blood Logistics Ltd",
-    description: "National-scale healthcare infrastructure. Digitized blood bank. Drone-enabled delivery.",
+    title: "CrimsonWings Blood Logistics Ltd | Nigeria",  /* 50 chars */
+    description: "National-scale healthcare infrastructure powering Nigeria's blood supply chain. Automated processing, precision logistics, national scale.",
     images: ["/og-image.jpg"],
   },
 
